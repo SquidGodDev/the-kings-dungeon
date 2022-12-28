@@ -25,11 +25,15 @@ function Player:init(x, y, gameManager)
     self.maxSpeed = 3
     self.startVelocity = 3
     self.jumpVelocity = -8
-    self.climbVelocity = 3
 
     self.friction = 0.5
     self.drag = 0.1
     self.acceleration = 0.5
+
+    -- Climb
+    self.climbVelocity = 3
+    self.climbMagnetRange = 8
+
 
     self:setCollideRect(8, 4, 18, 32)
     self:setGroups(COLLISION_GROUPS.player)
@@ -185,6 +189,9 @@ end
 
 function Player:changeToClimbState(collision)
     local climableTileX = collision.other.x
+    if math.abs(self.x - climableTileX) > self.climbMagnetRange then
+        return
+    end
     self.xVelocity = 0
     self.yVelocity = 0
     self:changeState("climb")
