@@ -106,7 +106,7 @@ function Player:update()
         self:checkIfClimbing()
         self:applyGravity()
     elseif self.currentState == "climb" then
-        if pd.buttonIsPressed(pd.kButtonLeft) or pd.buttonIsPressed(pd.kButtonRight) or not self.touchingClimableTile then
+        if pd.buttonIsPressed(pd.kButtonA) or not self.touchingClimableTile then
             self.yVelocity = 0
             self:changeState("idle")
             self._enabled = true
@@ -115,6 +115,10 @@ function Player:update()
             self._enabled = true
         elseif pd.buttonIsPressed(pd.kButtonDown) then
             self.yVelocity = self.climbVelocity
+            self._enabled = true
+        elseif self.touchedGround  then
+            self.yVelocity = 0
+            self:changeState("idle")
             self._enabled = true
         else
             self.yVelocity = 0
