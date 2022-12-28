@@ -88,7 +88,6 @@ function GameScene:goToLevel(level_name)
 				local climableTiles = gfx.sprite.addWallSprites(tilemap, nonClimableTiles)
 				for i=1,#climableTiles do
 					local climableTile = climableTiles[i]
-					climableTile.collisionResponse = gfx.sprite.kCollisionTypeOverlap
 					climableTile:setTag(TAGS.CLIMABLE)
 				end
 			end

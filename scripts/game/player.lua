@@ -9,12 +9,12 @@ function Player:init(x, y, gameManager)
     self.respawnY = y
     self.gameManager = gameManager
 
-    local playerImageTable = gfx.imagetable.new("images/player/player-table-32-32")
+    local playerImageTable = gfx.imagetable.new("images/player/player-table-36-36")
     Player.super.init(self, playerImageTable)
 
     self:addState("idle", 1, 1)
     self:addState("run", 2, 5, {tickStep = 4})
-    self:addState("climb", 6, 7, {tickStep = 4})
+    self:addState("climb", 6, 7, {tickStep = 6})
     self:addState("jumpAscent", 8, 8)
     self:addState("jumpDescent", 8, 8)
 
@@ -25,12 +25,13 @@ function Player:init(x, y, gameManager)
     self.maxSpeed = 3
     self.startVelocity = 3
     self.jumpVelocity = -8
+    self.climbVelocity = 3
 
     self.friction = 0.5
     self.drag = 0.1
     self.acceleration = 0.5
 
-    self:setCollideRect(8, 4, 18, 28)
+    self:setCollideRect(8, 4, 18, 32)
     self:setGroups(COLLISION_GROUPS.player)
 
     self:setZIndex(Z_INDEXES.PLAYER)
@@ -52,7 +53,7 @@ function Player:update()
     self:updateAnimation()
 
     if self.currentState == "idle" then
-        if pd.buttonIsPressed(pd.kButtonA) or pd.buttonIsPressed(pd.kButtonUp) then
+        if pd.buttonIsPressed(pd.kButtonA)then
             self.yVelocity = self.jumpVelocity
             self:changeState("jumpAscent")
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
@@ -66,7 +67,7 @@ function Player:update()
         end
         self:applyFriction()
     elseif self.currentState == "run" then
-        if pd.buttonIsPressed(pd.kButtonA) or pd.buttonIsPressed(pd.kButtonUp) then
+        if pd.buttonIsPressed(pd.kButtonA) then
             self.yVelocity = self.jumpVelocity
             self:changeState("jumpAscent")
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
@@ -96,16 +97,49 @@ function Player:update()
                 self:changeState("idle")
             end
         end
+    elseif self.currentState == "climb" then
+        if pd.buttonIsPressed(pd.kButtonLeft) or pd.buttonIsPressed(pd.kButtonRight) then
+            self.yVelocity = 0
+            self:changeState("idle")
+            self._enabled = true
+        elseif pd.buttonIsPressed(pd.kButtonUp) then
+            self.yVelocity = -self.climbVelocity
+            self._enabled = true
+        elseif pd.buttonIsPressed(pd.kButtonDown) then
+            self.yVelocity = self.climbVelocity
+            self._enabled = true
+        else
+            self.yVelocity = 0
+            self:pauseAnimation()
+        end
     end
 
-    self:applyGravity()
-
+    local originalY = self.y
     local _, _, collisions, length = self:moveWithCollisions(self.x + self.xVelocity, self.y + self.yVelocity)
     local touchedGround = false
+    local touchedClimableTile = false
     for i=1,length do
         local collision = collisions[i]
         local collisionType = collision.type
-        if collisionType ~= gfx.sprite.kCollisionTypeOverlap then
+        if collisionType == gfx.sprite.kCollisionTypeOverlap then
+            local collisionTag = collision.other:getTag()
+            if collisionTag == TAGS.CLIMABLE then
+                touchedClimableTile = true
+                if self.currentState ~= "climb" then
+                    if collision.normal.y == -1 and not collision.overlaps then
+                        if pd.buttonIsPressed(pd.kButtonDown) then
+                            self:changeToClimbState(collision)
+                        else
+                            self.yVelocity = 0
+                            touchedGround = true
+                            self:moveTo(self.x, originalY)
+                        end
+                    elseif pd.buttonIsPressed(pd.kButtonUp) then
+                        self:changeToClimbState(collision)
+                    end
+                end
+            end
+        else
             if collision.normal.y == -1 then
                 touchedGround = true
             elseif collision.normal.y == 1 then
@@ -117,6 +151,12 @@ function Player:update()
         end
     end
     if touchedGround then
+        self.yVelocity = 0
+    else
+        self:applyGravity()
+    end
+    if not touchedClimableTile and self.currentState == "climb" then
+        self:changeState("idle")
         self.yVelocity = 0
     end
 
@@ -130,6 +170,10 @@ function Player:update()
 		self.gameManager:enterRoom(DIRECTIONS.west)
     elseif self.x > 400  then
         self.gameManager:enterRoom(DIRECTIONS.east)
+    elseif self.y < 0 then
+        self.gameManager:enterRoom(DIRECTIONS.north)
+    elseif self.y > 240 then
+        self.gameManager:enterRoom(DIRECTIONS.south)
 	end
 end
 
@@ -137,6 +181,15 @@ function Player:resetPlayer()
     self:moveTo(self.respawnX, self.respawnY)
     self.xVelocity = 0
     self.yVelocity = 0
+end
+
+function Player:changeToClimbState(collision)
+    local climableTileX = collision.other.x
+    self.xVelocity = 0
+    self.yVelocity = 0
+    self:changeState("climb")
+    self:pauseAnimation()
+    self:moveTo(climableTileX, self.y)
 end
 
 function Player:handleJumpPhysics()
