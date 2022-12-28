@@ -9,7 +9,7 @@ function Player:init(x, y, gameManager)
     self.respawnY = y
     self.gameManager = gameManager
 
-    local playerImageTable = gfx.imagetable.new("images/player/player-table-36-36")
+    local playerImageTable = gfx.imagetable.new("images/player/player-table-40-40")
     Player.super.init(self, playerImageTable)
 
     self:addState("idle", 1, 1)
@@ -41,7 +41,7 @@ function Player:init(x, y, gameManager)
     self.standingOnClimableTile = false
     self.climbTileX = self.x
 
-    self:setCollideRect(8, 4, 18, 32)
+    self:setCollideRect(8, 4, 24, 36)
     self:setGroups(COLLISION_GROUPS.player)
 
     self:setZIndex(Z_INDEXES.PLAYER)
