@@ -17,6 +17,7 @@ function Player:init(x, y, gameManager)
     self:addState("climb", 6, 7, {tickStep = 6})
     self:addState("jumpAscent", 8, 8)
     self:addState("jumpDescent", 8, 8)
+    self:addState("wallClimb", 9, 10, {tickStep = 6})
 
     self.xVelocity = 0
     self.yVelocity = 0
@@ -30,9 +31,9 @@ function Player:init(x, y, gameManager)
     self.drag = 0.1
     self.acceleration = 0.5
 
-    self.touchedGround = true
-    self.touchedCeiling = false
-    self.touchedWall = false
+    self.touchingGround = true
+    self.touchingCeiling = false
+    self.touchingWall = false
 
     -- Climb
     self.climbVelocity = 3
@@ -41,7 +42,12 @@ function Player:init(x, y, gameManager)
     self.standingOnClimableTile = false
     self.climbTileX = self.x
 
-    self:setCollideRect(8, 4, 24, 36)
+    -- Wall Climb
+    self.touchingClimableWall = false
+    self.wallClimbVelocity = 3
+    self.wallJumpVelocity = 3
+
+    self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)
 
     self:setZIndex(Z_INDEXES.PLAYER)
@@ -51,7 +57,7 @@ function Player:init(x, y, gameManager)
 end
 
 function Player:collisionResponse(other)
-    local climableTag = TAGS.CLIMABLE
+    local climableTag = TAGS.Climable
     local collisionTag = other:getTag()
     if collisionTag == climableTag then
         return gfx.sprite.kCollisionTypeOverlap
@@ -109,17 +115,49 @@ function Player:update()
         if pd.buttonIsPressed(pd.kButtonA) or not self.touchingClimableTile then
             self.yVelocity = 0
             self:changeState("idle")
-            self._enabled = true
+            self:resumeAnimation()
         elseif pd.buttonIsPressed(pd.kButtonUp) then
             self.yVelocity = -self.climbVelocity
-            self._enabled = true
+            self:resumeAnimation()
         elseif pd.buttonIsPressed(pd.kButtonDown) then
             self.yVelocity = self.climbVelocity
-            self._enabled = true
-        elseif self.touchedGround  then
+            self:resumeAnimation()
+        elseif self.touchingGround then
             self.yVelocity = 0
             self:changeState("idle")
-            self._enabled = true
+            self:resumeAnimation()
+        else
+            self.yVelocity = 0
+            self:pauseAnimation()
+        end
+    elseif self.currentState == "wallClimb" then
+        self:setClimbCollisionRect()
+        if self.globalFlip == 1 then
+            self.xVelocity = -1
+        else
+            self.xVelocity = 1
+        end
+        if pd.buttonJustPressed(pd.kButtonA) then
+            self.yVelocity = 0
+            if self.globalFlip == 1 then
+                self.xVelocity = self.wallJumpVelocity
+            else
+                self.xVelocity = -self.wallJumpVelocity
+            end
+            self:changeToJumpState()
+            self:resumeAnimation()
+            self:setDefaultCollisionRect()
+        elseif self.touchingGround or not self.touchingClimableWall then
+            self.yVelocity = 0
+            self:changeState("idle")
+            self:resumeAnimation()
+            self:setDefaultCollisionRect()
+        elseif pd.buttonIsPressed(pd.kButtonUp) then
+            self.yVelocity = -self.wallClimbVelocity
+            self:resumeAnimation()
+        elseif pd.buttonIsPressed(pd.kButtonDown) then
+            self.yVelocity = self.wallClimbVelocity
+            self:resumeAnimation()
         else
             self.yVelocity = 0
             self:pauseAnimation()
@@ -148,9 +186,10 @@ end
 function Player:handleMovementAndCollisions()
     local originalY = self.y
     local _, _, collisions, length = self:moveWithCollisions(self.x + self.xVelocity, self.y + self.yVelocity)
-    self.touchedGround = false
-    self.touchedCeiling = false
-    self.touchedWall = false
+    self.touchingGround = false
+    self.touchingCeiling = false
+    self.touchingWall = false
+    self.touchingClimableWall = false
     self.touchingClimableTile = false
     self.standingOnClimableTile = false
     for i=1,length do
@@ -158,32 +197,36 @@ function Player:handleMovementAndCollisions()
         local collisionType = collision.type
         if collisionType == gfx.sprite.kCollisionTypeOverlap then
             local collisionTag = collision.other:getTag()
-            if collisionTag == TAGS.CLIMABLE then
+            if collisionTag == TAGS.Climable then
                 self.touchingClimableTile = true
                 self.climbTileX = collision.other.x
                 if collision.normal.y == -1 and not collision.overlaps then
                     self.standingOnClimableTile = true
-                    self.touchedGround = true
+                    self.touchingGround = true
                     self:moveTo(self.x, originalY)
                 end
             end
         else
             if collision.normal.y == -1 then
-                self.touchedGround = true
+                self.touchingGround = true
             elseif collision.normal.y == 1 then
-                self.touchedCeiling = true
+                self.touchingCeiling = true
             end
             if collision.normal.x == -1 or collision.normal.x == 1 then
-                self.touchedWall = true
+                local collisionTag = collision.other:getTag()
+                if collisionTag == TAGS.WallClimable then
+                    self.touchingClimableWall = true
+                end
+                self.touchingWall = true
             end
         end
     end
 
-    if self.touchedGround or self.touchedCeiling then
+    if self.touchingGround or self.touchingCeiling then
         self.yVelocity = 0
     end
 
-    if self.touchedWall then
+    if self.touchingWall then
         self.xVelocity = 0
     end
 end
@@ -234,7 +277,14 @@ function Player:changeToRunState(direction)
 end
 
 function Player:handleJumpPhysics()
-    if pd.buttonIsPressed(pd.kButtonLeft) then
+    if pd.buttonIsPressed(pd.kButtonA) and self.touchingClimableWall then
+        if self.globalFlip == 1 then
+            self.xVelocity = -1
+        else
+            self.xVelocity = 1
+        end
+        self:changeState("wallClimb")
+    elseif pd.buttonIsPressed(pd.kButtonLeft) then
         self:accelerateLeft()
     elseif pd.buttonIsPressed(pd.kButtonRight) then
         self:accelerateRight()
@@ -295,4 +345,12 @@ function Player:applyFriction()
     if math.abs(self.xVelocity) < 0.5 then
         self.xVelocity = 0
     end
+end
+
+function Player:setDefaultCollisionRect()
+    self:setCollideRect(8, 4, 24, 36)
+end
+
+function Player:setClimbCollisionRect()
+    self:setCollideRect(8, 8, 24, 24)
 end

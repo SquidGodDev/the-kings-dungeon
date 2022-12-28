@@ -9,7 +9,9 @@ DIRECTIONS = {
 }
 
 TAGS = {
-	CLIMABLE = 1
+	Solid = 1,
+	Climable = 2,
+	WallClimable = 3
 }
 
 Z_INDEXES = {
@@ -54,13 +56,9 @@ end
 function GameScene:goToLevel(level_name)
     if not level_name then return end
 
-	local previous_level = self.level_name
-
 	self.level_name = level_name
-	ldtk.load_level(level_name)
 
 	-- we release the previous level after loading the new one so that it doesn't unload the tileset if we reuse it
-	ldtk.release_level(previous_level)
 	gfx.sprite.removeAll()
 
 	self.layerSprites = {}
@@ -76,19 +74,14 @@ function GameScene:goToLevel(level_name)
 			layerSprite:add()
 			self.layerSprites[layer_name] = layerSprite
 
-			local nonSolidTiles = ldtk.get_empty_tileIDs(level_name, "Solid", layer_name)
-
-			if nonSolidTiles then
-				gfx.sprite.addWallSprites(tilemap, nonSolidTiles)
-			end
-
-			local nonClimableTiles = ldtk.get_empty_tileIDs(level_name, "Climable", layer_name)
-
-			if nonClimableTiles then
-				local climableTiles = gfx.sprite.addWallSprites(tilemap, nonClimableTiles)
-				for i=1,#climableTiles do
-					local climableTile = climableTiles[i]
-					climableTile:setTag(TAGS.CLIMABLE)
+			for enum, tag in pairs(TAGS) do
+				local emptyTiles = ldtk.get_empty_tileIDs(level_name, enum, layer_name)
+				if emptyTiles then
+					local tileSprites = gfx.sprite.addWallSprites(tilemap, emptyTiles)
+					for i=1,#tileSprites do
+						local tileSprite = tileSprites[i]
+						tileSprite:setTag(tag)
+					end
 				end
 			end
 		end
