@@ -26,6 +26,7 @@ function Player:init(x, y, gameManager)
     self.maxSpeed = 3
     self.startVelocity = 3
     self.jumpVelocity = -8
+    self.doubleJumpAvailable = true
 
     self.friction = 0.5
     self.drag = 0.1
@@ -222,7 +223,12 @@ function Player:handleMovementAndCollisions()
         end
     end
 
-    if self.touchingGround or self.touchingCeiling then
+    if self.touchingGround then
+        self.yVelocity = 0
+        self.doubleJumpAvailable = true
+    end
+
+    if self.touchingCeiling then
         self.yVelocity = 0
     end
 
@@ -283,7 +289,11 @@ function Player:handleJumpPhysics()
         else
             self.xVelocity = 1
         end
+        self.doubleJumpAvailable = false
         self:changeState("wallClimb")
+    elseif pd.buttonJustPressed(pd.kButtonA) and self.doubleJumpAvailable then
+        self.doubleJumpAvailable = false
+        self:changeToJumpState()
     elseif pd.buttonIsPressed(pd.kButtonLeft) then
         self:accelerateLeft()
     elseif pd.buttonIsPressed(pd.kButtonRight) then
