@@ -11,11 +11,18 @@ DIRECTIONS = {
 TAGS = {
 	Solid = 1,
 	Climable = 2,
-	WallClimable = 3
+	WallClimable = 3,
+	Player = 4
 }
 
 Z_INDEXES = {
-	PLAYER = 100
+	PLAYER = 100,
+	GATE = 0,
+	UI = 1000
+}
+
+COLLISION_GROUPS = {
+    player = 1
 }
 
 local ldtk <const> = LDtk
@@ -84,6 +91,13 @@ function GameScene:goToLevel(level_name)
 					end
 				end
 			end
+		end
+	end
+
+	for _, entity in ipairs(ldtk.get_entities(level_name)) do
+		if entity.name=="Gate" then
+			local gateX, gateY = entity.position.x, entity.position.y
+			Gate(gateX, gateY, entity)
 		end
 	end
 end

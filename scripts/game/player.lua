@@ -61,6 +61,7 @@ function Player:init(x, y, gameManager)
     self:setGroups(COLLISION_GROUPS.player)
 
     self:setZIndex(Z_INDEXES.PLAYER)
+    self:setTag(TAGS.Player)
 
     self:playAnimation()
     self:moveTo(x, y)
