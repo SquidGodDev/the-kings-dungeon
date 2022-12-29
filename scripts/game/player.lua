@@ -18,6 +18,7 @@ function Player:init(x, y, gameManager)
     self:addState("jumpAscent", 8, 8)
     self:addState("jumpDescent", 8, 8)
     self:addState("wallClimb", 9, 10, {tickStep = 6})
+    self:addState("dash", 5, 5)
 
     self.xVelocity = 0
     self.yVelocity = 0
@@ -38,7 +39,7 @@ function Player:init(x, y, gameManager)
 
     -- Climb
     self.climbVelocity = 3
-    self.climbMagnetRange = 8
+    self.climbMagnetRange = 16
     self.touchingClimableTile = false
     self.standingOnClimableTile = false
     self.climbTileX = self.x
@@ -47,6 +48,14 @@ function Player:init(x, y, gameManager)
     self.touchingClimableWall = false
     self.wallClimbVelocity = 3
     self.wallJumpVelocity = 3
+
+    -- Dash
+    self.dashAvailable = true
+    self.dashSpeed = 15
+    self.dashMinimumSpeed = 6
+    self.dashDrag = 0.8
+    self.dashHeightBoost = -3
+    self.dashGravity = 0.5
 
     self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)
@@ -72,6 +81,8 @@ function Player:update()
     if self.currentState == "idle" then
         if pd.buttonIsPressed(pd.kButtonA)then
             self:changeToJumpState()
+        elseif pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
+            self:changeToDashState()
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
             self:changeToRunState("left")
         elseif pd.buttonIsPressed(pd.kButtonRight) then
@@ -83,6 +94,8 @@ function Player:update()
     elseif self.currentState == "run" then
         if pd.buttonIsPressed(pd.kButtonA) then
             self:changeToJumpState()
+        elseif pd.buttonJustPressed(pd.kButtonB) then
+            self:changeToDashState()
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
             self:accelerateLeft()
         elseif pd.buttonIsPressed(pd.kButtonRight) then
@@ -93,25 +106,33 @@ function Player:update()
         self:checkIfClimbing()
         self:applyGravity()
     elseif self.currentState == "jumpAscent" then
-        self:handleJumpPhysics()
-        if self.yVelocity >= 0 then
-            self:changeState("jumpDescent")
-        end
-        self:checkIfClimbing()
-        self:applyGravity()
-    elseif self.currentState == "jumpDescent" then
-        self:handleJumpPhysics()
-        if math.abs(self.yVelocity) <= 0 then
-            if pd.buttonIsPressed(pd.kButtonLeft) then
-                self:changeToRunState("left")
-            elseif pd.buttonIsPressed(pd.kButtonRight) then
-                self:changeToRunState("right")
-            else
-                self:changeState("idle")
+        if pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
+            self:changeToDashState()
+        else
+            self:handleJumpPhysics()
+            if self.yVelocity >= 0 then
+                self:changeState("jumpDescent")
             end
+            self:checkIfClimbing()
+            self:applyGravity()
         end
-        self:checkIfClimbing()
-        self:applyGravity()
+    elseif self.currentState == "jumpDescent" then
+        if pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
+            self:changeToDashState()
+        else
+            self:handleJumpPhysics()
+            if self.yVelocity == 0 then
+                if pd.buttonIsPressed(pd.kButtonLeft) then
+                    self:changeToRunState("left")
+                elseif pd.buttonIsPressed(pd.kButtonRight) then
+                    self:changeToRunState("right")
+                else
+                    self:changeState("idle")
+                end
+            end
+            self:checkIfClimbing()
+            self:applyGravity()
+        end
     elseif self.currentState == "climb" then
         if pd.buttonIsPressed(pd.kButtonA) or not self.touchingClimableTile then
             self.yVelocity = 0
@@ -162,6 +183,22 @@ function Player:update()
         else
             self.yVelocity = 0
             self:pauseAnimation()
+        end
+    elseif self.currentState == "dash" then
+        if self.xVelocity > 0 then
+            self.xVelocity -= self.dashDrag
+        elseif self.xVelocity < 0 then
+            self.xVelocity += self.dashDrag
+        end
+
+        if self.standingOnClimableTile then
+            self.yVelocity = 0
+        else
+            self.yVelocity += self.dashGravity
+        end
+
+        if math.abs(self.xVelocity) <= self.dashMinimumSpeed then
+            self:changeState("jumpDescent")
         end
     end
 
@@ -226,6 +263,7 @@ function Player:handleMovementAndCollisions()
     if self.touchingGround then
         self.yVelocity = 0
         self.doubleJumpAvailable = true
+        self.dashAvailable = true
     end
 
     if self.touchingCeiling then
@@ -249,7 +287,7 @@ function Player:checkIfClimbing()
             if pd.buttonIsPressed(pd.kButtonDown) then
                 self:changeToClimbState()
             end
-        elseif pd.buttonIsPressed(pd.kButtonUp) then
+        elseif pd.buttonJustPressed(pd.kButtonUp) then
             self:changeToClimbState()
         end
     end
@@ -271,6 +309,25 @@ function Player:changeToJumpState()
     self:changeState("jumpAscent")
 end
 
+function Player:changeToDashState()
+    self.dashAvailable = false
+    self.yVelocity = self.dashHeightBoost
+    if pd.buttonIsPressed(pd.kButtonLeft) then
+        self.xVelocity = -self.dashSpeed
+        self.globalFlip = 1
+    elseif pd.buttonIsPressed(pd.kButtonRight) then
+        self.xVelocity = self.dashSpeed
+        self.globalFlip = 0
+    else
+        if self.globalFlip == 1 then
+            self.xVelocity = -self.dashSpeed
+        else
+            self.xVelocity = self.dashSpeed
+        end
+    end
+    self:changeState("dash")
+end
+
 function Player:changeToRunState(direction)
     if direction == "left" then
         self.xVelocity = -self.startVelocity
@@ -290,6 +347,7 @@ function Player:handleJumpPhysics()
             self.xVelocity = 1
         end
         self.doubleJumpAvailable = false
+        self.dashAvailable = false
         self:changeState("wallClimb")
     elseif pd.buttonJustPressed(pd.kButtonA) and self.doubleJumpAvailable then
         self.doubleJumpAvailable = false
@@ -358,7 +416,7 @@ function Player:applyFriction()
 end
 
 function Player:setDefaultCollisionRect()
-    self:setCollideRect(8, 4, 24, 36)
+    self:setCollideRect(8, 10, 24, 30)
 end
 
 function Player:setClimbCollisionRect()
