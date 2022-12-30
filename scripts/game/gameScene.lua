@@ -13,7 +13,8 @@ TAGS = {
 	Climable = 2,
 	WallClimable = 3,
 	Player = 4,
-	Destructable = 5
+	Destructable = 5,
+	Hazard = 6
 }
 
 Z_INDEXES = {
@@ -44,22 +45,38 @@ class('GameScene').extends()
 function GameScene:init()
     self:goToLevel("Level_0")
 
-	self.player = Player(200, 120, self)
+	self.spawnX = 200
+	self.spawnY = 120
+	self.player = Player(self.spawnX, self.spawnY, self)
+end
+
+function GameScene:resetLevel()
+	self:goToLevel(self.level_name)
+	self.player:add()
+	self.player:moveTo(self.spawnX, self.spawnY)
+end
+
+function GameScene:resetPlayer()
+	self.player:moveTo(self.spawnX, self.spawnY)
 end
 
 function GameScene:enterRoom(direction)
 	local level = ldtk.get_neighbours(self.level_name, direction)[1]
 	self:goToLevel(level)
 	self.player:add()
+	local spawnX, spawnY
 	if direction == DIRECTIONS.north then
-		self.player:moveTo(self.player.x, 240)
+		spawnX, spawnY = self.player.x, 240
 	elseif direction == DIRECTIONS.south then
-		self.player:moveTo(self.player.x, 0)
+		spawnX, spawnY = self.player.x, 0
 	elseif direction == DIRECTIONS.east then
-		self.player:moveTo(0, self.player.y)
+		spawnX, spawnY = 0, self.player.y
 	elseif direction == DIRECTIONS.west then
-		self.player:moveTo(400, self.player.y)
+		spawnX, spawnY = 400, self.player.y
 	end
+	self.player:moveTo(spawnX, spawnY)
+	self.spawnX = spawnX
+	self.spawnY = spawnY
 end
 
 function GameScene:goToLevel(level_name)
@@ -97,12 +114,15 @@ function GameScene:goToLevel(level_name)
 	end
 
 	for _, entity in ipairs(ldtk.get_entities(level_name)) do
+		local entityX, entityY = entity.position.x, entity.position.y
 		if entity.name == "Gate" then
-			local gateX, gateY = entity.position.x, entity.position.y
-			Gate(gateX, gateY, entity)
+			Gate(entityX, entityY, entity)
 		elseif entity.name == "DestructableBlock" then
-			local blockX, blockY = entity.position.x, entity.position.y
-			DestructableBlock(blockX, blockY, entity)
+			DestructableBlock(entityX, entityY, entity)
+		elseif entity.name == "Spike" then
+			Spike(entityX, entityY)
+		elseif entity.name == "Spikeball" then
+			Spikeball(entityX, entityY, entity)
 		end
 	end
 end

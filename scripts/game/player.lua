@@ -7,8 +7,6 @@ local util <const> = utilities
 class('Player').extends(AnimatedSprite)
 
 function Player:init(x, y, gameManager)
-    self.respawnX = x
-    self.respawnY = y
     self.gameManager = gameManager
 
     local playerImageTable = gfx.imagetable.new("images/player/player-table-40-40")
@@ -73,18 +71,23 @@ function Player:init(x, y, gameManager)
 
     self:playAnimation()
     self:moveTo(x, y)
+
+    self.dead = false
 end
 
 function Player:collisionResponse(other)
-    local climableTag = TAGS.Climable
     local collisionTag = other:getTag()
-    if collisionTag == climableTag then
+    if collisionTag == TAGS.Climable or collisionTag == TAGS.Hazard then
         return gfx.sprite.kCollisionTypeOverlap
     end
     return gfx.sprite.kCollisionTypeSlide
 end
 
 function Player:update()
+    if self.dead then
+        return
+    end
+
     self:updateAnimation()
 
     if self.currentState == "idle" then
@@ -258,6 +261,7 @@ function Player:handleMovementAndCollisions()
     self.touchingClimableWall = false
     self.touchingClimableTile = false
     self.standingOnClimableTile = false
+    local died = false
     for i=1,length do
         local collision = collisions[i]
         local collisionType = collision.type
@@ -286,6 +290,10 @@ function Player:handleMovementAndCollisions()
                 self.touchingWall = true
             end
         end
+
+        if collision.other:getTag() == TAGS.Hazard then
+            died = true
+        end
     end
 
     if self.touchingGround then
@@ -301,12 +309,38 @@ function Player:handleMovementAndCollisions()
     if self.touchingWall then
         self.xVelocity = 0
     end
+
+    if died then
+        self:die()
+    end
 end
 
-function Player:resetPlayer()
-    self:moveTo(self.respawnX, self.respawnY)
+function Player:die()
     self.xVelocity = 0
     self.yVelocity = 0
+    self.dead = true
+    self:setCollisionsEnabled(false)
+    pd.timer.performAfterDelay(200, function()
+        local deathBurstSprite = util.animatedSprite("images/player/deathBurst-table-105-97", 50, false)
+        deathBurstSprite:setZIndex(Z_INDEXES.ABILITY)
+        deathBurstSprite:moveTo(self.x, self.y)
+        self:setVisible(false)
+        pd.timer.performAfterDelay(400, function()
+            self:setVisible(true)
+            self:setCollisionsEnabled(true)
+            self.gameManager:resetPlayer()
+            self.dead = false
+        end)
+        -- local transitionTime = 1000
+        -- local xTimer = pd.timer.new(transitionTime, self.x, 200, pd.easingFunctions.inOutCubic)
+        -- local yTimer = pd.timer.new(transitionTime, self.y, 120, pd.easingFunctions.inOutCubic)
+        -- yTimer.updateCallback = function()
+        --     self:moveTo(xTimer.value, yTimer.value)
+        -- end
+        -- yTimer.timerEndedCallback = function()
+            
+        -- end
+    end)
 end
 
 function Player:checkIfClimbing()
