@@ -215,6 +215,16 @@ function Player:update()
         if math.abs(self.xVelocity) <= self.dashMinimumSpeed then
             self:changeState("jumpDescent")
         end
+        if self.touchingClimableWall then
+            if self.globalFlip == 1 then
+                self.xVelocity = -1
+            else
+                self.xVelocity = 1
+            end
+            self.doubleJumpAvailable = false
+            self.dashAvailable = false
+            self:changeState("wallClimb")
+        end
     elseif self.currentState == "smash" then
         self.xVelocity = 0
         self.yVelocity = 0
@@ -358,7 +368,7 @@ function Player:changeToRunState(direction)
 end
 
 function Player:handleJumpPhysics()
-    if pd.buttonIsPressed(pd.kButtonA) and self.touchingClimableWall then
+    if self.touchingClimableWall then
         if self.globalFlip == 1 then
             self.xVelocity = -1
         else
