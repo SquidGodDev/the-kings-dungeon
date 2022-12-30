@@ -12,11 +12,13 @@ TAGS = {
 	Solid = 1,
 	Climable = 2,
 	WallClimable = 3,
-	Player = 4
+	Player = 4,
+	Destructable = 5
 }
 
 Z_INDEXES = {
 	PLAYER = 100,
+	ABILITY = 150,
 	GATE = 0,
 	UI = 1000
 }
@@ -95,9 +97,12 @@ function GameScene:goToLevel(level_name)
 	end
 
 	for _, entity in ipairs(ldtk.get_entities(level_name)) do
-		if entity.name=="Gate" then
+		if entity.name == "Gate" then
 			local gateX, gateY = entity.position.x, entity.position.y
 			Gate(gateX, gateY, entity)
+		elseif entity.name == "DestructableBlock" then
+			local blockX, blockY = entity.position.x, entity.position.y
+			DestructableBlock(blockX, blockY, entity)
 		end
 	end
 end

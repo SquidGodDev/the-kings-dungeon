@@ -10,7 +10,7 @@
 	},
 	"jsonVersion": "1.1.3",
 	"appBuildId": 458364,
-	"nextUid": 72,
+	"nextUid": 74,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -882,6 +882,64 @@
 					"tilesetUid": null
 				}
 			]
+		},
+		{
+			"identifier": "DestructableBlock",
+			"uid": 72,
+			"tags": [],
+			"width": 32,
+			"height": 32,
+			"resizableX": false,
+			"resizableY": false,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#9A75E4",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0,
+			"pivotY": 0,
+			"fieldDefs": [
+				{
+					"identifier": "destroyed",
+					"__type": "Bool",
+					"uid": 73,
+					"type": "F_Bool",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -1042,22 +1100,18 @@
 					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,
-						1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,
 						0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 					],
 					"autoLayerTiles": [
 						{ "px": [0,224], "src": [32,96], "f": 0, "t": 34, "d": [61,91] },
-						{ "px": [320,160], "src": [32,96], "f": 0, "t": 34, "d": [60,75] },
+						{ "px": [352,160], "src": [32,96], "f": 0, "t": 34, "d": [60,76] },
 						{ "px": [256,224], "src": [32,96], "f": 0, "t": 34, "d": [60,99] },
 						{ "px": [288,192], "src": [32,96], "f": 0, "t": 34, "d": [27,87] },
 						{ "px": [352,192], "src": [32,96], "f": 0, "t": 34, "d": [27,89] },
-						{ "px": [320,128], "src": [0,96], "f": 0, "t": 33, "d": [14,62] },
-						{ "px": [320,64], "src": [64,96], "f": 0, "t": 35, "d": [21,36] },
-						{ "px": [320,96], "src": [64,96], "f": 0, "t": 35, "d": [21,49] },
-						{ "px": [288,32], "src": [32,64], "f": 0, "t": 23, "d": [12,22] },
-						{ "px": [352,128], "src": [32,64], "f": 0, "t": 23, "d": [12,63] },
 						{ "px": [384,128], "src": [32,64], "f": 0, "t": 23, "d": [12,64] },
+						{ "px": [320,160], "src": [32,64], "f": 0, "t": 23, "d": [12,75] },
 						{ "px": [32,224], "src": [32,64], "f": 0, "t": 23, "d": [12,92] },
 						{ "px": [64,224], "src": [32,64], "f": 0, "t": 23, "d": [12,93] },
 						{ "px": [96,224], "src": [32,64], "f": 0, "t": 23, "d": [12,94] },
@@ -1065,15 +1119,10 @@
 						{ "px": [160,224], "src": [32,64], "f": 0, "t": 23, "d": [12,96] },
 						{ "px": [192,224], "src": [32,64], "f": 0, "t": 23, "d": [12,97] },
 						{ "px": [224,224], "src": [32,64], "f": 0, "t": 23, "d": [12,98] },
-						{ "px": [288,64], "src": [0,128], "f": 0, "t": 44, "d": [11,35] },
+						{ "px": [352,128], "src": [0,64], "f": 0, "t": 22, "d": [9,63] },
 						{ "px": [288,160], "src": [0,64], "f": 0, "t": 22, "d": [9,74] },
 						{ "px": [256,192], "src": [0,64], "f": 0, "t": 22, "d": [9,86] },
-						{ "px": [320,32], "src": [64,64], "f": 0, "t": 24, "d": [19,23] },
-						{ "px": [0,192], "src": [64,64], "f": 0, "t": 24, "d": [19,78] },
-						{ "px": [192,32], "src": [128,32], "f": 0, "t": 15, "d": [7,19] },
-						{ "px": [224,32], "src": [128,32], "f": 0, "t": 15, "d": [7,20] },
-						{ "px": [256,32], "src": [128,32], "f": 0, "t": 15, "d": [7,21] },
-						{ "px": [160,32], "src": [96,32], "f": 0, "t": 14, "d": [16,18] }
+						{ "px": [0,192], "src": [64,64], "f": 0, "t": 24, "d": [19,78] }
 					],
 					"seed": 8432035,
 					"overrideTilesetUid": null,
@@ -1261,7 +1310,50 @@
 					"seed": 3205081,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "DestructableBlock",
+							"__grid": [3,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#9A75E4",
+							"iid": "15d8c4f0-7820-11ed-9671-ab62b90a074f",
+							"width": 32,
+							"height": 32,
+							"defUid": 72,
+							"px": [96,96],
+							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "DestructableBlock",
+							"__grid": [3,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#9A75E4",
+							"iid": "1664b140-7820-11ed-9671-2117ba9a3d26",
+							"width": 32,
+							"height": 32,
+							"defUid": 72,
+							"px": [96,64],
+							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "DestructableBlock",
+							"__grid": [3,1],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#9A75E4",
+							"iid": "16978110-7820-11ed-9671-3d116769657a",
+							"width": 32,
+							"height": 32,
+							"defUid": 72,
+							"px": [96,32],
+							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+						}
+					]
 				},
 				{
 					"__identifier": "ClimableWalls",
@@ -1874,7 +1966,36 @@
 					"seed": 3329875,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "DestructableBlock",
+							"__grid": [6,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#9A75E4",
+							"iid": "0d7e18f0-7820-11ed-9671-a5a056a38746",
+							"width": 32,
+							"height": 32,
+							"defUid": 72,
+							"px": [192,128],
+							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "DestructableBlock",
+							"__grid": [7,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#9A75E4",
+							"iid": "0e41de20-7820-11ed-9671-4b01b6dcf2ca",
+							"width": 32,
+							"height": 32,
+							"defUid": 72,
+							"px": [224,128],
+							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+						}
+					]
 				},
 				{
 					"__identifier": "ClimableWalls",

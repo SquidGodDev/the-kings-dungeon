@@ -2,6 +2,8 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+local util <const> = utilities
+
 class('Player').extends(AnimatedSprite)
 
 function Player:init(x, y, gameManager)
@@ -19,6 +21,12 @@ function Player:init(x, y, gameManager)
     self:addState("jumpDescent", 8, 8)
     self:addState("wallClimb", 9, 10, {tickStep = 6})
     self:addState("dash", 5, 5)
+    self:addState("smash", 11, 17, {tickStep = 6, nextAnimation = "idle"})
+    self.states.smash.onFrameChangedEvent = function(animationSprite)
+        if animationSprite._currentFrame == 16 then
+            self:performSmash()
+        end
+    end
 
     self.xVelocity = 0
     self.yVelocity = 0
@@ -89,6 +97,9 @@ function Player:update()
         elseif pd.buttonIsPressed(pd.kButtonRight) then
             self:changeToRunState("right")
         end
+        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround then
+            self:changeState("smash")
+        end
         self:checkIfClimbing()
         self:applyFriction()
         self:applyGravity()
@@ -103,6 +114,9 @@ function Player:update()
             self:accelerateRight()
         else
             self:changeState("idle")
+        end
+        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround then
+            self:changeState("smash")
         end
         self:checkIfClimbing()
         self:applyGravity()
@@ -201,6 +215,9 @@ function Player:update()
         if math.abs(self.xVelocity) <= self.dashMinimumSpeed then
             self:changeState("jumpDescent")
         end
+    elseif self.currentState == "smash" then
+        self.xVelocity = 0
+        self.yVelocity = 0
     end
 
     self:handleMovementAndCollisions()
@@ -422,4 +439,22 @@ end
 
 function Player:setClimbCollisionRect()
     self:setCollideRect(8, 8, 24, 24)
+end
+
+function Player:performSmash()
+    pd.timer.performAfterDelay(50, function()
+        local smokeBurstSprite = util.animatedSprite("images/player/smokeBurst-table-113-97", 15, false)
+        smokeBurstSprite:setZIndex(Z_INDEXES.ABILITY)
+        smokeBurstSprite:moveTo(self.x, self.y)
+    end)
+    pd.timer.performAfterDelay(100, function()
+        local smashWidth, smashHeight = 96, 96
+        local queriedSprites = gfx.sprite.querySpritesInRect(self.x - smashWidth/2, self.y - smashHeight/2, smashWidth, smashHeight)
+        for i=1, #queriedSprites do
+            local queriedSprite = queriedSprites[i]
+            if queriedSprite:getTag() == TAGS.Destructable then
+                queriedSprite:destroy()
+            end
+        end
+    end)
 end

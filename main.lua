@@ -10,12 +10,14 @@ import "CoreLibs/animation"
 import "scripts/libraries/AnimatedSprite"
 import "scripts/libraries/SceneManager"
 import "scripts/libraries/LDtk"
+import "scripts/libraries/Utilities"
 
 -- Game
 import "scripts/game/gameScene"
 import "scripts/game/player"
 import "scripts/game/entities/gate"
 import "scripts/game/entities/crankIndicator"
+import "scripts/game/entities/destructableBlock"
 
 -- Title
 import "scripts/title/titleScene"
