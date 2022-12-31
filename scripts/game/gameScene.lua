@@ -79,6 +79,7 @@ function GameScene:enterRoom(direction)
 	self.player:moveTo(spawnX, spawnY)
 	self.spawnX = spawnX
 	self.spawnY = spawnY
+	SpeechBubble("This is a test for the npc dialog...", 200, 120)
 end
 
 function GameScene:goToLevel(level_name)

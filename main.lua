@@ -11,6 +11,7 @@ import "scripts/libraries/AnimatedSprite"
 import "scripts/libraries/SceneManager"
 import "scripts/libraries/LDtk"
 import "scripts/libraries/Utilities"
+import "scripts/libraries/DrawText"
 
 -- Game
 import "scripts/game/gameScene"
@@ -22,6 +23,7 @@ import "scripts/game/entities/spike"
 import "scripts/game/entities/spikeball"
 import "scripts/game/entities/chest"
 import "scripts/game/dialog"
+import "scripts/game/npcs/speechBubble"
 
 -- Title
 import "scripts/title/titleScene"
