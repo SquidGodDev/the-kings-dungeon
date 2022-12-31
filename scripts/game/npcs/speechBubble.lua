@@ -6,7 +6,9 @@ local m5x7FontOutline <const> = gfx.font.new("images/fonts/m5x7-24-outline-tight
 class('SpeechBubble').extends(gfx.sprite)
 
 function SpeechBubble:init(text, x, y)
-    self.maxWidth = 140
+    self.maxLineWidth = 20
+    self.fontWidth = 14
+    self.maxWidth = self.maxLineWidth * self.fontWidth
     local halfWidth = self.maxWidth / 2
     local screenEdgeBuffer = 10
     if x <= (halfWidth + screenEdgeBuffer) then
@@ -15,26 +17,20 @@ function SpeechBubble:init(text, x, y)
         x = 400 - halfWidth - screenEdgeBuffer
     end
 
-    self.border = 4
-    self.buffer = 10
-    local bubbleWidth, bubbleHeight = gfx.getTextSizeForMaxWidth(text, self.maxWidth, nil, m5x7Font)
-    self.bubbleWidth = bubbleWidth
-    self.bubbleHeight = bubbleHeight
     self:moveTo(x, y)
     self:setZIndex(Z_INDEXES.UI)
     self:add()
 
     self.active = true
     self.speechTime = 50
-    self.pauseSpeechTime = 250
+    self.pauseSpeechTime = 300
 
     self.lineArray = {}
-    local maxLineWidth = 20
     local curLineWidth = 0
     local curString = ""
     for w in text:gmatch("%S+ *") do
         curLineWidth += #w
-        if curLineWidth > maxLineWidth then
+        if curLineWidth > self.maxLineWidth then
             table.insert(self.lineArray, curString)
             curLineWidth = #w
             curString = w
@@ -75,6 +71,11 @@ function SpeechBubble:createSpeechTimer()
     self.textIndex = 0
     self.maxTextIndex = #self.curLine
     self.speechTimer = pd.timer.new(self.speechTime, function(timer)
+        self.speechTimer.delay = self.speechTime
+        local nextChar = string.sub(self.curLine, self.textIndex + 1, self.textIndex + 1)
+        if nextChar and nextChar == "." then
+            self.speechTimer.delay = self.pauseSpeechTime
+        end
         self.textIndex += 1
         self:drawText(string.sub(self.curLine, 1, self.textIndex), self.lineWidth, self.lineHeight)
         if self.textIndex == self.maxTextIndex then
