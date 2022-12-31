@@ -63,6 +63,13 @@ function Player:init(x, y, gameManager)
     self.dashHeightBoost = -3
     self.dashGravity = 0.5
 
+    -- Abilities
+    self.crankKeyAbility = false
+    self.smashAbility = false
+    self.wallClimbAbility = false
+    self.doubleJumpAbility = false
+    self.dashAbility = false
+
     self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)
 
@@ -73,26 +80,44 @@ function Player:init(x, y, gameManager)
     self:moveTo(x, y)
 
     self.dead = false
+
+    -- Interactions
+    self.dialog = Dialog(self)
+
+    local aButtonImage = gfx.image.new("images/entities/aButton")
+    self.indicatorSprite = gfx.sprite.new(aButtonImage)
+    self.indicatorSprite:setZIndex(Z_INDEXES.UI)
 end
 
 function Player:collisionResponse(other)
-    local collisionTag = other:getTag()
-    if collisionTag == TAGS.Climable or collisionTag == TAGS.Hazard then
+    local tag = other:getTag()
+    if tag == TAGS.Climable or tag == TAGS.Hazard or tag == TAGS.Interactable then
         return gfx.sprite.kCollisionTypeOverlap
     end
     return gfx.sprite.kCollisionTypeSlide
 end
 
 function Player:update()
-    if self.dead then
+    if self.dead or self.dialog.active then
         return
+    end
+
+    if self.interactingObject and self.interactingObject.interactable then
+        self.indicatorSprite:moveTo(self.x, self.y - 32)
+        self.indicatorSprite:add()
+    else
+        self.indicatorSprite:remove()
     end
 
     self:updateAnimation()
 
     if self.currentState == "idle" then
-        if pd.buttonIsPressed(pd.kButtonA)then
-            self:changeToJumpState()
+        if pd.buttonIsPressed(pd.kButtonA) then
+            if self.interactingObject and self.interactingObject.interactable then
+                self.interactingObject:interact(self)
+            else
+                self:changeToJumpState()
+            end
         elseif pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
             self:changeToDashState()
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
@@ -107,8 +132,12 @@ function Player:update()
         self:applyFriction()
         self:applyGravity()
     elseif self.currentState == "run" then
-        if pd.buttonIsPressed(pd.kButtonA) then
-            self:changeToJumpState()
+        if pd.buttonIsPressed(pd.kButtonA)then
+            if self.interactingObject and self.interactingObject.interactable then
+                self.interactingObject:interact(self)
+            else
+                self:changeToJumpState()
+            end
         elseif pd.buttonJustPressed(pd.kButtonB) then
             self:changeToDashState()
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
@@ -261,6 +290,7 @@ function Player:handleMovementAndCollisions()
     self.touchingClimableWall = false
     self.touchingClimableTile = false
     self.standingOnClimableTile = false
+    self.interactingObject = nil
     local died = false
     for i=1,length do
         local collision = collisions[i]
@@ -275,6 +305,8 @@ function Player:handleMovementAndCollisions()
                     self.touchingGround = true
                     self:moveTo(self.x, originalY)
                 end
+            elseif collisionTag == TAGS.Interactable then
+                self.interactingObject = collision.other
             end
         else
             if collision.normal.y == -1 then
@@ -315,6 +347,10 @@ function Player:handleMovementAndCollisions()
     end
 end
 
+function Player:gainAbility(ability)
+    
+end
+
 function Player:die()
     self.xVelocity = 0
     self.yVelocity = 0
@@ -331,15 +367,6 @@ function Player:die()
             self.gameManager:resetPlayer()
             self.dead = false
         end)
-        -- local transitionTime = 1000
-        -- local xTimer = pd.timer.new(transitionTime, self.x, 200, pd.easingFunctions.inOutCubic)
-        -- local yTimer = pd.timer.new(transitionTime, self.y, 120, pd.easingFunctions.inOutCubic)
-        -- yTimer.updateCallback = function()
-        --     self:moveTo(xTimer.value, yTimer.value)
-        -- end
-        -- yTimer.timerEndedCallback = function()
-            
-        -- end
     end)
 end
 

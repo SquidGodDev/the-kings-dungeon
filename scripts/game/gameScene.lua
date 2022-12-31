@@ -14,14 +14,16 @@ TAGS = {
 	WallClimable = 3,
 	Player = 4,
 	Destructable = 5,
-	Hazard = 6
+	Hazard = 6,
+	Interactable = 7
 }
 
 Z_INDEXES = {
 	PLAYER = 100,
 	ABILITY = 150,
 	GATE = 0,
-	UI = 1000
+	UI = 1000,
+	DIALOG = 1200
 }
 
 COLLISION_GROUPS = {
@@ -123,6 +125,8 @@ function GameScene:goToLevel(level_name)
 			Spike(entityX, entityY)
 		elseif entity.name == "Spikeball" then
 			Spikeball(entityX, entityY, entity)
+		elseif entity.name == "Chest" then
+			Chest(entityX, entityY, entity)
 		end
 	end
 end

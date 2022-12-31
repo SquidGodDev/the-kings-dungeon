@@ -20,6 +20,8 @@ import "scripts/game/entities/crankIndicator"
 import "scripts/game/entities/destructableBlock"
 import "scripts/game/entities/spike"
 import "scripts/game/entities/spikeball"
+import "scripts/game/entities/chest"
+import "scripts/game/dialog"
 
 -- Title
 import "scripts/title/titleScene"
