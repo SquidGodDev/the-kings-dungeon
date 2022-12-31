@@ -1401,29 +1401,24 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "NPC",
+							"__identifier": "Chest",
 							"__grid": [3,6],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
-							"__smartColor": "#FCB818",
-							"iid": "7fe8f510-7820-11ed-93e6-09609e3d8574",
+							"__smartColor": "#266EFC",
+							"iid": "af19e080-7820-11ed-93e6-83fb7b22c778",
 							"width": 32,
 							"height": 32,
-							"defUid": 84,
+							"defUid": 79,
 							"px": [96,192],
 							"fieldInstances": [
-								{ "__identifier": "dialogue", "__value": "p\nHey... What's going on here\nn\nOh - you're just in a dungeon\np\nHow did I get here?\nn\nBeats me", "__type": "String", "__tile": null, "defUid": 89, "realEditorValues": [{
+								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "contents", "__value": "wallClimb", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
 									"id": "V_String",
-									"params": [
-										"p\nHey... What's going on here\nn\nOh - you're just in a dungeon\np\nHow did I get here?\nn\nBeats me"
-									]
+									"params": ["wallClimb"]
 								}] },
-								{ "__identifier": "name", "__value": "guard", "__type": "String", "__tile": null, "defUid": 87, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["guard"]
-								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 88, "realEditorValues": [] }
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
 							]
 						}
 					]
@@ -1724,108 +1719,29 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "Chest",
-							"__grid": [1,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#266EFC",
-							"iid": "f21cc0c0-7820-11ed-a767-ffe39f2e515d",
-							"width": 32,
-							"height": 32,
-							"defUid": 79,
-							"px": [32,96],
-							"fieldInstances": [
-								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
-								{ "__identifier": "contents", "__value": "wallClimb", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["wallClimb"]
-								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
-							]
-						},
-						{
-							"__identifier": "Chest",
+							"__identifier": "NPC",
 							"__grid": [3,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
-							"__smartColor": "#266EFC",
-							"iid": "f2e36c20-7820-11ed-a767-f937dc9c8051",
+							"__smartColor": "#FCB818",
+							"iid": "a37587c0-7820-11ed-93e6-2bfc69f34556",
 							"width": 32,
 							"height": 32,
-							"defUid": 79,
+							"defUid": 84,
 							"px": [96,96],
 							"fieldInstances": [
-								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
-								{ "__identifier": "contents", "__value": "dash", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+								{ "__identifier": "dialogue", "__value": "p\nHey... What's going on here\nn\nOh - you're just in a dungeon\np\nHow did I get here?\nn\nBeats me", "__type": "String", "__tile": null, "defUid": 89, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["dash"]
+									"params": [
+										"p\nHey... What's going on here\nn\nOh - you're just in a dungeon\np\nHow did I get here?\nn\nBeats me"
+									]
 								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
-							]
-						},
-						{
-							"__identifier": "Chest",
-							"__grid": [5,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#266EFC",
-							"iid": "f36a0140-7820-11ed-a767-5b774140b413",
-							"width": 32,
-							"height": 32,
-							"defUid": 79,
-							"px": [160,96],
-							"fieldInstances": [
-								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
-								{ "__identifier": "contents", "__value": "doubleJump", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+								{ "__identifier": "name", "__value": "guard", "__type": "String", "__tile": null, "defUid": 87, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["doubleJump"]
+									"params": ["guard"]
 								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
-							]
-						},
-						{
-							"__identifier": "Chest",
-							"__grid": [9,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#266EFC",
-							"iid": "f68daf70-7820-11ed-a767-d1056a8d529e",
-							"width": 32,
-							"height": 32,
-							"defUid": 79,
-							"px": [288,96],
-							"fieldInstances": [
-								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
-								{ "__identifier": "contents", "__value": "smash", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["smash"]
-								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
-							]
-						},
-						{
-							"__identifier": "Chest",
-							"__grid": [11,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#266EFC",
-							"iid": "f6f87f30-7820-11ed-a767-ed1dc871f5e4",
-							"width": 32,
-							"height": 32,
-							"defUid": 79,
-							"px": [352,96],
-							"fieldInstances": [
-								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
-								{ "__identifier": "contents", "__value": "crankKey", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["crankKey"]
-								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 88, "realEditorValues": [] }
 							]
 						}
 					]
@@ -2444,30 +2360,44 @@
 					"entityInstances": [
 						{
 							"__identifier": "DestructableBlock",
-							"__grid": [6,4],
+							"__grid": [10,1],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#9A75E4",
-							"iid": "0d7e18f0-7820-11ed-9671-a5a056a38746",
+							"iid": "eacc0310-7820-11ed-93e6-b5972c76173c",
 							"width": 32,
 							"height": 32,
 							"defUid": 72,
-							"px": [192,128],
+							"px": [320,32],
 							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
 						},
 						{
 							"__identifier": "DestructableBlock",
-							"__grid": [7,4],
+							"__grid": [10,2],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#9A75E4",
-							"iid": "0e41de20-7820-11ed-9671-4b01b6dcf2ca",
+							"iid": "eb926050-7820-11ed-93e6-bd6d8f51c483",
 							"width": 32,
 							"height": 32,
 							"defUid": 72,
-							"px": [224,128],
+							"px": [320,64],
+							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "DestructableBlock",
+							"__grid": [10,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#9A75E4",
+							"iid": "ebc7c830-7820-11ed-93e6-afe782ff8b85",
+							"width": 32,
+							"height": 32,
+							"defUid": 72,
+							"px": [320,96],
 							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
 						}
 					]

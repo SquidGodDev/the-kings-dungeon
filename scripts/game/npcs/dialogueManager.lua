@@ -22,7 +22,7 @@ function DialogueManager:init(dialogue, player, npc)
         lineCount += 1
     end
 
-    self.playerX, self.playerY = player.x, player.y - 64
+    self.playerX, self.playerY = player.x, player.y - 48
     self.npcX, self.npxY = npc.x + 16, npc.y - 32
     self.curLine = 1
     self.maxLine = #self.dialogue

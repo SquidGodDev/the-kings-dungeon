@@ -13,7 +13,11 @@ function Npc:init(x, y, entity)
         flip = gfx.kImageFlippedX
     end
     self:setImage(npcImage, flip)
-    self:setCollideRect(-16, 0, 64, 36)
+    if fields.facingRight then
+        self:setCollideRect(32, 0, 32, 32)
+    else
+        self:setCollideRect(-32, 0, 32, 32)
+    end
     self:setTag(TAGS.Interactable)
     self:setZIndex(Z_INDEXES.NPC)
     self:setCenter(0, 0)

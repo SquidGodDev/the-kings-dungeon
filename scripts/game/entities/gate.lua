@@ -48,7 +48,7 @@ function Gate:update()
     end
 
     if playerDetected then
-        local crankAbility = playerSprite.crankAbility
+        local crankAbility = playerSprite.crankKeyAbility
         if not crankAbility then
             return
         end

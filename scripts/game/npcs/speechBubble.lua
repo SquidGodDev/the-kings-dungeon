@@ -6,7 +6,7 @@ local speechFont <const> = gfx.font.new("images/fonts/m5x7-24")
 class('SpeechBubble').extends(gfx.sprite)
 
 function SpeechBubble:init(text, x, y)
-    self.maxLineWidth = 20
+    self.maxLineWidth = 16
     self.fontWidth = 14
     self.maxWidth = self.maxLineWidth * self.fontWidth
     -- local halfWidth = self.maxWidth / 2
@@ -34,18 +34,21 @@ function SpeechBubble:init(text, x, y)
     for w in text:gmatch("%S+ *") do
         curLineWidth += #w
         if curLineWidth > self.maxLineWidth then
-            table.insert(self.lineArray, curString)
+            table.insert(self.lineArray, curString:sub(1,curLineWidth))
             curLineWidth = #w
             curString = w
         else
             curString = curString .. w
         end
     end
-    table.insert(self.lineArray, curString)
+    table.insert(self.lineArray, curString:sub(1,curLineWidth))
 
     self.lineIndex = 1
     self.numOfLines = #self.lineArray
     self.lineHeight = speechFont:getHeight()
+
+    self.downArrowImage = gfx.image.new("images/ui/downArrow")
+    self.downArrowWidth, self.downArrowHeight = self.downArrowImage:getSize()
 
     self:createSpeechTimer()
 end
@@ -92,8 +95,11 @@ end
 function SpeechBubble:drawText(text, width, height)
     local speechBubbleWidth = width + self.edgeBuffer * 2
     local speechBubbleHeight = height + self.edgeBuffer * 2
-    local speechBubble = gfx.image.new(speechBubbleWidth, speechBubbleHeight, gfx.kColorBlack)
+    local speechBubble = gfx.image.new(speechBubbleWidth, speechBubbleHeight + self.downArrowHeight)
     gfx.pushContext(speechBubble)
+        gfx.setColor(gfx.kColorBlack)
+        gfx.fillRect(0, 0, speechBubbleWidth, speechBubbleHeight)
+        self.downArrowImage:draw(speechBubbleWidth/2 - self.downArrowWidth/2, speechBubbleHeight)
         gfx.setImageDrawMode(gfx.kDrawModeFillWhite)
         speechFont:drawText(text, self.edgeBuffer, self.edgeBuffer)
         gfx.setColor(gfx.kColorWhite)

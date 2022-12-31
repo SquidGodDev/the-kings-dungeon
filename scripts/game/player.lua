@@ -64,11 +64,11 @@ function Player:init(x, y, gameManager)
     self.dashGravity = 0.5
 
     -- Abilities
-    self.crankKeyAbility = false
-    self.smashAbility = false
+    self.crankKeyAbility = true
+    self.smashAbility = true
     self.wallClimbAbility = false
-    self.doubleJumpAbility = false
-    self.dashAbility = false
+    self.doubleJumpAbility = true
+    self.dashAbility = true
 
     self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)
@@ -102,6 +102,7 @@ end
 
 function Player:update()
     if self.dead or self.dialog.active or self.talkingToNpc then
+        self.indicatorSprite:remove()
         return
     end
 
