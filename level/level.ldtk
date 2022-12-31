@@ -1280,29 +1280,7 @@
 					"seed": 5328235,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": [
-						{
-							"__identifier": "Chest",
-							"__grid": [3,6],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#266EFC",
-							"iid": "1eedd1c0-7820-11ed-a767-171f8264d32d",
-							"width": 32,
-							"height": 32,
-							"defUid": 79,
-							"px": [96,192],
-							"fieldInstances": [
-								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [null] },
-								{ "__identifier": "contents", "__value": "wallClimb", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["wallClimb"]
-								}] },
-								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
-							]
-						}
-					]
+					"entityInstances": []
 				},
 				{
 					"__identifier": "ClimableWalls",
@@ -1600,46 +1578,109 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "DestructableBlock",
+							"__identifier": "Chest",
+							"__grid": [1,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#266EFC",
+							"iid": "f21cc0c0-7820-11ed-a767-ffe39f2e515d",
+							"width": 32,
+							"height": 32,
+							"defUid": 79,
+							"px": [32,96],
+							"fieldInstances": [
+								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "contents", "__value": "wallClimb", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["wallClimb"]
+								}] },
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Chest",
 							"__grid": [3,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
-							"__smartColor": "#9A75E4",
-							"iid": "15d8c4f0-7820-11ed-9671-ab62b90a074f",
+							"__smartColor": "#266EFC",
+							"iid": "f2e36c20-7820-11ed-a767-f937dc9c8051",
 							"width": 32,
 							"height": 32,
-							"defUid": 72,
+							"defUid": 79,
 							"px": [96,96],
-							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+							"fieldInstances": [
+								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "contents", "__value": "dash", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["dash"]
+								}] },
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
+							]
 						},
 						{
-							"__identifier": "DestructableBlock",
-							"__grid": [3,2],
+							"__identifier": "Chest",
+							"__grid": [5,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
-							"__smartColor": "#9A75E4",
-							"iid": "1664b140-7820-11ed-9671-2117ba9a3d26",
+							"__smartColor": "#266EFC",
+							"iid": "f36a0140-7820-11ed-a767-5b774140b413",
 							"width": 32,
 							"height": 32,
-							"defUid": 72,
-							"px": [96,64],
-							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+							"defUid": 79,
+							"px": [160,96],
+							"fieldInstances": [
+								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "contents", "__value": "doubleJump", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["doubleJump"]
+								}] },
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
+							]
 						},
 						{
-							"__identifier": "DestructableBlock",
-							"__grid": [3,1],
+							"__identifier": "Chest",
+							"__grid": [9,3],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
-							"__smartColor": "#9A75E4",
-							"iid": "16978110-7820-11ed-9671-3d116769657a",
+							"__smartColor": "#266EFC",
+							"iid": "f68daf70-7820-11ed-a767-d1056a8d529e",
 							"width": 32,
 							"height": 32,
-							"defUid": 72,
-							"px": [96,32],
-							"fieldInstances": [{ "__identifier": "destroyed", "__value": false, "__type": "Bool", "__tile": null, "defUid": 73, "realEditorValues": [] }]
+							"defUid": 79,
+							"px": [288,96],
+							"fieldInstances": [
+								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "contents", "__value": "smash", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["smash"]
+								}] },
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Chest",
+							"__grid": [11,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#266EFC",
+							"iid": "f6f87f30-7820-11ed-a767-ed1dc871f5e4",
+							"width": 32,
+							"height": 32,
+							"defUid": 79,
+							"px": [352,96],
+							"fieldInstances": [
+								{ "__identifier": "open", "__value": false, "__type": "Bool", "__tile": null, "defUid": 80, "realEditorValues": [] },
+								{ "__identifier": "contents", "__value": "crankKey", "__type": "String", "__tile": null, "defUid": 81, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["crankKey"]
+								}] },
+								{ "__identifier": "facingRight", "__value": true, "__type": "Bool", "__tile": null, "defUid": 82, "realEditorValues": [] }
+							]
 						}
 					]
 				},
@@ -2305,23 +2346,20 @@
 					"optionalRules": [],
 					"intGridCsv": [
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,
-						1,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+						0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,
+						0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0
 					],
 					"autoLayerTiles": [
 						{ "px": [0,128], "src": [288,96], "f": 0, "t": 42, "d": [43,52] },
-						{ "px": [160,128], "src": [288,96], "f": 0, "t": 42, "d": [43,57] },
 						{ "px": [0,160], "src": [288,96], "f": 0, "t": 42, "d": [43,65] },
-						{ "px": [160,160], "src": [288,96], "f": 0, "t": 42, "d": [43,70] },
 						{ "px": [0,192], "src": [288,96], "f": 0, "t": 42, "d": [43,78] },
 						{ "px": [0,224], "src": [288,96], "f": 0, "t": 42, "d": [43,91] },
-						{ "px": [128,128], "src": [256,96], "f": 0, "t": 41, "d": [45,56] },
-						{ "px": [128,160], "src": [256,96], "f": 0, "t": 41, "d": [45,69] },
-						{ "px": [160,192], "src": [288,128], "f": 0, "t": 53, "d": [44,83] },
-						{ "px": [128,192], "src": [256,128], "f": 0, "t": 52, "d": [47,82] },
+						{ "px": [96,128], "src": [256,96], "f": 0, "t": 41, "d": [45,55] },
+						{ "px": [96,160], "src": [256,96], "f": 0, "t": 41, "d": [45,68] },
+						{ "px": [96,192], "src": [256,96], "f": 0, "t": 41, "d": [45,81] },
+						{ "px": [96,224], "src": [256,96], "f": 0, "t": 41, "d": [45,94] },
 						{ "px": [0,96], "src": [288,64], "f": 0, "t": 31, "d": [42,39] },
-						{ "px": [160,96], "src": [288,64], "f": 0, "t": 31, "d": [42,44] },
-						{ "px": [128,96], "src": [256,64], "f": 0, "t": 30, "d": [46,43] }
+						{ "px": [96,96], "src": [256,64], "f": 0, "t": 30, "d": [46,42] }
 					],
 					"seed": 4084535,
 					"overrideTilesetUid": null,
@@ -2377,12 +2415,20 @@
 					"optionalRules": [],
 					"intGridCsv": [
 						1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+						0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,0,0,0,0,1,
+						1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0
 					],
 					"autoLayerTiles": [
 						{ "px": [0,0], "src": [32,96], "f": 0, "t": 34, "d": [59,0] },
+						{ "px": [128,128], "src": [0,96], "f": 0, "t": 33, "d": [14,56] },
+						{ "px": [128,160], "src": [0,96], "f": 0, "t": 33, "d": [14,69] },
+						{ "px": [128,192], "src": [0,96], "f": 0, "t": 33, "d": [14,82] },
+						{ "px": [128,224], "src": [0,96], "f": 0, "t": 33, "d": [14,95] },
 						{ "px": [0,32], "src": [64,96], "f": 0, "t": 35, "d": [21,13] },
+						{ "px": [160,128], "src": [64,96], "f": 0, "t": 35, "d": [21,57] },
+						{ "px": [160,160], "src": [64,96], "f": 0, "t": 35, "d": [21,70] },
+						{ "px": [160,192], "src": [64,96], "f": 0, "t": 35, "d": [21,83] },
+						{ "px": [160,224], "src": [64,96], "f": 0, "t": 35, "d": [21,96] },
 						{ "px": [32,0], "src": [32,128], "f": 0, "t": 45, "d": [13,1] },
 						{ "px": [64,0], "src": [32,128], "f": 0, "t": 45, "d": [13,2] },
 						{ "px": [96,0], "src": [32,128], "f": 0, "t": 45, "d": [13,3] },
@@ -2396,6 +2442,8 @@
 						{ "px": [352,0], "src": [32,128], "f": 0, "t": 45, "d": [13,11] },
 						{ "px": [384,0], "src": [32,128], "f": 0, "t": 45, "d": [13,12] },
 						{ "px": [0,64], "src": [64,128], "f": 0, "t": 46, "d": [20,26] },
+						{ "px": [128,96], "src": [0,64], "f": 0, "t": 22, "d": [9,43] },
+						{ "px": [160,96], "src": [64,64], "f": 0, "t": 24, "d": [19,44] },
 						{ "px": [288,128], "src": [128,32], "f": 0, "t": 15, "d": [7,61] },
 						{ "px": [320,128], "src": [128,32], "f": 0, "t": 15, "d": [7,62] },
 						{ "px": [352,128], "src": [128,32], "f": 0, "t": 15, "d": [7,63] },

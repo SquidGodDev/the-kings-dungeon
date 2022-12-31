@@ -48,6 +48,10 @@ function Gate:update()
     end
 
     if playerDetected then
+        local crankAbility = playerSprite.crankAbility
+        if not crankAbility then
+            return
+        end
         local crankTicks = pd.getCrankTicks(self.ticksPerRevolution)
         if crankTicks ~= 0 then
             self:moveBy(0, -self.crankMoveAmount)

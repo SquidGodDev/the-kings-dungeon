@@ -34,17 +34,15 @@ function Dialog:update()
             moveTimer.updateCallback = function(timer)
                 self:moveTo(self.x, timer.value)
             end
-            moveTimer.timerEndedCallback = function()
-                local fadeTimer = pd.timer.new(500, 50, 0, pd.easingFunctions.inOutCubic)
-                fadeTimer.updateCallback = function(timer)
-                    local fadedImage = fadedRects[math.floor(timer.value)]
-                    self.fadedBackgroundSprite:setImage(fadedImage)
-                end
-                fadeTimer.timerEndedCallback = function()
-                    self.fadedBackgroundSprite:remove()
-                    self:remove()
-                    self.active = false
-                end
+            local fadeTimer = pd.timer.new(700, 70, 0, pd.easingFunctions.inOutCubic)
+            fadeTimer.updateCallback = function(timer)
+                local fadedImage = fadedRects[math.floor(timer.value)]
+                self.fadedBackgroundSprite:setImage(fadedImage)
+            end
+            fadeTimer.timerEndedCallback = function()
+                self.fadedBackgroundSprite:remove()
+                self:remove()
+                self.active = false
             end
         end
     end
@@ -88,12 +86,11 @@ function Dialog:createDialog(abilityIcon, abilityName, abilityDescription)
     local dialogBackground = gfx.image.new("images/ui/dialog")
     local dialogWidth = dialogBackground:getSize()
     gfx.pushContext(dialogBackground)
-        abilityIcon:draw(57, 19)
+        abilityIcon:draw(86, 49)
         gfx.setImageDrawMode(gfx.kDrawModeFillWhite)
         local largeFont= gfx.font.new("images/fonts/m5x7-24")
-        largeFont:drawTextAligned(abilityName, dialogWidth/2, 68, kTextAlignment.center)
-        local smallFont = gfx.font.new("images/fonts/m5x7-12")
-        gfx.drawTextInRect(abilityDescription, 16, 100, 116, 48, nil, nil, kTextAlignment.center, smallFont)
+        largeFont:drawTextAligned(abilityName, dialogWidth/2, 20, kTextAlignment.center)
+        gfx.drawTextInRect(abilityDescription, 18, 96, 170, 65, nil, nil, kTextAlignment.center, largeFont)
     gfx.popContext()
     self:setImage(dialogBackground)
     self:moveTo(200, -120)
@@ -101,7 +98,7 @@ function Dialog:createDialog(abilityIcon, abilityName, abilityDescription)
 
     self.fadedBackgroundSprite:setVisible(true)
     self.fadedBackgroundSprite:add()
-    local fadeTimer = pd.timer.new(500, 0, 50, pd.easingFunctions.inOutCubic)
+    local fadeTimer = pd.timer.new(500, 0, 70, pd.easingFunctions.inOutCubic)
     fadeTimer.updateCallback = function(timer)
         local fadedImage = fadedRects[math.floor(timer.value)]
         self.fadedBackgroundSprite:setImage(fadedImage)

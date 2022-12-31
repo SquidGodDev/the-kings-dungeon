@@ -118,14 +118,14 @@ function Player:update()
             else
                 self:changeToJumpState()
             end
-        elseif pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
+        elseif pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable and self.dashAbility then
             self:changeToDashState()
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
             self:changeToRunState("left")
         elseif pd.buttonIsPressed(pd.kButtonRight) then
             self:changeToRunState("right")
         end
-        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround then
+        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround and self.smashAbility then
             self:changeState("smash")
         end
         self:checkIfClimbing()
@@ -138,7 +138,7 @@ function Player:update()
             else
                 self:changeToJumpState()
             end
-        elseif pd.buttonJustPressed(pd.kButtonB) then
+        elseif pd.buttonJustPressed(pd.kButtonB) and self.dashAbility then
             self:changeToDashState()
         elseif pd.buttonIsPressed(pd.kButtonLeft) then
             self:accelerateLeft()
@@ -147,13 +147,13 @@ function Player:update()
         else
             self:changeState("idle")
         end
-        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround then
+        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround and self.smashAbility then
             self:changeState("smash")
         end
         self:checkIfClimbing()
         self:applyGravity()
     elseif self.currentState == "jumpAscent" then
-        if pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
+        if pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable and self.dashAbility then
             self:changeToDashState()
         else
             self:handleJumpPhysics()
@@ -164,7 +164,7 @@ function Player:update()
             self:applyGravity()
         end
     elseif self.currentState == "jumpDescent" then
-        if pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable then
+        if pd.buttonJustPressed(pd.kButtonB) and self.dashAvailable and self.dashAbility then
             self:changeToDashState()
         else
             self:handleJumpPhysics()
@@ -247,7 +247,7 @@ function Player:update()
         if math.abs(self.xVelocity) <= self.dashMinimumSpeed then
             self:changeState("jumpDescent")
         end
-        if self.touchingClimableWall then
+        if self.touchingClimableWall and self.wallClimbAbility then
             if self.globalFlip == 1 then
                 self.xVelocity = -1
             else
@@ -429,7 +429,7 @@ function Player:changeToRunState(direction)
 end
 
 function Player:handleJumpPhysics()
-    if self.touchingClimableWall then
+    if self.touchingClimableWall and self.wallClimbAbility then
         if self.globalFlip == 1 then
             self.xVelocity = -1
         else
@@ -438,7 +438,7 @@ function Player:handleJumpPhysics()
         self.doubleJumpAvailable = false
         self.dashAvailable = false
         self:changeState("wallClimb")
-    elseif pd.buttonJustPressed(pd.kButtonA) and self.doubleJumpAvailable then
+    elseif pd.buttonJustPressed(pd.kButtonA) and self.doubleJumpAvailable and self.doubleJumpAbility then
         self.doubleJumpAvailable = false
         self:changeToJumpState()
     elseif pd.buttonIsPressed(pd.kButtonLeft) then

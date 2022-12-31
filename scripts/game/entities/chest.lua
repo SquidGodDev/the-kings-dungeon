@@ -15,7 +15,7 @@ function Chest:init(x, y, entity)
     self.entity = entity
     local fields = entity.fields
     self.flip = gfx.kImageUnflipped
-    if not fields.facingRight then
+    if fields.facingRight then
         self.flip = gfx.kImageFlippedX
     end
     self.open = fields.open
@@ -27,7 +27,7 @@ function Chest:init(x, y, entity)
 
     self.contents = fields.contents
 
-    self:setCollideRect(-32, 0, 96, 32)
+    self:setCollideRect(0, 0, 32, 32)
 
     self.interactable = not self.open
 end
