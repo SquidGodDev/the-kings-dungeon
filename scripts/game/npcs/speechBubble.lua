@@ -1,7 +1,7 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-local m5x7FontOutline <const> = gfx.font.new("images/fonts/m5x7-24-outline-thick")
+local m5x7FontOutline <const> = gfx.font.new("images/fonts/m5x7-24-outline-tight")
 
 class('SpeechBubble').extends(gfx.sprite)
 
