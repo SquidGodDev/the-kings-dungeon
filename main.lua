@@ -24,6 +24,8 @@ import "scripts/game/entities/spikeball"
 import "scripts/game/entities/chest"
 import "scripts/game/dialog"
 import "scripts/game/npcs/speechBubble"
+import "scripts/game/npcs/npc"
+import "scripts/game/npcs/dialogueManager"
 
 -- Title
 import "scripts/title/titleScene"

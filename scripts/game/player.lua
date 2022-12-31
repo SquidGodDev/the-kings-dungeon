@@ -87,6 +87,9 @@ function Player:init(x, y, gameManager)
     local aButtonImage = gfx.image.new("images/entities/aButton")
     self.indicatorSprite = gfx.sprite.new(aButtonImage)
     self.indicatorSprite:setZIndex(Z_INDEXES.UI)
+
+    -- NPC Dialogue
+    self.talkingToNpc = false
 end
 
 function Player:collisionResponse(other)
@@ -98,7 +101,7 @@ function Player:collisionResponse(other)
 end
 
 function Player:update()
-    if self.dead or self.dialog.active then
+    if self.dead or self.dialog.active or self.talkingToNpc then
         return
     end
 

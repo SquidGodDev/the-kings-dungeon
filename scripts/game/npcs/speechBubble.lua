@@ -1,7 +1,7 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-local m5x7FontOutline <const> = gfx.font.new("images/fonts/m5x7-24-outline-tight")
+local speechFont <const> = gfx.font.new("images/fonts/m5x7-24")
 
 class('SpeechBubble').extends(gfx.sprite)
 
@@ -9,20 +9,23 @@ function SpeechBubble:init(text, x, y)
     self.maxLineWidth = 20
     self.fontWidth = 14
     self.maxWidth = self.maxLineWidth * self.fontWidth
-    local halfWidth = self.maxWidth / 2
-    local screenEdgeBuffer = 10
-    if x <= (halfWidth + screenEdgeBuffer) then
-        x = halfWidth + screenEdgeBuffer
-    elseif x >= (400 - halfWidth - screenEdgeBuffer) then
-        x = 400 - halfWidth - screenEdgeBuffer
-    end
+    -- local halfWidth = self.maxWidth / 2
+    -- local screenEdgeBuffer = 10
+    -- if x <= (halfWidth + screenEdgeBuffer) then
+    --     x = halfWidth + screenEdgeBuffer
+    -- elseif x >= (400 - halfWidth - screenEdgeBuffer) then
+    --     x = 400 - halfWidth - screenEdgeBuffer
+    -- end
+
+    self.border = 3
+    self.edgeBuffer = 10
 
     self:moveTo(x, y)
     self:setZIndex(Z_INDEXES.UI)
     self:add()
 
     self.active = true
-    self.speechTime = 50
+    self.speechTime = 30
     self.pauseSpeechTime = 300
 
     self.lineArray = {}
@@ -42,32 +45,32 @@ function SpeechBubble:init(text, x, y)
 
     self.lineIndex = 1
     self.numOfLines = #self.lineArray
-    self.lineHeight = m5x7FontOutline:getHeight()
+    self.lineHeight = speechFont:getHeight()
 
     self:createSpeechTimer()
 end
 
-function SpeechBubble:update()
-    if pd.buttonJustPressed(playdate.kButtonA) then
-        if self.speechTimer then
-            self.speechTimer:remove()
-            self:drawText(self.curLine, self.lineWidth, self.lineHeight)
-            self.speechTimer = nil
+function SpeechBubble:advance()
+    if self.speechTimer then
+        self.speechTimer:remove()
+        self:drawText(self.curLine, self.lineWidth, self.lineHeight)
+        self.speechTimer = nil
+        return true
+    else
+        self.lineIndex += 1
+        if self.lineIndex > self.numOfLines then
+            self:remove()
+            return false
         else
-            self.lineIndex += 1
-            if self.lineIndex > self.numOfLines then
-                self.active = false
-                self:remove()
-            else
-                self:createSpeechTimer()
-            end
+            self:createSpeechTimer()
+            return true
         end
     end
 end
 
 function SpeechBubble:createSpeechTimer()
     self.curLine = self.lineArray[self.lineIndex]
-    self.lineWidth = m5x7FontOutline:getTextWidth(self.curLine)
+    self.lineWidth = speechFont:getTextWidth(self.curLine)
     self.textIndex = 0
     self.maxTextIndex = #self.curLine
     self.speechTimer = pd.timer.new(self.speechTime, function(timer)
@@ -87,9 +90,16 @@ function SpeechBubble:createSpeechTimer()
 end
 
 function SpeechBubble:drawText(text, width, height)
-    local speechBubble = gfx.image.new(width, height)
+    local speechBubbleWidth = width + self.edgeBuffer * 2
+    local speechBubbleHeight = height + self.edgeBuffer * 2
+    local speechBubble = gfx.image.new(speechBubbleWidth, speechBubbleHeight, gfx.kColorBlack)
     gfx.pushContext(speechBubble)
-        m5x7FontOutline:drawText(text, 0, 0)
+        gfx.setImageDrawMode(gfx.kDrawModeFillWhite)
+        speechFont:drawText(text, self.edgeBuffer, self.edgeBuffer)
+        gfx.setColor(gfx.kColorWhite)
+        gfx.setLineWidth(self.border)
+        gfx.setStrokeLocation(gfx.kStrokeInside)
+        gfx.drawRect(0, 0, speechBubbleWidth, speechBubbleHeight)
     gfx.popContext()
     self:setImage(speechBubble)
 end

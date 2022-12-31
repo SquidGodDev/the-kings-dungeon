@@ -20,6 +20,7 @@ TAGS = {
 
 Z_INDEXES = {
 	PLAYER = 100,
+	NPC = 90,
 	ABILITY = 150,
 	GATE = 0,
 	UI = 1000,
@@ -79,7 +80,6 @@ function GameScene:enterRoom(direction)
 	self.player:moveTo(spawnX, spawnY)
 	self.spawnX = spawnX
 	self.spawnY = spawnY
-	SpeechBubble("This is a test for the npc dialog...", 200, 120)
 end
 
 function GameScene:goToLevel(level_name)
@@ -128,6 +128,8 @@ function GameScene:goToLevel(level_name)
 			Spikeball(entityX, entityY, entity)
 		elseif entity.name == "Chest" then
 			Chest(entityX, entityY, entity)
+		elseif entity.name == "NPC" then
+			Npc(entityX, entityY, entity)
 		end
 	end
 end
