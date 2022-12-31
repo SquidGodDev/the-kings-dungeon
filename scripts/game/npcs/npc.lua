@@ -8,6 +8,7 @@ function Npc:init(x, y, entity)
     local npcName = fields.name
     local npcImage = gfx.image.new("images/npcs/"..npcName)
     self.dialogue = fields.dialogue
+    self.playerStart = fields.playerStart
     local flip = gfx.kImageUnflipped
     if not fields.facingRight then
         flip = gfx.kImageFlippedX
@@ -27,6 +28,5 @@ function Npc:init(x, y, entity)
 end
 
 function Npc:interact(player)
-    DialogueManager(self.dialogue, player, self)
-    -- self.interactable = false
+    DialogueManager(self.dialogue, self.playerStart, player, self)
 end

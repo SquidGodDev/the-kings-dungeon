@@ -3,24 +3,11 @@ local gfx <const> = playdate.graphics
 
 class('DialogueManager').extends(gfx.sprite)
 
-function DialogueManager:init(dialogue, player, npc)
+function DialogueManager:init(dialogue, playerStart, player, npc)
     self.player = player
     player.talkingToNpc = true
-    self.dialogue = {}
-    local lineCount = 1
-    for s in dialogue:gmatch("[^\r\n]+") do
-        if self.playerTalking == nil then
-            if s == "n" then
-                self.playerTalking = false
-            else
-                self.playerTalking = true
-            end
-        end
-        if lineCount % 2 == 0 then
-            table.insert(self.dialogue, s)
-        end
-        lineCount += 1
-    end
+    self.playerTalking = playerStart
+    self.dialogue = dialogue
 
     self.playerX, self.playerY = player.x, player.y - 48
     self.npcX, self.npxY = npc.x + 16, npc.y - 32
