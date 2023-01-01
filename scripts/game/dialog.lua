@@ -1,16 +1,18 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-local fadedRects <const> = {}
-for i=0,1,0.01 do
-    local fadedImage = gfx.image.new(400, 240)
-    gfx.pushContext(fadedImage)
-        local filledRect = gfx.image.new(400, 240, gfx.kColorBlack)
-        filledRect:drawFaded(0, 0, i, gfx.image.kDitherTypeBayer8x8)
-    gfx.popContext()
-    fadedRects[math.floor(i * 100)] = fadedImage
-end
-fadedRects[100] = gfx.image.new(400, 240, gfx.kColorBlack)
+-- == Generate dithered image beforehand into files ==
+-- == Using 100 drawFaded calls was killing the startup performance ==
+-- local filledRect = gfx.image.new(400, 240, gfx.kColorBlack)
+-- for i=1,100 do
+--     local fadedImage = gfx.image.new(400, 240)
+--     gfx.pushContext(fadedImage)
+--         filledRect:drawFaded(0, 0, (i-1)/100, gfx.image.kDitherTypeBayer8x8)
+--     gfx.popContext()
+--     local fadeIndex = i
+--     playdate.simulator.writeToFile(fadedImage, "faded/faded-table-"..fadeIndex..".png")
+-- end
+local fadedImageTable <const> = gfx.imagetable.new("images/ui/faded/faded")
 
 class('Dialog').extends(gfx.sprite)
 
@@ -37,9 +39,9 @@ function Dialog:update()
             moveTimer.updateCallback = function(timer)
                 self:moveTo(self.x, timer.value)
             end
-            local fadeTimer = pd.timer.new(700, 70, 0, pd.easingFunctions.inOutCubic)
+            local fadeTimer = pd.timer.new(700, 70, 1, pd.easingFunctions.inOutCubic)
             fadeTimer.updateCallback = function(timer)
-                local fadedImage = fadedRects[math.floor(timer.value)]
+                local fadedImage = fadedImageTable:getImage(math.floor(timer.value))
                 self.fadedBackgroundSprite:setImage(fadedImage)
             end
             fadeTimer.timerEndedCallback = function()
@@ -113,9 +115,10 @@ function Dialog:createDialog(abilityIcon, abilityName, abilityDescription)
 
     self.fadedBackgroundSprite:setVisible(true)
     self.fadedBackgroundSprite:add()
-    local fadeTimer = pd.timer.new(500, 0, 70, pd.easingFunctions.inOutCubic)
+    local fadeTimer = pd.timer.new(500, 1, 70, pd.easingFunctions.inOutCubic)
     fadeTimer.updateCallback = function(timer)
-        local fadedImage = fadedRects[math.floor(timer.value)]
+        print(math.floor(timer.value))
+        local fadedImage = fadedImageTable:getImage(math.floor(timer.value))
         self.fadedBackgroundSprite:setImage(fadedImage)
     end
     fadeTimer.timerEndedCallback = function()
