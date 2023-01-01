@@ -1,6 +1,8 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+local crankSound <const> = pd.sound.sampleplayer.new("sound/entities/gateCrank")
+
 local querySpritesInRect <const> = gfx.sprite.querySpritesInRect
 
 class('Gate').extends(gfx.sprite)
@@ -22,7 +24,7 @@ function Gate:init(x, y, gateEntity)
 
     self.maxHeight = y - 64
 
-    self.ticksPerRevolution = 6
+    self.ticksPerRevolution = 8
     self.crankMoveAmount = 1
 
     self.crankIndicator = CrankIndicator()
@@ -33,6 +35,8 @@ function Gate:init(x, y, gateEntity)
         self.open = true
         self:moveTo(self.x, self.maxHeight)
     end
+
+    self.playSound = true
 end
 
 function Gate:update()
@@ -57,6 +61,11 @@ function Gate:update()
             self:moveBy(0, -self.crankMoveAmount)
             if self.y <= self.maxHeight then
                 self:moveTo(self.x, self.maxHeight)
+            else
+                if self.playSound then
+                    crankSound:play()
+                end
+                self.playSound = not self.playSound
             end
             self.gateEntity.fields.open = true
         end

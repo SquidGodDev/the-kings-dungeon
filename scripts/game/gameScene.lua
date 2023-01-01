@@ -28,7 +28,8 @@ Z_INDEXES = {
 	DIALOG = 1200,
 	WATERFALL = 10,
 	WATER = 20,
-	PICKUP = 30
+	PICKUP = 30,
+	CHEST = 50
 }
 
 COLLISION_GROUPS = {
@@ -48,6 +49,8 @@ ldtk.load("level/level.ldtk", usePrecomputedLevels)
 if pd.isSimulator then
 	ldtk.export_to_lua_files()
 end
+
+local waterRushSound <const> = pd.sound.sampleplayer.new("sound/entities/waterfall")
 
 class('GameScene').extends()
 
@@ -70,6 +73,8 @@ function GameScene:resetPlayer()
 end
 
 function GameScene:enterRoom(direction)
+	waterRushSound:stop()
+	-- waterRushSynth:noteOff()
 	local level = ldtk.get_neighbours(self.level_name, direction)[1]
 	self:goToLevel(level)
 	self.player:add()
@@ -149,6 +154,11 @@ function GameScene:goToLevel(level_name)
 		elseif entityName == "Cheese" then
 			Cheese(entityX, entityY, entity)
 		end
+	end
+
+	if #waterfallList > 0 then
+		waterRushSound:play(0)
+		-- waterRushSynth:playNote(waterRushNote, 0.2)
 	end
 	if waterEntity then
 		Water(waterEntity.position.x, waterEntity.position.y, waterEntity, waterfallList)

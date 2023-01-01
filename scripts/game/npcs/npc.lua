@@ -15,9 +15,9 @@ function Npc:init(x, y, entity)
     end
     self:setImage(npcImage, flip)
     if fields.facingRight then
-        self:setCollideRect(32, 0, 32, 32)
+        self:setCollideRect(16, 0, 32, 32)
     else
-        self:setCollideRect(-32, 0, 32, 32)
+        self:setCollideRect(-16, 0, 32, 32)
     end
     self:setTag(TAGS.Interactable)
     self:setZIndex(Z_INDEXES.NPC)

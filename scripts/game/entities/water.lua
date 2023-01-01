@@ -1,6 +1,8 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+local splashSound <const> = pd.sound.sampleplayer.new("sound/entities/splash")
+
 class('Water').extends(gfx.sprite)
 
 function Water:init(x, y, entity, waterfallList)
@@ -67,6 +69,7 @@ function Water:update()
         for i=1,#queriedSprites do
             local curSprite = queriedSprites[i]
             if curSprite:getTag() == TAGS.Player then
+                splashSound:play()
                 self.playerTouchOnCooldown = true
                 self.fluid:touch(curSprite.x - self.x, 16)
                 pd.timer.performAfterDelay(self.playerTouchCooldownTime, function()

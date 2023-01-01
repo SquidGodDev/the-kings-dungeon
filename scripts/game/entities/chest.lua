@@ -1,11 +1,14 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+local chestOpenSound <const> = pd.sound.sampleplayer.new("sound/entities/chestOpen")
+
 class('Chest').extends(gfx.sprite)
 
 function Chest:init(x, y, entity)
     self.chestClosedImage = gfx.image.new("images/entities/chestClosed")
     self.chestOpenImage = gfx.image.new("images/entities/chestOpen")
+    self:setZIndex(Z_INDEXES.CHEST)
     self:setCenter(0, 0)
     self:moveTo(x, y)
     self:add()
@@ -36,6 +39,8 @@ function Chest:interact(player)
     if self.open then
         return
     end
+
+    chestOpenSound:play()
     player.dialog:unlockAbility(self.ability)
     self:setImage(self.chestOpenImage, self.flip)
     self.interactable = false

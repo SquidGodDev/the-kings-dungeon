@@ -29,6 +29,8 @@ function Player:init(x, y, gameManager)
 
     self.wallClimbSound = sampleplayer.new("sound/player/wallClimb")
 
+    self.climbSound = sampleplayer.new("sound/player/climb")
+
     self.chargeUpSound = sampleplayer.new("sound/player/chargeUp")
     self.smashSound = sampleplayer.new("sound/player/smash")
 
@@ -44,6 +46,9 @@ function Player:init(x, y, gameManager)
         end
     end
     self:addState("climb", 6, 7, {tickStep = 6})
+    self.states.climb.onFrameChangedEvent = function(animationSprite)
+        self.climbSound:play()
+    end
     self:addState("jumpAscent", 8, 8)
     self:addState("jumpDescent", 8, 8)
     self:addState("wallClimb", 9, 10, {tickStep = 6})

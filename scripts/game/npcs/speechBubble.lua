@@ -3,6 +3,8 @@ local gfx <const> = playdate.graphics
 
 local speechFont <const> = gfx.font.new("images/fonts/m5x7-24")
 
+local speechSound <const> = pd.sound.sampleplayer.new("sound/entities/blip")
+
 class('SpeechBubble').extends(gfx.sprite)
 
 function SpeechBubble:init(text, x, y)
@@ -78,11 +80,16 @@ function SpeechBubble:createSpeechTimer()
     self.maxTextIndex = #self.curLine
     self.speechTimer = pd.timer.new(self.speechTime, function(timer)
         self.speechTimer.delay = self.speechTime
-        local nextChar = string.sub(self.curLine, self.textIndex + 1, self.textIndex + 1)
-        if nextChar and nextChar == "." then
-            self.speechTimer.delay = self.pauseSpeechTime
-        end
         self.textIndex += 1
+        local nextChar = string.sub(self.curLine, self.textIndex, self.textIndex)
+        if nextChar then
+            if nextChar ~= " " then
+                speechSound:play()
+            end
+            if nextChar == "." then
+                self.speechTimer.delay = self.pauseSpeechTime
+            end
+        end
         self:drawText(string.sub(self.curLine, 1, self.textIndex), self.lineWidth, self.lineHeight)
         if self.textIndex == self.maxTextIndex then
             timer:remove()

@@ -20,6 +20,7 @@ function Spikeball:init(x, y, entity)
     self.moving = fields.moving
     self.velocity = fields.velocity
     self.movingRight = fields.movingRight
+    self.bounceSound = pd.sound.sampleplayer.new("sound/entities/spikeBounce")
 end
 
 function Spikeball:update()
@@ -39,6 +40,7 @@ function Spikeball:update()
             end
         end
         if hitWall then
+            self.bounceSound:play()
             self.velocity *= -1
         end
     end

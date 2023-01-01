@@ -14,6 +14,9 @@ local gfx <const> = playdate.graphics
 -- end
 local fadedImageTable <const> = gfx.imagetable.new("images/ui/faded/faded")
 
+local whooshSound <const> = pd.sound.sampleplayer.new("sound/entities/whoosh")
+local abilityUnlockSound <const> = pd.sound.sampleplayer.new("sound/entities/abilityUnlock")
+
 class('Dialog').extends(gfx.sprite)
 
 function Dialog:init(player)
@@ -33,6 +36,7 @@ end
 function Dialog:update()
     if self.dialogDisplayed then
         if pd.buttonJustPressed(pd.kButtonA) then
+            whooshSound:play()
             self.dialogDisplayed = false
             self.fadedBackgroundSprite:setVisible(true)
             local moveTimer = pd.timer.new(1000, self.y, -120, pd.easingFunctions.inOutCubic)
@@ -88,6 +92,7 @@ function Dialog:unlockAbility(ability)
     else
         return
     end
+    abilityUnlockSound:play()
     self:createDialog(abilityIcon, abilityName, abilityDescription)
 end
 
@@ -99,6 +104,7 @@ function Dialog:updatePauseMenu(x, y, image)
 end
 
 function Dialog:createDialog(abilityIcon, abilityName, abilityDescription)
+    whooshSound:play()
     self.active = true
     local dialogBackground = gfx.image.new("images/ui/dialog")
     local dialogWidth = dialogBackground:getSize()
