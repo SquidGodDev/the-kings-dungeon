@@ -18,9 +18,12 @@ function DestructableBlock:init(x, y, entity)
     self:setCenter(0, 0)
     self:moveTo(x, y)
     self:add()
+
+    self.destroySound = pd.sound.sampleplayer.new("sound/entities/blockBreak")
 end
 
 function DestructableBlock:destroy()
+    self.destroySound:play()
     self.entity.fields.destroyed = true
     self:remove()
     local smokeSprite = util.animatedSprite("images/entities/smallSmokeBurst-table-85-89", 20, false)

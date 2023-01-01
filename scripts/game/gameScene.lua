@@ -15,7 +15,8 @@ TAGS = {
 	Player = 4,
 	Destructable = 5,
 	Hazard = 6,
-	Interactable = 7
+	Interactable = 7,
+	Pickup = 8
 }
 
 Z_INDEXES = {
@@ -26,12 +27,15 @@ Z_INDEXES = {
 	UI = 1000,
 	DIALOG = 1200,
 	WATERFALL = 10,
-	WATER = 20
+	WATER = 20,
+	PICKUP = 30
 }
 
 COLLISION_GROUPS = {
     player = 1
 }
+
+CHEESE = 0
 
 local ldtk <const> = LDtk
 
@@ -48,7 +52,7 @@ end
 class('GameScene').extends()
 
 function GameScene:init()
-    self:goToLevel("Level_6")
+    self:goToLevel("Level_1")
 
 	self.spawnX = 200
 	self.spawnY = 120
@@ -89,8 +93,11 @@ function GameScene:goToLevel(level_name)
 
 	self.level_name = level_name
 
-	-- we release the previous level after loading the new one so that it doesn't unload the tileset if we reuse it
 	gfx.sprite.removeAll()
+	local allTimers = pd.timer.allTimers()
+    for _, timer in ipairs(allTimers) do
+        timer:remove()
+    end
 
 	self.layerSprites = {}
 	for layer_name, layer in pairs(ldtk.get_layers(level_name)) do
@@ -139,6 +146,8 @@ function GameScene:goToLevel(level_name)
 			waterEntity = entity
 		elseif entityName == "Waterfall" then
 			table.insert(waterfallList, entity)
+		elseif entityName == "Cheese" then
+			Cheese(entityX, entityY, entity)
 		end
 	end
 	if waterEntity then

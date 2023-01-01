@@ -4,6 +4,8 @@ local gfx <const> = playdate.graphics
 
 local util <const> = utilities
 
+local tags <const> = TAGS
+
 class('Player').extends(AnimatedSprite)
 
 function Player:init(x, y, gameManager)
@@ -12,12 +14,42 @@ function Player:init(x, y, gameManager)
     local playerImageTable = gfx.imagetable.new("images/player/player-table-40-40")
     Player.super.init(self, playerImageTable)
 
+    -- SFX
+    local sampleplayer <const> = pd.sound.sampleplayer
+    local stepSounds = {}
+    stepSounds[1] = sampleplayer.new("sound/player/step1")
+    stepSounds[2] = sampleplayer.new("sound/player/step2")
+    stepSounds[3] = sampleplayer.new("sound/player/step3")
+    self.landSound = sampleplayer.new("sound/player/land")
+    self.landSoundThreshold = 8
+
+    self.dashSound = sampleplayer.new("sound/player/swoosh")
+
+    self.jumpSound = sampleplayer.new("sound/player/jump")
+
+    self.wallClimbSound = sampleplayer.new("sound/player/wallClimb")
+
+    self.chargeUpSound = sampleplayer.new("sound/player/chargeUp")
+    self.smashSound = sampleplayer.new("sound/player/smash")
+
+    self.deathSound = sampleplayer.new("sound/player/death")
+    self.hurtSound = sampleplayer.new("sound/player/hurt")
+
     self:addState("idle", 1, 1)
     self:addState("run", 2, 5, {tickStep = 4})
+    self.states.run.onFrameChangedEvent = function(animationSprite)
+        local curFrame = animationSprite._currentFrame
+        if curFrame == 2 then
+            stepSounds[math.random(3)]:play()
+        end
+    end
     self:addState("climb", 6, 7, {tickStep = 6})
     self:addState("jumpAscent", 8, 8)
     self:addState("jumpDescent", 8, 8)
     self:addState("wallClimb", 9, 10, {tickStep = 6})
+    self.states.wallClimb.onFrameChangedEvent = function(animationSprite)
+        self.wallClimbSound:play()
+    end
     self:addState("dash", 5, 5)
     self:addState("smash", 11, 17, {tickStep = 6, nextAnimation = "idle"})
     self.states.smash.onFrameChangedEvent = function(animationSprite)
@@ -64,11 +96,11 @@ function Player:init(x, y, gameManager)
     self.dashGravity = 0.5
 
     -- Abilities
-    self.crankKeyAbility = false
-    self.smashAbility = false
-    self.wallClimbAbility = false
+    self.crankKeyAbility = true
+    self.smashAbility = true
+    self.wallClimbAbility = true
     self.doubleJumpAbility = true
-    self.dashAbility = false
+    self.dashAbility = true
 
     self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)
@@ -94,7 +126,7 @@ end
 
 function Player:collisionResponse(other)
     local tag = other:getTag()
-    if tag == TAGS.Climable or tag == TAGS.Hazard or tag == TAGS.Interactable then
+    if tag == tags.Climable or tag == tags.Hazard or tag == tags.Interactable or tag == tags.Pickup then
         return gfx.sprite.kCollisionTypeOverlap
     end
     return gfx.sprite.kCollisionTypeSlide
@@ -131,6 +163,7 @@ function Player:update()
         end
         if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround and self.smashAbility then
             self:changeState("smash")
+            self.chargeUpSound:play()
         end
         self:checkIfClimbing()
         self:applyFriction()
@@ -153,6 +186,7 @@ function Player:update()
         end
         if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround and self.smashAbility then
             self:changeState("smash")
+            self.chargeUpSound:play()
         end
         self:checkIfClimbing()
         self:applyGravity()
@@ -288,13 +322,14 @@ end
 function Player:handleMovementAndCollisions()
     local originalY = self.y
     local _, _, collisions, length = self:moveWithCollisions(self.x + self.xVelocity, self.y + self.yVelocity)
-    self.touchingGround = false
     self.touchingCeiling = false
     self.touchingWall = false
     self.touchingClimableWall = false
     self.touchingClimableTile = false
     self.standingOnClimableTile = false
     self.interactingObject = nil
+
+    local touchedGround = false
     local died = false
     for i=1,length do
         local collision = collisions[i]
@@ -306,15 +341,17 @@ function Player:handleMovementAndCollisions()
                 self.climbTileX = collision.other.x
                 if collision.normal.y == -1 and not collision.overlaps then
                     self.standingOnClimableTile = true
-                    self.touchingGround = true
+                    touchedGround = true
                     self:moveTo(self.x, originalY)
                 end
             elseif collisionTag == TAGS.Interactable then
                 self.interactingObject = collision.other
+            elseif collisionTag == TAGS.Pickup then
+                collision.other:pickUp()
             end
         else
             if collision.normal.y == -1 then
-                self.touchingGround = true
+                touchedGround = true
             elseif collision.normal.y == 1 then
                 self.touchingCeiling = true
             end
@@ -332,6 +369,10 @@ function Player:handleMovementAndCollisions()
         end
     end
 
+    if not self.touchingGround and touchedGround and self.yVelocity > self.landSoundThreshold then
+        self.landSound:play()
+    end
+    self.touchingGround = touchedGround
     if self.touchingGround then
         self.yVelocity = 0
         self.doubleJumpAvailable = true
@@ -351,20 +392,18 @@ function Player:handleMovementAndCollisions()
     end
 end
 
-function Player:gainAbility(ability)
-    
-end
-
 function Player:die()
     self.xVelocity = 0
     self.yVelocity = 0
     self.dead = true
     self:setCollisionsEnabled(false)
+    self.hurtSound:play()
     pd.timer.performAfterDelay(200, function()
         local deathBurstSprite = util.animatedSprite("images/player/deathBurst-table-105-97", 50, false)
         deathBurstSprite:setZIndex(Z_INDEXES.ABILITY)
         deathBurstSprite:moveTo(self.x, self.y)
         self:setVisible(false)
+        self.deathSound:play()
         pd.timer.performAfterDelay(400, function()
             self:setVisible(true)
             self:setCollisionsEnabled(true)
@@ -398,11 +437,13 @@ function Player:changeToClimbState()
 end
 
 function Player:changeToJumpState()
+    self.jumpSound:play()
     self.yVelocity = self.jumpVelocity
     self:changeState("jumpAscent")
 end
 
 function Player:changeToDashState()
+    self.dashSound:play()
     self.dashAvailable = false
     self.yVelocity = self.dashHeightBoost
     if pd.buttonIsPressed(pd.kButtonLeft) then
@@ -518,6 +559,7 @@ end
 
 function Player:performSmash()
     pd.timer.performAfterDelay(50, function()
+        self.smashSound:play()
         local smokeBurstSprite = util.animatedSprite("images/player/smokeBurst-table-113-97", 15, false)
         smokeBurstSprite:setZIndex(Z_INDEXES.ABILITY)
         smokeBurstSprite:moveTo(self.x, self.y)
