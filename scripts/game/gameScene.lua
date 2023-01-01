@@ -130,6 +130,8 @@ function GameScene:goToLevel(level_name)
 			Chest(entityX, entityY, entity)
 		elseif entity.name == "NPC" then
 			Npc(entityX, entityY, entity)
+		elseif entity.name == "Waterfall" then
+			Waterfall(entityX, entityY, entity)
 		end
 	end
 end
