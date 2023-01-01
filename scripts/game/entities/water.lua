@@ -60,7 +60,7 @@ function Water:update()
     gfx.popContext()
     self:setImage(fluidImage)
     if not self.playerTouchOnCooldown then
-        local queriedSprites = gfx.sprite.querySpritesInRect(self.x, self.y + 12, self.waterWidth, 8)
+        local queriedSprites = gfx.sprite.querySpritesInRect(self.x, self.y + self.heightBuffer, self.waterWidth, 8)
         for i=1,#queriedSprites do
             local curSprite = queriedSprites[i]
             if curSprite:getTag() == TAGS.Player then
