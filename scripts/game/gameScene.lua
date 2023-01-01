@@ -52,6 +52,10 @@ end
 
 local waterRushSound <const> = pd.sound.sampleplayer.new("sound/entities/waterfall")
 
+local musicTrack <const> = pd.sound.fileplayer.new("sound/music/gameMusic")
+musicTrack:setVolume(0.3)
+musicTrack:play(0)
+
 class('GameScene').extends()
 
 function GameScene:init()
