@@ -24,7 +24,9 @@ Z_INDEXES = {
 	ABILITY = 150,
 	GATE = 0,
 	UI = 1000,
-	DIALOG = 1200
+	DIALOG = 1200,
+	WATERFALL = 0,
+	WATER = 0
 }
 
 COLLISION_GROUPS = {
@@ -46,7 +48,7 @@ end
 class('GameScene').extends()
 
 function GameScene:init()
-    self:goToLevel("Level_0")
+    self:goToLevel("Level_6")
 
 	self.spawnX = 200
 	self.spawnY = 120
@@ -116,22 +118,35 @@ function GameScene:goToLevel(level_name)
 		end
 	end
 
+	local waterEntity
+	local waterfallList = {}
 	for _, entity in ipairs(ldtk.get_entities(level_name)) do
 		local entityX, entityY = entity.position.x, entity.position.y
-		if entity.name == "Gate" then
+		local entityName = entity.name
+		if entityName == "Gate" then
 			Gate(entityX, entityY, entity)
-		elseif entity.name == "DestructableBlock" then
+		elseif entityName == "DestructableBlock" then
 			DestructableBlock(entityX, entityY, entity)
-		elseif entity.name == "Spike" then
+		elseif entityName == "Spike" then
 			Spike(entityX, entityY)
-		elseif entity.name == "Spikeball" then
+		elseif entityName == "Spikeball" then
 			Spikeball(entityX, entityY, entity)
-		elseif entity.name == "Chest" then
+		elseif entityName == "Chest" then
 			Chest(entityX, entityY, entity)
-		elseif entity.name == "NPC" then
+		elseif entityName == "NPC" then
 			Npc(entityX, entityY, entity)
-		elseif entity.name == "Waterfall" then
-			Waterfall(entityX, entityY, entity)
+		elseif entityName == "Water" then
+			waterEntity = entity
+		elseif entityName == "Waterfall" then
+			table.insert(waterfallList, entity)
+		end
+	end
+	if waterEntity then
+		Water(waterEntity.position.x, waterEntity.position.y, waterEntity, waterfallList)
+	else
+		for i=1,#waterfallList do
+			local waterfallEntity = waterfallList[i]
+			Waterfall(waterfallEntity.position.x, waterfallEntity.position.y, waterfallEntity)
 		end
 	end
 end

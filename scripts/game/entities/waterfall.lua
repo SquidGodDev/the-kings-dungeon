@@ -13,6 +13,7 @@ function Waterfall:init(x, y, entity)
     self.waterfallFrame2 = self:drawWaterfall(32, height, 2)
 
     self:setImage(self.waterfallFrame1)
+    self:setZIndex(Z_INDEXES.WATERFALL)
     self:setCenter(0, 0)
     self:moveTo(x, y)
     self:add()

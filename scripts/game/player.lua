@@ -67,7 +67,7 @@ function Player:init(x, y, gameManager)
     self.crankKeyAbility = false
     self.smashAbility = false
     self.wallClimbAbility = false
-    self.doubleJumpAbility = false
+    self.doubleJumpAbility = true
     self.dashAbility = false
 
     self:setDefaultCollisionRect()

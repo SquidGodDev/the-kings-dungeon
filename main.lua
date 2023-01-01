@@ -12,6 +12,7 @@ import "scripts/libraries/SceneManager"
 import "scripts/libraries/LDtk"
 import "scripts/libraries/Utilities"
 import "scripts/libraries/DrawText"
+import "scripts/libraries/Fluid"
 
 -- Game
 import "scripts/game/gameScene"
