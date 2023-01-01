@@ -23,6 +23,9 @@ function Dialog:init(player)
     self.fadedBackgroundSprite = gfx.sprite.new()
     self.fadedBackgroundSprite:moveTo(200, 120)
     self.fadedBackgroundSprite:setZIndex(Z_INDEXES.DIALOG-1)
+
+    self.menuImage = gfx.image.new("images/ui/pauseMenu")
+    pd.setMenuImage(self.menuImage)
 end
 
 function Dialog:update()
@@ -50,35 +53,47 @@ end
 
 function Dialog:unlockAbility(ability)
     local abilityIcon, abilityName, abilityDescription
-    if ability == "crankKey" then
+    if ability == "CrankKey" then
         self.player.crankKeyAbility = true
         abilityName = "Crank Key"
         abilityDescription = "Crank to open gates"
         abilityIcon = gfx.image.new("images/player/abilities/crankKey")
-    elseif ability == "smash" then
+        self:updatePauseMenu(120, 12, abilityIcon)
+    elseif ability == "Smash" then
         self.player.smashAbility = true
         abilityName = "Smash"
         abilityDescription = "Press Down to smash damaged blocks"
         abilityIcon = gfx.image.new("images/player/abilities/smash")
-    elseif ability == "wallClimb" then
+        self:updatePauseMenu(16, 52, abilityIcon)
+    elseif ability == "WallClimb" then
         self.player.wallClimbAbility = true
         abilityName = "Wall Climb"
         abilityDescription = "Jump at climable walls to climb them"
         abilityIcon = gfx.image.new("images/player/abilities/wallClimb")
-    elseif ability == "doubleJump" then
+        self:updatePauseMenu(148, 104, abilityIcon)
+    elseif ability == "DoubleJump" then
         self.player.doubleJumpAbility = true
         abilityName = "Double Jump"
         abilityDescription = "Press A again in the air to jump again"
         abilityIcon = gfx.image.new("images/player/abilities/doubleJump")
-    elseif ability == "dash" then
+        self:updatePauseMenu(144, 192, abilityIcon)
+    elseif ability == "Dash" then
         self.player.dashAbility = true
         abilityName = "Dash"
         abilityDescription = "Press B to dash forward"
         abilityIcon = gfx.image.new("images/player/abilities/dash")
+        self:updatePauseMenu(32, 172, abilityIcon)
     else
         return
     end
     self:createDialog(abilityIcon, abilityName, abilityDescription)
+end
+
+function Dialog:updatePauseMenu(x, y, image)
+    gfx.pushContext(self.menuImage)
+        image:draw(x, y)
+    gfx.popContext()
+    pd.setMenuImage(self.menuImage)
 end
 
 function Dialog:createDialog(abilityIcon, abilityName, abilityDescription)

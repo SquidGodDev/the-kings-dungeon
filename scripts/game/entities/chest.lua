@@ -25,7 +25,7 @@ function Chest:init(x, y, entity)
         self:setImage(self.chestClosedImage, self.flip)
     end
 
-    self.contents = fields.contents
+    self.ability = fields.ability
 
     self:setCollideRect(0, 0, 32, 32)
 
@@ -36,7 +36,7 @@ function Chest:interact(player)
     if self.open then
         return
     end
-    player.dialog:unlockAbility(self.contents)
+    player.dialog:unlockAbility(self.ability)
     self:setImage(self.chestOpenImage, self.flip)
     self.interactable = false
     self.open = true
