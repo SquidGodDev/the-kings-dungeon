@@ -5,7 +5,7 @@ class('Water').extends(gfx.sprite)
 
 function Water:init(x, y, entity, waterfallList)
     local waterSize = entity.size
-    self.widthBuffer = 16
+    self.widthBuffer = 0
     self.waterWidth = waterSize.width + self.widthBuffer
     self.waterHeight = waterSize.height
     self.waterfallPos = {}
@@ -48,6 +48,9 @@ function Water:init(x, y, entity, waterfallList)
 
     self.playerTouchOnCooldown = false
     self.playerTouchCooldownTime = 500
+
+    self.clipWidth = 1
+    self:setClipRect(self.clipWidth + self.x, self.y, self.waterWidth - self.clipWidth*2, self.waterHeight)
 end
 
 function Water:update()
