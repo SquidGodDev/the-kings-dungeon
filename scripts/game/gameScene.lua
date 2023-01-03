@@ -54,17 +54,17 @@ end
 
 local waterRushSound <const> = pd.sound.sampleplayer.new("sound/entities/waterfall")
 
-local musicTrack <const> = pd.sound.sampleplayer.new("sound/music/gameMusic")
-musicTrack:setVolume(0.3)
--- musicTrack:play(0)
+local musicTrack <const> = pd.sound.sampleplayer.new("sound/music/CHIPTUNE_Loop_Minstrel_Dance")
+musicTrack:setVolume(0.4)
+musicTrack:play(0)
 
 class('GameScene').extends()
 
 function GameScene:init()
-    self:goToLevel("Level_35")
+    self:goToLevel("Level_0")
 
-	self.spawnX = 0 * 32
-	self.spawnY = 1 * 32
+	self.spawnX = 2 * 32
+	self.spawnY = 5 * 32
 	self.player = Player(self.spawnX, self.spawnY, self)
 end
 
