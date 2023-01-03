@@ -6,6 +6,9 @@ local util <const> = utilities
 class('EndScene').extends(gfx.sprite)
 
 function EndScene:init()
+    pd.setMenuImage(nil)
+    EndMusic:play(0)
+	GameMusic:stop()
     -- Create end scene
     local blackImage = gfx.image.new(400, 240, gfx.kColorBlack)
     gfx.sprite.setBackgroundDrawingCallback(function()

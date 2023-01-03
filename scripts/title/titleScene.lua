@@ -4,6 +4,8 @@ local gfx <const> = playdate.graphics
 class('TitleScene').extends(gfx.sprite)
 
 function TitleScene:init()
+    TitleMusic:play(0)
+	EndMusic:stop()
     -- Create title image
     self:add()
 end

@@ -74,7 +74,7 @@ function Dialog:unlockAbility(ability)
     elseif ability == "WallClimb" then
         self.player.wallClimbAbility = true
         abilityName = "Wall Climb"
-        abilityDescription = "Jump at climable walls to climb them"
+        abilityDescription = "Jump at climbable walls to climb them"
         abilityIcon = gfx.image.new("images/player/abilities/wallClimb")
         self:updatePauseMenu(148, 104, abilityIcon)
     elseif ability == "DoubleJump" then

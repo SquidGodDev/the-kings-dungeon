@@ -42,7 +42,16 @@ SCENE_MANAGER = SceneManager()
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-EndScene()
+GameMusic = pd.sound.sampleplayer.new("sound/music/CHIPTUNE_Loop_Minstrel_Dance")
+GameMusic:setVolume(0.5)
+
+TitleMusic = pd.sound.sampleplayer.new("sound/music/titleScreenMusic")
+TitleMusic:setVolume(0.5)
+
+EndMusic = pd.sound.sampleplayer.new("sound/music/gameEndMusic")
+EndMusic:setVolume(0.5)
+
+TitleScene()
 
 function pd.update()
     gfx.sprite.update()

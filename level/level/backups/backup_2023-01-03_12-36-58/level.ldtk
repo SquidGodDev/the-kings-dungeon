@@ -5,11 +5,12 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.1.3",
+		"appVersion": "1.2.0",
 		"url": "https://ldtk.io"
 	},
-	"jsonVersion": "1.1.3",
-	"appBuildId": 458364,
+	"iid": "369edd90-7820-11ed-b3b6-8dac190d4be8",
+	"jsonVersion": "1.2.0",
+	"appBuildId": 464631,
 	"nextUid": 162,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
@@ -27,11 +28,13 @@
 	"exportTiled": false,
 	"simplifiedExport": false,
 	"imageExportMode": "None",
+	"exportLevelBg": true,
 	"pngFilePattern": null,
 	"backupOnSave": true,
 	"backupLimit": 10,
 	"levelNamePattern": "Level_%idx",
 	"tutorialDesc": null,
+	"customCommands": [],
 	"flags": [],
 	"defs": { "layers": [
 		{
@@ -46,6 +49,7 @@
 			"inactiveOpacity": 0.6,
 			"hideInList": false,
 			"hideFieldsWhenInactive": true,
+			"canSelectWhenInactive": true,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
 			"parallaxFactorX": 0,
@@ -54,7 +58,6 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [],
-			"autoTilesetDefUid": null,
 			"autoRuleGroups": [],
 			"autoSourceLayerDefUid": null,
 			"tilesetDefUid": null,
@@ -73,6 +76,7 @@
 			"inactiveOpacity": 1,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
+			"canSelectWhenInactive": true,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
 			"parallaxFactorX": 0,
@@ -81,255 +85,248 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [{ "value": 1, "identifier": null, "color": "#000000" }],
-			"autoTilesetDefUid": 1,
-			"autoRuleGroups": [{
-				"uid": 41,
-				"name": "Wall Climable Blocks",
-				"active": true,
-				"isOptional": false,
-				"rules": [
-					{
-						"uid": 140,
-						"active": true,
-						"size": 3,
-						"tileIds": [23],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,-1,0,-1,1,-1,0,-1,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 6295474,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 131,
-						"active": true,
-						"size": 3,
-						"tileIds": [47],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,1,0,-1,1,-1,0,1,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 7022636,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 130,
-						"active": true,
-						"size": 3,
-						"tileIds": [35],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,-1,0,-1,1,-1,0,0,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 3880106,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 129,
-						"active": true,
-						"size": 3,
-						"tileIds": [59],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,0,0,-1,1,-1,0,-1,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 5053181,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 46,
-						"active": true,
-						"size": 3,
-						"tileIds": [32],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,-1,0,-1,1,0,0,0,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 6596423,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 42,
-						"active": true,
-						"size": 3,
-						"tileIds": [33],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,-1,0,0,1,-1,0,0,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 483801,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 47,
-						"active": true,
-						"size": 3,
-						"tileIds": [56],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,0,0,-1,1,0,0,-1,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 2731044,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 44,
-						"active": true,
-						"size": 3,
-						"tileIds": [57],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,0,0,0,1,-1,0,-1,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 6441289,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 45,
-						"active": true,
-						"size": 3,
-						"tileIds": [44],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,0,0,-1,1,0,0,0,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 7694525,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 43,
-						"active": true,
-						"size": 3,
-						"tileIds": [45],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,0,0,0,1,-1,0,0,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 3398504,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					}
-				]
-			}],
+			"autoRuleGroups": [{ "uid": 41, "name": "Wall Climable Blocks", "active": true, "isOptional": false, "rules": [
+				{
+					"uid": 140,
+					"active": true,
+					"size": 3,
+					"tileIds": [23],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,-1,0,-1,1,-1,0,-1,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 6295474,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 131,
+					"active": true,
+					"size": 3,
+					"tileIds": [47],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,1,0,-1,1,-1,0,1,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 7022636,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 130,
+					"active": true,
+					"size": 3,
+					"tileIds": [35],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,-1,0,-1,1,-1,0,0,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 3880106,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 129,
+					"active": true,
+					"size": 3,
+					"tileIds": [59],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,0,0,-1,1,-1,0,-1,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 5053181,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 46,
+					"active": true,
+					"size": 3,
+					"tileIds": [32],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,-1,0,-1,1,0,0,0,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 6596423,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 42,
+					"active": true,
+					"size": 3,
+					"tileIds": [33],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,-1,0,0,1,-1,0,0,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 483801,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 47,
+					"active": true,
+					"size": 3,
+					"tileIds": [56],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,0,0,-1,1,0,0,-1,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 2731044,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 44,
+					"active": true,
+					"size": 3,
+					"tileIds": [57],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,0,0,0,1,-1,0,-1,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 6441289,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 45,
+					"active": true,
+					"size": 3,
+					"tileIds": [44],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,0,0,-1,1,0,0,0,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 7694525,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 43,
+					"active": true,
+					"size": 3,
+					"tileIds": [45],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,0,0,0,1,-1,0,0,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 3398504,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				}
+			], "usesWizard": false }],
 			"autoSourceLayerDefUid": null,
 			"tilesetDefUid": 1,
 			"tilePivotX": 0,
@@ -347,6 +344,7 @@
 			"inactiveOpacity": 1,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
+			"canSelectWhenInactive": true,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
 			"parallaxFactorX": 0,
@@ -355,87 +353,80 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [{ "value": 1, "identifier": null, "color": "#000000" }],
-			"autoTilesetDefUid": 1,
-			"autoRuleGroups": [{
-				"uid": 32,
-				"name": "Ladder",
-				"active": true,
-				"isOptional": false,
-				"rules": [
-					{
-						"uid": 35,
-						"active": true,
-						"size": 3,
-						"tileIds": [55],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,0,0,0,1,0,0,-1,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 9804033,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 33,
-						"active": true,
-						"size": 3,
-						"tileIds": [43],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0,-1,0,0,1,0,0,0,0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 75768,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					},
-					{
-						"uid": 34,
-						"active": true,
-						"size": 1,
-						"tileIds": [43],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [1],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 5641621,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					}
-				]
-			}],
+			"autoRuleGroups": [{ "uid": 32, "name": "Ladder", "active": true, "isOptional": false, "rules": [
+				{
+					"uid": 35,
+					"active": true,
+					"size": 3,
+					"tileIds": [55],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,0,0,0,1,0,0,-1,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 9804033,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 33,
+					"active": true,
+					"size": 3,
+					"tileIds": [43],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0,-1,0,0,1,0,0,0,0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 75768,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				},
+				{
+					"uid": 34,
+					"active": true,
+					"size": 1,
+					"tileIds": [43],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [1],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 5641621,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				}
+			], "usesWizard": false }],
 			"autoSourceLayerDefUid": null,
 			"tilesetDefUid": 1,
 			"tilePivotX": 0,
@@ -453,6 +444,7 @@
 			"inactiveOpacity": 1,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
+			"canSelectWhenInactive": true,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
 			"parallaxFactorX": 0,
@@ -461,7 +453,6 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [],
-			"autoTilesetDefUid": 1,
 			"autoRuleGroups": [],
 			"autoSourceLayerDefUid": null,
 			"tilesetDefUid": 1,
@@ -480,6 +471,7 @@
 			"inactiveOpacity": 1,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
+			"canSelectWhenInactive": true,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
 			"parallaxFactorX": 0,
@@ -488,504 +480,491 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [{ "value": 1, "identifier": null, "color": "#000000" }],
-			"autoTilesetDefUid": 1,
 			"autoRuleGroups": [
-				{
-					"uid": 102,
-					"name": "Decoration",
-					"active": true,
-					"isOptional": false,
-					"rules": [
-						{
-							"uid": 104,
-							"active": true,
-							"size": 3,
-							"tileIds": [12,13,14],
-							"chance": 0.21,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,0,-1,0,0,1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 3016067,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 103,
-							"active": true,
-							"size": 3,
-							"tileIds": [41,53,60,61,62],
-							"chance": 0.21,
-							"breakOnMatch": true,
-							"pattern": [0,1,0,0,-1,0,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 5629257,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						}
-					]
-				},
-				{
-					"uid": 5,
-					"name": "Bricks",
-					"active": true,
-					"isOptional": false,
-					"rules": [
-						{
-							"uid": 141,
-							"active": true,
-							"size": 3,
-							"tileIds": [20],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,-1,1,-1,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 181937,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 17,
-							"active": true,
-							"size": 3,
-							"tileIds": [17],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,0,1,-1,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 9090214,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 16,
-							"active": true,
-							"size": 3,
-							"tileIds": [15],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,-1,1,0,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 5378476,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 7,
-							"active": true,
-							"size": 3,
-							"tileIds": [16],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,0,1,0,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 9283722,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 19,
-							"active": true,
-							"size": 3,
-							"tileIds": [26],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,0,1,-1,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 1845171,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 9,
-							"active": true,
-							"size": 3,
-							"tileIds": [24],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,-1,1,0,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 1981092,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 20,
-							"active": true,
-							"size": 3,
-							"tileIds": [50],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,0,1,-1,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 5726815,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 11,
-							"active": true,
-							"size": 3,
-							"tileIds": [48],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,-1,1,0,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 376278,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 12,
-							"active": true,
-							"size": 3,
-							"tileIds": [25],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,-1,0,0,1,0,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 4360232,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 13,
-							"active": true,
-							"size": 3,
-							"tileIds": [49],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,0,1,0,0,-1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 550969,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 21,
-							"active": true,
-							"size": 3,
-							"tileIds": [38],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,0,1,-1,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 2528061,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 14,
-							"active": true,
-							"size": 3,
-							"tileIds": [36],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,-1,1,0,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 4823249,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 27,
-							"active": true,
-							"size": 3,
-							"tileIds": [37],
-							"chance": 0.42,
-							"breakOnMatch": true,
-							"pattern": [0,1,0,1,0,1,0,1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 2451677,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 59,
-							"active": true,
-							"size": 3,
-							"tileIds": [37],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,0,1,1,0,1,-1],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 6924906,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 60,
-							"active": true,
-							"size": 3,
-							"tileIds": [37],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [-1,1,0,1,1,0,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 6924906,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 61,
-							"active": true,
-							"size": 3,
-							"tileIds": [37],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,1,-1,0,1,1,0,0,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 6924906,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 62,
-							"active": true,
-							"size": 3,
-							"tileIds": [37],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [0,0,0,1,1,0,-1,1,0],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 6924906,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						},
-						{
-							"uid": 143,
-							"active": true,
-							"size": 1,
-							"tileIds": [95],
-							"chance": 1,
-							"breakOnMatch": true,
-							"pattern": [1],
-							"flipX": false,
-							"flipY": false,
-							"xModulo": 1,
-							"yModulo": 1,
-							"xOffset": 0,
-							"yOffset": 0,
-							"checker": "None",
-							"tileMode": "Single",
-							"pivotX": 0,
-							"pivotY": 0,
-							"outOfBoundsValue": null,
-							"perlinActive": false,
-							"perlinSeed": 8989726,
-							"perlinScale": 0.2,
-							"perlinOctaves": 2
-						}
-					]
-				}
+				{ "uid": 102, "name": "Decoration", "active": true, "isOptional": false, "rules": [
+					{
+						"uid": 104,
+						"active": true,
+						"size": 3,
+						"tileIds": [12,13,14],
+						"chance": 0.21,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,0,-1,0,0,1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 3016067,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 103,
+						"active": true,
+						"size": 3,
+						"tileIds": [41,53,60,61,62],
+						"chance": 0.21,
+						"breakOnMatch": true,
+						"pattern": [0,1,0,0,-1,0,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 5629257,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					}
+				], "usesWizard": false },
+				{ "uid": 5, "name": "Bricks", "active": true, "isOptional": false, "rules": [
+					{
+						"uid": 141,
+						"active": true,
+						"size": 3,
+						"tileIds": [20],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,-1,1,-1,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 181937,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 17,
+						"active": true,
+						"size": 3,
+						"tileIds": [17],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,0,1,-1,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 9090214,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 16,
+						"active": true,
+						"size": 3,
+						"tileIds": [15],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,-1,1,0,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 5378476,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 7,
+						"active": true,
+						"size": 3,
+						"tileIds": [16],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,0,1,0,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 9283722,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 19,
+						"active": true,
+						"size": 3,
+						"tileIds": [26],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,0,1,-1,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 1845171,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 9,
+						"active": true,
+						"size": 3,
+						"tileIds": [24],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,-1,1,0,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 1981092,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 20,
+						"active": true,
+						"size": 3,
+						"tileIds": [50],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,0,1,-1,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 5726815,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 11,
+						"active": true,
+						"size": 3,
+						"tileIds": [48],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,-1,1,0,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 376278,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 12,
+						"active": true,
+						"size": 3,
+						"tileIds": [25],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,-1,0,0,1,0,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 4360232,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 13,
+						"active": true,
+						"size": 3,
+						"tileIds": [49],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,0,1,0,0,-1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 550969,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 21,
+						"active": true,
+						"size": 3,
+						"tileIds": [38],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,0,1,-1,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 2528061,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 14,
+						"active": true,
+						"size": 3,
+						"tileIds": [36],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,-1,1,0,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 4823249,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 27,
+						"active": true,
+						"size": 3,
+						"tileIds": [37],
+						"chance": 0.42,
+						"breakOnMatch": true,
+						"pattern": [0,1,0,1,0,1,0,1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 2451677,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 59,
+						"active": true,
+						"size": 3,
+						"tileIds": [37],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,0,1,1,0,1,-1],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 6924906,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 60,
+						"active": true,
+						"size": 3,
+						"tileIds": [37],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [-1,1,0,1,1,0,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 6924906,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 61,
+						"active": true,
+						"size": 3,
+						"tileIds": [37],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,1,-1,0,1,1,0,0,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 6924906,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 62,
+						"active": true,
+						"size": 3,
+						"tileIds": [37],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [0,0,0,1,1,0,-1,1,0],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 6924906,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					},
+					{
+						"uid": 143,
+						"active": true,
+						"size": 1,
+						"tileIds": [95],
+						"chance": 1,
+						"breakOnMatch": true,
+						"pattern": [1],
+						"flipX": false,
+						"flipY": false,
+						"xModulo": 1,
+						"yModulo": 1,
+						"xOffset": 0,
+						"yOffset": 0,
+						"checker": "None",
+						"tileMode": "Single",
+						"pivotX": 0,
+						"pivotY": 0,
+						"outOfBoundsValue": null,
+						"perlinActive": false,
+						"perlinSeed": 8989726,
+						"perlinScale": 0.2,
+						"perlinOctaves": 2
+					}
+				], "usesWizard": false }
 			],
 			"autoSourceLayerDefUid": null,
 			"tilesetDefUid": 1,
@@ -1004,6 +983,7 @@
 			"inactiveOpacity": 1,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
+			"canSelectWhenInactive": true,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
 			"parallaxFactorX": 0,
@@ -1012,39 +992,32 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [{ "value": 1, "identifier": null, "color": "#000000" }],
-			"autoTilesetDefUid": 1,
-			"autoRuleGroups": [{
-				"uid": 68,
-				"name": "Background",
-				"active": true,
-				"isOptional": false,
-				"rules": [
-					{
-						"uid": 69,
-						"active": true,
-						"size": 1,
-						"tileIds": [67],
-						"chance": 1,
-						"breakOnMatch": true,
-						"pattern": [0],
-						"flipX": false,
-						"flipY": false,
-						"xModulo": 1,
-						"yModulo": 1,
-						"xOffset": 0,
-						"yOffset": 0,
-						"checker": "None",
-						"tileMode": "Single",
-						"pivotX": 0,
-						"pivotY": 0,
-						"outOfBoundsValue": null,
-						"perlinActive": false,
-						"perlinSeed": 6763018,
-						"perlinScale": 0.2,
-						"perlinOctaves": 2
-					}
-				]
-			}],
+			"autoRuleGroups": [{ "uid": 68, "name": "Background", "active": true, "isOptional": false, "rules": [
+				{
+					"uid": 69,
+					"active": true,
+					"size": 1,
+					"tileIds": [67],
+					"chance": 1,
+					"breakOnMatch": true,
+					"pattern": [0],
+					"flipX": false,
+					"flipY": false,
+					"xModulo": 1,
+					"yModulo": 1,
+					"xOffset": 0,
+					"yOffset": 0,
+					"checker": "None",
+					"tileMode": "Single",
+					"pivotX": 0,
+					"pivotY": 0,
+					"outOfBoundsValue": null,
+					"perlinActive": false,
+					"perlinSeed": 6763018,
+					"perlinScale": 0.2,
+					"perlinOctaves": 2
+				}
+			], "usesWizard": false }],
 			"autoSourceLayerDefUid": null,
 			"tilesetDefUid": 1,
 			"tilePivotX": 0,
@@ -1068,7 +1041,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1080,6 +1052,7 @@
 			"fieldDefs": [
 				{
 					"identifier": "open",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 71,
 					"type": "F_Bool",
@@ -1089,7 +1062,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1129,7 +1104,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1141,6 +1115,7 @@
 			"fieldDefs": [
 				{
 					"identifier": "destroyed",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 73,
 					"type": "F_Bool",
@@ -1150,7 +1125,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1187,7 +1164,6 @@
 			"renderMode": "Ellipse",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1199,6 +1175,7 @@
 			"fieldDefs": [
 				{
 					"identifier": "moving",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 77,
 					"type": "F_Bool",
@@ -1208,7 +1185,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1228,6 +1207,7 @@
 				},
 				{
 					"identifier": "movingRight",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 75,
 					"type": "F_Bool",
@@ -1237,7 +1217,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1260,6 +1242,7 @@
 				},
 				{
 					"identifier": "velocity",
+					"doc": null,
 					"__type": "Float",
 					"uid": 76,
 					"type": "F_Float",
@@ -1269,7 +1252,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1306,7 +1291,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1334,7 +1318,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1346,6 +1329,7 @@
 			"fieldDefs": [
 				{
 					"identifier": "open",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 80,
 					"type": "F_Bool",
@@ -1355,7 +1339,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1375,6 +1361,7 @@
 				},
 				{
 					"identifier": "facingRight",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 82,
 					"type": "F_Bool",
@@ -1384,7 +1371,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1407,6 +1396,7 @@
 				},
 				{
 					"identifier": "ability",
+					"doc": null,
 					"__type": "LocalEnum.Abilities",
 					"uid": 94,
 					"type": "F_Enum(93)",
@@ -1416,7 +1406,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1453,7 +1445,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1465,6 +1456,7 @@
 			"fieldDefs": [
 				{
 					"identifier": "playerStart",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 92,
 					"type": "F_Bool",
@@ -1474,7 +1466,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1497,6 +1491,7 @@
 				},
 				{
 					"identifier": "dialogue",
+					"doc": null,
 					"__type": "Array<String>",
 					"uid": 91,
 					"type": "F_String",
@@ -1506,7 +1501,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1526,6 +1523,7 @@
 				},
 				{
 					"identifier": "facingRight",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 88,
 					"type": "F_Bool",
@@ -1535,7 +1533,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1558,6 +1558,7 @@
 				},
 				{
 					"identifier": "name",
+					"doc": null,
 					"__type": "LocalEnum.NPCs",
 					"uid": 109,
 					"type": "F_Enum(108)",
@@ -1567,7 +1568,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1604,7 +1607,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1632,7 +1634,6 @@
 			"renderMode": "Rectangle",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1660,7 +1661,6 @@
 			"renderMode": "Ellipse",
 			"showName": true,
 			"tilesetId": null,
-			"tileId": null,
 			"tileRenderMode": "FitInside",
 			"tileRect": null,
 			"nineSliceBorders": [],
@@ -1672,6 +1672,7 @@
 			"fieldDefs": [
 				{
 					"identifier": "pickedUp",
+					"doc": null,
 					"__type": "Bool",
 					"uid": 106,
 					"type": "F_Bool",
@@ -1681,7 +1682,9 @@
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
 					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
 					"editorCutLongValues": true,
 					"editorTextSuffix": null,
 					"editorTextPrefix": null,
@@ -1812,7 +1815,7 @@
 									"Oh - cool",
 									"??? You insulted the king and now you're locked up",
 									"Looks like I can just walk out through the right though",
-									"The dungeon is setup like a maze. Believe me... I tried",
+									"The dungeon is setup like a maze. Believe me... I've tried",
 									"Yeah, but can you press A to jump?",
 									"Yes. Everyone can do that.",
 									"Oh"
@@ -1839,7 +1842,7 @@
 									},
 									{
 										"id": "V_String",
-										"params": ["The dungeon is setup like a maze. Believe me... I tried"]
+										"params": ["The dungeon is setup like a maze. Believe me... I've tried"]
 									},
 									{
 										"id": "V_String",
@@ -2172,12 +2175,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "f693b180-7820-11ed-b76f-eb24fb00440c", "levelUid": 111, "dir": "e" },
-				{ "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "levelUid": 113, "dir": "n" },
-				{ "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "levelUid": 145, "dir": "w" },
-				{ "levelIid": "f50c7b90-7820-11ed-95a6-add346f2b0e6", "levelUid": 157, "dir": "s" }
-			]
+			"__neighbours": [ { "levelIid": "f693b180-7820-11ed-b76f-eb24fb00440c", "dir": "e" }, { "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "dir": "n" }, { "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "dir": "w" }, { "levelIid": "f50c7b90-7820-11ed-95a6-add346f2b0e6", "dir": "s" } ]
 		},
 		{
 			"identifier": "Level_1",
@@ -2545,11 +2543,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "levelUid": 107, "dir": "w" },
-				{ "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "levelUid": 112, "dir": "n" },
-				{ "levelIid": "f6a022b0-7820-11ed-b76f-ff89f8ef2f59", "levelUid": 117, "dir": "e" }
-			]
+			"__neighbours": [ { "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "dir": "w" }, { "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "dir": "n" }, { "levelIid": "f6a022b0-7820-11ed-b76f-ff89f8ef2f59", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_2",
@@ -2949,12 +2943,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "f693b180-7820-11ed-b76f-eb24fb00440c", "levelUid": 111, "dir": "s" },
-				{ "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "levelUid": 113, "dir": "w" },
-				{ "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "levelUid": 115, "dir": "e" },
-				{ "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "levelUid": 137, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "f693b180-7820-11ed-b76f-eb24fb00440c", "dir": "s" }, { "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "dir": "w" }, { "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "dir": "e" }, { "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_3",
@@ -3361,12 +3350,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "levelUid": 107, "dir": "s" },
-				{ "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "levelUid": 112, "dir": "e" },
-				{ "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "levelUid": 144, "dir": "w" },
-				{ "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "levelUid": 149, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "dir": "s" }, { "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "dir": "e" }, { "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "dir": "w" }, { "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_4",
@@ -3735,12 +3719,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "levelUid": 112, "dir": "w" },
-				{ "levelIid": "f6a022b0-7820-11ed-b76f-ff89f8ef2f59", "levelUid": 117, "dir": "s" },
-				{ "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "levelUid": 124, "dir": "e" },
-				{ "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "levelUid": 134, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "dir": "w" }, { "levelIid": "f6a022b0-7820-11ed-b76f-ff89f8ef2f59", "dir": "s" }, { "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "dir": "e" }, { "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_5",
@@ -4146,11 +4125,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "f693b180-7820-11ed-b76f-eb24fb00440c", "levelUid": 111, "dir": "w" },
-				{ "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "levelUid": 115, "dir": "n" },
-				{ "levelIid": "b427a860-7820-11ed-b76f-0b155c210907", "levelUid": 118, "dir": "e" }
-			]
+			"__neighbours": [ { "levelIid": "f693b180-7820-11ed-b76f-eb24fb00440c", "dir": "w" }, { "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "dir": "n" }, { "levelIid": "b427a860-7820-11ed-b76f-0b155c210907", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_6",
@@ -4575,11 +4550,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "f6a022b0-7820-11ed-b76f-ff89f8ef2f59", "levelUid": 117, "dir": "w" },
-				{ "levelIid": "97438a90-7820-11ed-b76f-89384300e148", "levelUid": 120, "dir": "e" },
-				{ "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "levelUid": 124, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "f6a022b0-7820-11ed-b76f-ff89f8ef2f59", "dir": "w" }, { "levelIid": "97438a90-7820-11ed-b76f-89384300e148", "dir": "e" }, { "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_7",
@@ -5019,11 +4990,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "b427a860-7820-11ed-b76f-0b155c210907", "levelUid": 118, "dir": "w" },
-				{ "levelIid": "bcf84050-7820-11ed-b76f-09409470a5e5", "levelUid": 121, "dir": "e" },
-				{ "levelIid": "5fd64830-7820-11ed-b76f-8bab791c76de", "levelUid": 123, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "b427a860-7820-11ed-b76f-0b155c210907", "dir": "w" }, { "levelIid": "bcf84050-7820-11ed-b76f-09409470a5e5", "dir": "e" }, { "levelIid": "5fd64830-7820-11ed-b76f-8bab791c76de", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_8",
@@ -5503,7 +5470,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "97438a90-7820-11ed-b76f-89384300e148", "levelUid": 120, "dir": "w" }, { "levelIid": "2066dd40-7820-11ed-b76f-d7cbc22f68e4", "levelUid": 127, "dir": "e" } ]
+			"__neighbours": [ { "levelIid": "97438a90-7820-11ed-b76f-89384300e148", "dir": "w" }, { "levelIid": "2066dd40-7820-11ed-b76f-d7cbc22f68e4", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_9",
@@ -5875,11 +5842,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "97438a90-7820-11ed-b76f-89384300e148", "levelUid": 120, "dir": "s" },
-				{ "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "levelUid": 124, "dir": "w" },
-				{ "levelIid": "2cb1ac00-7820-11ed-b76f-035023948c16", "levelUid": 126, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "97438a90-7820-11ed-b76f-89384300e148", "dir": "s" }, { "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "dir": "w" }, { "levelIid": "2cb1ac00-7820-11ed-b76f-035023948c16", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_10",
@@ -6261,12 +6224,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "levelUid": 115, "dir": "w" },
-				{ "levelIid": "b427a860-7820-11ed-b76f-0b155c210907", "levelUid": 118, "dir": "s" },
-				{ "levelIid": "5fd64830-7820-11ed-b76f-8bab791c76de", "levelUid": 123, "dir": "e" },
-				{ "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "levelUid": 125, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "dir": "w" }, { "levelIid": "b427a860-7820-11ed-b76f-0b155c210907", "dir": "s" }, { "levelIid": "5fd64830-7820-11ed-b76f-8bab791c76de", "dir": "e" }, { "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_11",
@@ -6641,12 +6599,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "levelUid": 124, "dir": "s" },
-				{ "levelIid": "2cb1ac00-7820-11ed-b76f-035023948c16", "levelUid": 126, "dir": "e" },
-				{ "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "levelUid": 133, "dir": "n" },
-				{ "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "levelUid": 134, "dir": "w" }
-			]
+			"__neighbours": [ { "levelIid": "b10a8d10-7820-11ed-b76f-6922e1fb911e", "dir": "s" }, { "levelIid": "2cb1ac00-7820-11ed-b76f-035023948c16", "dir": "e" }, { "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "dir": "n" }, { "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_12",
@@ -6773,15 +6726,17 @@
 					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [
-						0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+						0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
 						0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 					],
 					"autoLayerTiles": [
-						{ "px": [352,64], "src": [224,96], "f": 0, "t": 43, "d": [33,37] },
-						{ "px": [352,160], "src": [224,96], "f": 0, "t": 43, "d": [33,76] },
-						{ "px": [352,0], "src": [224,128], "f": 0, "t": 55, "d": [35,11] },
-						{ "px": [352,96], "src": [224,128], "f": 0, "t": 55, "d": [35,50] },
+						{ "px": [352,0], "src": [224,96], "f": 0, "t": 43, "d": [34,11] },
+						{ "px": [352,32], "src": [224,96], "f": 0, "t": 43, "d": [34,24] },
+						{ "px": [352,64], "src": [224,96], "f": 0, "t": 43, "d": [34,37] },
+						{ "px": [352,96], "src": [224,96], "f": 0, "t": 43, "d": [34,50] },
+						{ "px": [352,128], "src": [224,96], "f": 0, "t": 43, "d": [34,63] },
+						{ "px": [352,160], "src": [224,96], "f": 0, "t": 43, "d": [34,76] },
 						{ "px": [352,192], "src": [224,128], "f": 0, "t": 55, "d": [35,89] }
 					],
 					"seed": 2099566,
@@ -7046,11 +7001,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "5fd64830-7820-11ed-b76f-8bab791c76de", "levelUid": 123, "dir": "s" },
-				{ "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "levelUid": 125, "dir": "w" },
-				{ "levelIid": "05b87740-7820-11ed-a745-c586fe916aa2", "levelUid": 132, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "5fd64830-7820-11ed-b76f-8bab791c76de", "dir": "s" }, { "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "dir": "w" }, { "levelIid": "05b87740-7820-11ed-a745-c586fe916aa2", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_13",
@@ -7465,7 +7416,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "bcf84050-7820-11ed-b76f-09409470a5e5", "levelUid": 121, "dir": "w" }, { "levelIid": "22b2de30-7820-11ed-b76f-23d9e8d59e03", "levelUid": 128, "dir": "e" } ]
+			"__neighbours": [ { "levelIid": "bcf84050-7820-11ed-b76f-09409470a5e5", "dir": "w" }, { "levelIid": "22b2de30-7820-11ed-b76f-23d9e8d59e03", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_14",
@@ -7812,7 +7763,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [{ "levelIid": "2066dd40-7820-11ed-b76f-d7cbc22f68e4", "levelUid": 127, "dir": "w" }]
+			"__neighbours": [{ "levelIid": "2066dd40-7820-11ed-b76f-d7cbc22f68e4", "dir": "w" }]
 		},
 		{
 			"identifier": "Level_15",
@@ -8279,11 +8230,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "2cb1ac00-7820-11ed-b76f-035023948c16", "levelUid": 126, "dir": "s" },
-				{ "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "levelUid": 133, "dir": "w" },
-				{ "levelIid": "86c7f010-7820-11ed-95a6-6d89be9d56e9", "levelUid": 160, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "2cb1ac00-7820-11ed-b76f-035023948c16", "dir": "s" }, { "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "dir": "w" }, { "levelIid": "86c7f010-7820-11ed-95a6-6d89be9d56e9", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_16",
@@ -8696,12 +8643,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "levelUid": 125, "dir": "s" },
-				{ "levelIid": "05b87740-7820-11ed-a745-c586fe916aa2", "levelUid": 132, "dir": "e" },
-				{ "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "levelUid": 135, "dir": "w" },
-				{ "levelIid": "17388c80-7820-11ed-95a6-17a3f5262543", "levelUid": 159, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "dir": "s" }, { "levelIid": "05b87740-7820-11ed-a745-c586fe916aa2", "dir": "e" }, { "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "dir": "w" }, { "levelIid": "17388c80-7820-11ed-95a6-17a3f5262543", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_17",
@@ -9090,12 +9032,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "levelUid": 115, "dir": "s" },
-				{ "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "levelUid": 125, "dir": "e" },
-				{ "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "levelUid": 135, "dir": "n" },
-				{ "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "levelUid": 137, "dir": "w" }
-			]
+			"__neighbours": [ { "levelIid": "890e51f0-7820-11ed-b76f-9738bf4666d4", "dir": "s" }, { "levelIid": "1443b460-7820-11ed-b76f-47dc2e4a3ad7", "dir": "e" }, { "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "dir": "n" }, { "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_18",
@@ -9496,12 +9433,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "levelUid": 133, "dir": "e" },
-				{ "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "levelUid": 134, "dir": "s" },
-				{ "levelIid": "09028da0-7820-11ed-a745-691b372d6093", "levelUid": 136, "dir": "w" },
-				{ "levelIid": "127b37e0-7820-11ed-95a6-3da744f0d761", "levelUid": 138, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "dir": "e" }, { "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "dir": "s" }, { "levelIid": "09028da0-7820-11ed-a745-691b372d6093", "dir": "w" }, { "levelIid": "127b37e0-7820-11ed-95a6-3da744f0d761", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_19",
@@ -9912,11 +9844,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "levelUid": 135, "dir": "e" },
-				{ "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "levelUid": 137, "dir": "s" },
-				{ "levelIid": "69f2e180-7820-11ed-95a6-1d6432ed8741", "levelUid": 139, "dir": "w" }
-			]
+			"__neighbours": [ { "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "dir": "e" }, { "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "dir": "s" }, { "levelIid": "69f2e180-7820-11ed-95a6-1d6432ed8741", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_20",
@@ -10348,12 +10276,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "levelUid": 112, "dir": "s" },
-				{ "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "levelUid": 134, "dir": "e" },
-				{ "levelIid": "09028da0-7820-11ed-a745-691b372d6093", "levelUid": 136, "dir": "n" },
-				{ "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "levelUid": 149, "dir": "w" }
-			]
+			"__neighbours": [ { "levelIid": "327807a0-7820-11ed-b76f-35cecd426a8f", "dir": "s" }, { "levelIid": "a8b3e370-7820-11ed-a745-d9cd9b5c3c68", "dir": "e" }, { "levelIid": "09028da0-7820-11ed-a745-691b372d6093", "dir": "n" }, { "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_21",
@@ -10805,7 +10728,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "levelUid": 135, "dir": "s" }, { "levelIid": "17388c80-7820-11ed-95a6-17a3f5262543", "levelUid": 159, "dir": "e" } ]
+			"__neighbours": [ { "levelIid": "5ac48900-7820-11ed-a745-8b260cea1065", "dir": "s" }, { "levelIid": "17388c80-7820-11ed-95a6-17a3f5262543", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_22",
@@ -11330,7 +11253,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "09028da0-7820-11ed-a745-691b372d6093", "levelUid": 136, "dir": "e" }, { "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "levelUid": 149, "dir": "s" } ]
+			"__neighbours": [ { "levelIid": "09028da0-7820-11ed-a745-691b372d6093", "dir": "e" }, { "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "dir": "s" } ]
 		},
 		{
 			"identifier": "Level_23",
@@ -11835,12 +11758,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "levelUid": 113, "dir": "e" },
-				{ "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "levelUid": 145, "dir": "s" },
-				{ "levelIid": "90f9be20-7820-11ed-95a6-a5617c112cc3", "levelUid": 148, "dir": "w" },
-				{ "levelIid": "03fbd2e0-7820-11ed-95a6-b7433fc35c0a", "levelUid": 150, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "dir": "e" }, { "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "dir": "s" }, { "levelIid": "90f9be20-7820-11ed-95a6-a5617c112cc3", "dir": "w" }, { "levelIid": "03fbd2e0-7820-11ed-95a6-b7433fc35c0a", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_24",
@@ -12295,12 +12213,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "levelUid": 107, "dir": "e" },
-				{ "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "levelUid": 144, "dir": "n" },
-				{ "levelIid": "8eff4db0-7820-11ed-95a6-5fc5491b5c50", "levelUid": 147, "dir": "w" },
-				{ "levelIid": "8dfbe670-7820-11ed-95a6-c922e8a6e925", "levelUid": 155, "dir": "s" }
-			]
+			"__neighbours": [ { "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "dir": "e" }, { "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "dir": "n" }, { "levelIid": "8eff4db0-7820-11ed-95a6-5fc5491b5c50", "dir": "w" }, { "levelIid": "8dfbe670-7820-11ed-95a6-c922e8a6e925", "dir": "s" } ]
 		},
 		{
 			"identifier": "Level_25",
@@ -12796,11 +12709,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "levelUid": 145, "dir": "e" },
-				{ "levelIid": "90f9be20-7820-11ed-95a6-a5617c112cc3", "levelUid": 148, "dir": "n" },
-				{ "levelIid": "a4673040-7820-11ed-95a6-e36b00d4d4f0", "levelUid": 156, "dir": "s" }
-			]
+			"__neighbours": [ { "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "dir": "e" }, { "levelIid": "90f9be20-7820-11ed-95a6-a5617c112cc3", "dir": "n" }, { "levelIid": "a4673040-7820-11ed-95a6-e36b00d4d4f0", "dir": "s" } ]
 		},
 		{
 			"identifier": "Level_26",
@@ -13265,11 +13174,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "levelUid": 144, "dir": "e" },
-				{ "levelIid": "8eff4db0-7820-11ed-95a6-5fc5491b5c50", "levelUid": 147, "dir": "s" },
-				{ "levelIid": "72176180-7820-11ed-95a6-95cc51ad3c43", "levelUid": 158, "dir": "n" }
-			]
+			"__neighbours": [ { "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "dir": "e" }, { "levelIid": "8eff4db0-7820-11ed-95a6-5fc5491b5c50", "dir": "s" }, { "levelIid": "72176180-7820-11ed-95a6-95cc51ad3c43", "dir": "n" } ]
 		},
 		{
 			"identifier": "Level_27",
@@ -13709,12 +13614,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "levelUid": 113, "dir": "s" },
-				{ "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "levelUid": 137, "dir": "e" },
-				{ "levelIid": "69f2e180-7820-11ed-95a6-1d6432ed8741", "levelUid": 139, "dir": "n" },
-				{ "levelIid": "03fbd2e0-7820-11ed-95a6-b7433fc35c0a", "levelUid": 150, "dir": "w" }
-			]
+			"__neighbours": [ { "levelIid": "7a9c5a40-7820-11ed-b76f-45b207309b12", "dir": "s" }, { "levelIid": "0c68ea20-7820-11ed-a745-e919ba0d4b31", "dir": "e" }, { "levelIid": "69f2e180-7820-11ed-95a6-1d6432ed8741", "dir": "n" }, { "levelIid": "03fbd2e0-7820-11ed-95a6-b7433fc35c0a", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_28",
@@ -14160,11 +14060,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "levelUid": 144, "dir": "s" },
-				{ "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "levelUid": 149, "dir": "e" },
-				{ "levelIid": "72176180-7820-11ed-95a6-95cc51ad3c43", "levelUid": 158, "dir": "w" }
-			]
+			"__neighbours": [ { "levelIid": "604c20f0-7820-11ed-95a6-d37ef11935f9", "dir": "s" }, { "levelIid": "a5a9b4a0-7820-11ed-95a6-e9fc11d5e0dd", "dir": "e" }, { "levelIid": "72176180-7820-11ed-95a6-95cc51ad3c43", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_29",
@@ -14539,11 +14435,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "levelUid": 145, "dir": "n" },
-				{ "levelIid": "a4673040-7820-11ed-95a6-e36b00d4d4f0", "levelUid": 156, "dir": "w" },
-				{ "levelIid": "f50c7b90-7820-11ed-95a6-add346f2b0e6", "levelUid": 157, "dir": "e" }
-			]
+			"__neighbours": [ { "levelIid": "5d4ef770-7820-11ed-95a6-cf25e137cd61", "dir": "n" }, { "levelIid": "a4673040-7820-11ed-95a6-e36b00d4d4f0", "dir": "w" }, { "levelIid": "f50c7b90-7820-11ed-95a6-add346f2b0e6", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_30",
@@ -14993,7 +14885,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "8eff4db0-7820-11ed-95a6-5fc5491b5c50", "levelUid": 147, "dir": "n" }, { "levelIid": "8dfbe670-7820-11ed-95a6-c922e8a6e925", "levelUid": 155, "dir": "e" } ]
+			"__neighbours": [ { "levelIid": "8eff4db0-7820-11ed-95a6-5fc5491b5c50", "dir": "n" }, { "levelIid": "8dfbe670-7820-11ed-95a6-c922e8a6e925", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_31",
@@ -15445,7 +15337,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "levelUid": 107, "dir": "n" }, { "levelIid": "8dfbe670-7820-11ed-95a6-c922e8a6e925", "levelUid": 155, "dir": "w" } ]
+			"__neighbours": [ { "levelIid": "9a430230-7820-11ed-b76f-65471194bf5d", "dir": "n" }, { "levelIid": "8dfbe670-7820-11ed-95a6-c922e8a6e925", "dir": "w" } ]
 		},
 		{
 			"identifier": "Level_32",
@@ -15898,7 +15790,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "90f9be20-7820-11ed-95a6-a5617c112cc3", "levelUid": 148, "dir": "s" }, { "levelIid": "03fbd2e0-7820-11ed-95a6-b7433fc35c0a", "levelUid": 150, "dir": "e" } ]
+			"__neighbours": [ { "levelIid": "90f9be20-7820-11ed-95a6-a5617c112cc3", "dir": "s" }, { "levelIid": "03fbd2e0-7820-11ed-95a6-b7433fc35c0a", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_33",
@@ -16556,11 +16448,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "levelUid": 133, "dir": "s" },
-				{ "levelIid": "127b37e0-7820-11ed-95a6-3da744f0d761", "levelUid": 138, "dir": "w" },
-				{ "levelIid": "86c7f010-7820-11ed-95a6-6d89be9d56e9", "levelUid": 160, "dir": "e" }
-			]
+			"__neighbours": [ { "levelIid": "21680550-7820-11ed-a745-73558fb9f30f", "dir": "s" }, { "levelIid": "127b37e0-7820-11ed-95a6-3da744f0d761", "dir": "w" }, { "levelIid": "86c7f010-7820-11ed-95a6-6d89be9d56e9", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_34",
@@ -17280,11 +17168,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [
-				{ "levelIid": "05b87740-7820-11ed-a745-c586fe916aa2", "levelUid": 132, "dir": "s" },
-				{ "levelIid": "17388c80-7820-11ed-95a6-17a3f5262543", "levelUid": 159, "dir": "w" },
-				{ "levelIid": "b9012ff0-7820-11ed-95a6-2f78b9a53c63", "levelUid": 161, "dir": "e" }
-			]
+			"__neighbours": [ { "levelIid": "05b87740-7820-11ed-a745-c586fe916aa2", "dir": "s" }, { "levelIid": "17388c80-7820-11ed-95a6-17a3f5262543", "dir": "w" }, { "levelIid": "b9012ff0-7820-11ed-95a6-2f78b9a53c63", "dir": "e" } ]
 		},
 		{
 			"identifier": "Level_35",
@@ -17768,7 +17652,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [{ "levelIid": "86c7f010-7820-11ed-95a6-6d89be9d56e9", "levelUid": 160, "dir": "w" }]
+			"__neighbours": [{ "levelIid": "86c7f010-7820-11ed-95a6-6d89be9d56e9", "dir": "w" }]
 		}
 	],
 	"worlds": []

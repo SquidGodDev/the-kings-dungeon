@@ -91,6 +91,8 @@ function Player:init(x, y, gameManager)
     self.touchingClimableWall = false
     self.wallClimbVelocity = 3
     self.wallJumpVelocity = 3
+    self.jumpBuffer = table.create(jumpBufferLength, 0)
+    self.climbReleased = true
 
     -- Dash
     self.dashAvailable = true
@@ -101,11 +103,11 @@ function Player:init(x, y, gameManager)
     self.dashGravity = 0.5
 
     -- Abilities
-    self.crankKeyAbility = false
+    self.crankKeyAbility = true
     self.smashAbility = false
-    self.wallClimbAbility = false
-    self.doubleJumpAbility = false
-    self.dashAbility = false
+    self.wallClimbAbility = true
+    self.doubleJumpAbility = true
+    self.dashAbility = true
 
     self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)
@@ -148,6 +150,12 @@ function Player:update()
         self.indicatorSprite:add()
     else
         self.indicatorSprite:remove()
+    end
+
+    if not self.climbReleased then
+        if pd.buttonJustReleased(pd.kButtonUp) then
+            self.climbReleased = true
+        end
     end
 
     self:updateAnimation()
@@ -420,21 +428,20 @@ function Player:die()
 end
 
 function Player:checkIfClimbing()
-    if self.touchingClimableTile then
+    if self.touchingClimableTile and self.climbReleased then
+        local inMagnetRange = math.abs(self.x - self.climbTileX) <= self.climbMagnetRange
         if self.standingOnClimableTile then
-            if pd.buttonIsPressed(pd.kButtonDown) then
+            if pd.buttonIsPressed(pd.kButtonDown) and inMagnetRange then
                 self:changeToClimbState()
             end
-        elseif pd.buttonJustPressed(pd.kButtonUp) then
+        elseif pd.buttonIsPressed(pd.kButtonUp) and inMagnetRange then
+            self.climbReleased = false
             self:changeToClimbState()
         end
     end
 end
 
 function Player:changeToClimbState()
-    if math.abs(self.x - self.climbTileX) > self.climbMagnetRange then
-        return
-    end
     self.xVelocity = 0
     self.yVelocity = 0
     self:changeState("climb")

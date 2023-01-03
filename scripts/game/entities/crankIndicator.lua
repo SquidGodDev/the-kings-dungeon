@@ -22,7 +22,7 @@ end
 
 function CrankIndicator:update()
     if self.active then
-        self:moveTo(self.player.x, self.player.y - 64)
+        self:moveTo(self.player.x, self.player.y - 32)
         self:setImage(self.animationLoop:image())
     end
 end
