@@ -104,7 +104,7 @@ function Player:init(x, y, gameManager)
 
     -- Abilities
     self.crankKeyAbility = true
-    self.smashAbility = false
+    self.smashAbility = true
     self.wallClimbAbility = true
     self.doubleJumpAbility = true
     self.dashAbility = true

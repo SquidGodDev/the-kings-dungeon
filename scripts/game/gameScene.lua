@@ -60,10 +60,10 @@ class('GameScene').extends()
 function GameScene:init()
 	GameMusic:play(0)
 	TitleMusic:stop()
-    self:goToLevel("Level_29")
+    self:goToLevel("Level_34")
 
-	self.spawnX = 9 * 32 -- 5
-	self.spawnY = 3 * 32 -- 2
+	self.spawnX = 0 * 32 -- 5
+	self.spawnY = 1 * 32 -- 2
 	self.player = Player(self.spawnX, self.spawnY, self)
 end
 

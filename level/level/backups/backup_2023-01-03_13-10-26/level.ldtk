@@ -16720,6 +16720,30 @@
 						},
 						{
 							"__identifier": "Spikeball",
+							"__grid": [8,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FF0048",
+							"iid": "90fe7510-7820-11ed-95a6-15db73a77f82",
+							"width": 32,
+							"height": 32,
+							"defUid": 74,
+							"px": [256,96],
+							"fieldInstances": [
+								{ "__identifier": "moving", "__value": true, "__type": "Bool", "__tile": null, "defUid": 77, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "movingRight", "__value": false, "__type": "Bool", "__tile": null, "defUid": 75, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ false ]
+								}] },
+								{ "__identifier": "velocity", "__value": 4, "__type": "Float", "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Float", "params": [4] }] }
+							]
+						},
+						{
+							"__identifier": "Spikeball",
 							"__grid": [9,3],
 							"__pivot": [0,0],
 							"__tags": [],

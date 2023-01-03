@@ -16151,6 +16151,30 @@
 								}] },
 								{ "__identifier": "velocity", "__value": 4, "__type": "Float", "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Float", "params": [4] }] }
 							]
+						},
+						{
+							"__identifier": "Spikeball",
+							"__grid": [11,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FF0048",
+							"iid": "4d57b1c0-7820-11ed-95a6-53a9ad349a96",
+							"width": 32,
+							"height": 32,
+							"defUid": 74,
+							"px": [352,128],
+							"fieldInstances": [
+								{ "__identifier": "moving", "__value": true, "__type": "Bool", "__tile": null, "defUid": 77, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "movingRight", "__value": false, "__type": "Bool", "__tile": null, "defUid": 75, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ false ]
+								}] },
+								{ "__identifier": "velocity", "__value": -4, "__type": "Float", "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Float", "params": [-4] }] }
+							]
 						}
 					]
 				},
@@ -16644,6 +16668,30 @@
 						},
 						{
 							"__identifier": "Spikeball",
+							"__grid": [2,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FF0048",
+							"iid": "cbdc6dd0-7820-11ed-95a6-f101d3a7127d",
+							"width": 32,
+							"height": 32,
+							"defUid": 74,
+							"px": [64,96],
+							"fieldInstances": [
+								{ "__identifier": "moving", "__value": true, "__type": "Bool", "__tile": null, "defUid": 77, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "movingRight", "__value": false, "__type": "Bool", "__tile": null, "defUid": 75, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ false ]
+								}] },
+								{ "__identifier": "velocity", "__value": 4, "__type": "Float", "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Float", "params": [4] }] }
+							]
+						},
+						{
+							"__identifier": "Spikeball",
 							"__grid": [4,2],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -16706,6 +16754,30 @@
 							"height": 32,
 							"defUid": 74,
 							"px": [160,128],
+							"fieldInstances": [
+								{ "__identifier": "moving", "__value": true, "__type": "Bool", "__tile": null, "defUid": 77, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "movingRight", "__value": false, "__type": "Bool", "__tile": null, "defUid": 75, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ false ]
+								}] },
+								{ "__identifier": "velocity", "__value": 4, "__type": "Float", "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Float", "params": [4] }] }
+							]
+						},
+						{
+							"__identifier": "Spikeball",
+							"__grid": [8,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FF0048",
+							"iid": "90fe7510-7820-11ed-95a6-15db73a77f82",
+							"width": 32,
+							"height": 32,
+							"defUid": 74,
+							"px": [256,96],
 							"fieldInstances": [
 								{ "__identifier": "moving", "__value": true, "__type": "Bool", "__tile": null, "defUid": 77, "realEditorValues": [{
 									"id": "V_Bool",
