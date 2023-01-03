@@ -243,7 +243,7 @@ function Player:update()
             self:pauseAnimation()
         end
     elseif self.currentState == "wallClimb" then
-        self:setClimbCollisionRect()
+        -- self:setClimbCollisionRect()
         if self.globalFlip == 1 then
             self.xVelocity = -1
         else
@@ -258,12 +258,13 @@ function Player:update()
             end
             self:changeToJumpState()
             self:resumeAnimation()
-            self:setDefaultCollisionRect()
+            -- self:setDefaultCollisionRect()
         elseif self.touchingGround or not self.touchingClimableWall then
             self.yVelocity = 0
+            self.xVelocity = 0
             self:changeState("idle")
             self:resumeAnimation()
-            self:setDefaultCollisionRect()
+            -- self:setDefaultCollisionRect()
         elseif pd.buttonIsPressed(pd.kButtonUp) then
             self.yVelocity = -self.wallClimbVelocity
             self:resumeAnimation()

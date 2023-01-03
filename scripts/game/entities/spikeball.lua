@@ -5,6 +5,7 @@ class('Spikeball').extends(gfx.sprite)
 
 function Spikeball:init(x, y, entity)
     local spikeballImage = gfx.image.new("images/entities/spikeball")
+    self:setZIndex(Z_INDEXES.HAZARDS)
     self:setImage(spikeballImage)
     self:setCenter(0, 0)
     self:moveTo(x, y)

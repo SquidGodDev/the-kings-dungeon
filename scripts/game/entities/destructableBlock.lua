@@ -12,6 +12,7 @@ function DestructableBlock:init(x, y, entity)
     end
     self.entity = entity
     local blockImage = gfx.image.new("images/entities/destructableBlock")
+    self:setZIndex(Z_INDEXES.DESTRUCTABLE_BLOCK)
     self:setImage(blockImage)
     self:setCollideRect(0, 0, self:getSize())
     self:setTag(TAGS.Destructable)
@@ -27,5 +28,6 @@ function DestructableBlock:destroy()
     self.entity.fields.destroyed = true
     self:remove()
     local smokeSprite = util.animatedSprite("images/entities/smallSmokeBurst-table-85-89", 20, false)
+    smokeSprite:setZIndex(Z_INDEXES.DESTRUCTABLE_BLOCK)
     smokeSprite:moveTo(self.x + 16, self.y + 16)
 end

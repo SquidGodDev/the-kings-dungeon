@@ -15,7 +15,10 @@ function Water:init(x, y, entity, waterfallList)
         for i=1, #waterfallList do
             local waterfall = waterfallList[i]
             local waterfallPos = waterfall.position
-            table.insert(self.waterfallPos, waterfallPos.x + 8 - x + self.widthBuffer)
+            local adjustedX = waterfallPos.x + 8 - x + self.widthBuffer
+            if adjustedX >= 0 and adjustedX <= self.waterWidth then
+                table.insert(self.waterfallPos, adjustedX)
+            end
             Waterfall(waterfallPos.x, waterfallPos.y, waterfall)
         end
     end
@@ -41,9 +44,10 @@ function Water:init(x, y, entity, waterfallList)
     end
     local touchTimer = pd.timer.new(400, function()
         for i=1,#self.waterfallPos do
-            self.fluid:touch(self.waterfallPos[i], touchVelocity)
-            self.fluid:touch(self.waterfallPos[i] + 2, touchVelocity)
-            self.fluid:touch(self.waterfallPos[i] - 2, touchVelocity)
+            local pos = self.waterfallPos[i]
+            self.fluid:touch(pos, touchVelocity)
+            self.fluid:touch(pos + 2, touchVelocity)
+            self.fluid:touch(pos - 2, touchVelocity)
         end
     end)
     touchTimer.repeats = true
@@ -69,12 +73,14 @@ function Water:update()
         for i=1,#queriedSprites do
             local curSprite = queriedSprites[i]
             if curSprite:getTag() == TAGS.Player then
-                splashSound:play()
-                self.playerTouchOnCooldown = true
-                self.fluid:touch(curSprite.x - self.x, 16)
-                pd.timer.performAfterDelay(self.playerTouchCooldownTime, function()
-                    self.playerTouchOnCooldown = false
-                end)
+                if curSprite.yVelocity >= 1 then
+                    splashSound:play()
+                    self.playerTouchOnCooldown = true
+                    self.fluid:touch(curSprite.x - self.x, 16)
+                    pd.timer.performAfterDelay(self.playerTouchCooldownTime, function()
+                        self.playerTouchOnCooldown = false
+                    end)
+                end
             end
         end
     end

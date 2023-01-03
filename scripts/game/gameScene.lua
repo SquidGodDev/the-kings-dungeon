@@ -29,7 +29,9 @@ Z_INDEXES = {
 	WATERFALL = 10,
 	WATER = 20,
 	PICKUP = 30,
-	CHEST = 50
+	CHEST = 50,
+	DESTRUCTABLE_BLOCK = 50,
+	HAZARDS = 50
 }
 
 COLLISION_GROUPS = {
@@ -52,17 +54,17 @@ end
 
 local waterRushSound <const> = pd.sound.sampleplayer.new("sound/entities/waterfall")
 
-local musicTrack <const> = pd.sound.fileplayer.new("sound/music/gameMusic")
+local musicTrack <const> = pd.sound.sampleplayer.new("sound/music/gameMusic")
 musicTrack:setVolume(0.3)
-musicTrack:play(0)
+-- musicTrack:play(0)
 
 class('GameScene').extends()
 
 function GameScene:init()
-    self:goToLevel("Level_1")
+    self:goToLevel("Level_35")
 
-	self.spawnX = 200
-	self.spawnY = 120
+	self.spawnX = 0 * 32
+	self.spawnY = 1 * 32
 	self.player = Player(self.spawnX, self.spawnY, self)
 end
 
@@ -78,7 +80,6 @@ end
 
 function GameScene:enterRoom(direction)
 	waterRushSound:stop()
-	-- waterRushSynth:noteOff()
 	local level = ldtk.get_neighbours(self.level_name, direction)[1]
 	self:goToLevel(level)
 	self.player:add()
@@ -108,7 +109,6 @@ function GameScene:goToLevel(level_name)
         timer:remove()
     end
 
-	self.layerSprites = {}
 	for layer_name, layer in pairs(ldtk.get_layers(level_name)) do
 		if layer.tiles then
 			local tilemap = ldtk.create_tilemap(level_name, layer_name)
@@ -119,7 +119,6 @@ function GameScene:goToLevel(level_name)
 			layerSprite:setCenter(0, 0)
 			layerSprite:setZIndex(layer.zIndex)
 			layerSprite:add()
-			self.layerSprites[layer_name] = layerSprite
 
 			for enum, tag in pairs(TAGS) do
 				local emptyTiles = ldtk.get_empty_tileIDs(level_name, enum, layer_name)
@@ -162,7 +161,6 @@ function GameScene:goToLevel(level_name)
 
 	if #waterfallList > 0 then
 		waterRushSound:play(0)
-		-- waterRushSynth:playNote(waterRushNote, 0.2)
 	end
 	if waterEntity then
 		Water(waterEntity.position.x, waterEntity.position.y, waterEntity, waterfallList)

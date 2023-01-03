@@ -22,7 +22,11 @@ function Npc:init(x, y, entity)
     self:setTag(TAGS.Interactable)
     self:setZIndex(Z_INDEXES.NPC)
     self:setCenter(0, 0)
-    self:moveTo(x, y - 4)
+    local yOffset = -4
+    if npcName == "King" then
+        yOffset = -16
+    end
+    self:moveTo(x, y + yOffset)
     self:add()
     self.interactable = true
 end

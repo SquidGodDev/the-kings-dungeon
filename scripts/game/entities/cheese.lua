@@ -16,8 +16,9 @@ function Cheese:init(x, y, entity)
     self.entity = entity
     self:setImage(cheeseImage)
     self:setCenter(0, 0)
-    self:moveTo(x, self.baseY)
-    self:setCollideRect(0, 0, self:getSize())
+    self:moveTo(x - 4, self.baseY)
+    local collideRectBuffer = 4
+    self:setCollideRect(collideRectBuffer, collideRectBuffer, 32, 32)
     self:setTag(TAGS.Pickup)
     self:setZIndex(Z_INDEXES.PICKUP)
     self:add()
@@ -38,5 +39,6 @@ function Cheese:pickUp()
     self:remove()
     local smokeSprite = util.animatedSprite("images/entities/smallSmokeBurst-table-85-89", 20, false)
     smokeSprite:moveTo(self.x + 20, self.y + 20)
+    smokeSprite:setZIndex(Z_INDEXES.PICKUP)
     CHEESE += 1
 end
