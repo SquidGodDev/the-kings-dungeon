@@ -4,7 +4,7 @@ local gfx <const> = playdate.graphics
 -- == Generate dithered image beforehand into files ==
 -- == Using 100 drawFaded calls was killing the startup performance ==
 -- local filledRect = gfx.image.new(400, 240, gfx.kColorBlack)
--- for i=1,100 do
+-- for i=1,101 do
 --     local fadedImage = gfx.image.new(400, 240)
 --     gfx.pushContext(fadedImage)
 --         filledRect:drawFaded(0, 0, (i-1)/100, gfx.image.kDitherTypeBayer8x8)

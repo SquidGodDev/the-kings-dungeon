@@ -39,6 +39,7 @@ COLLISION_GROUPS = {
 }
 
 CHEESE = 0
+MAX_CHEESE = 11
 
 local ldtk <const> = LDtk
 

@@ -5,8 +5,8 @@ class('Npc').extends(gfx.sprite)
 
 function Npc:init(x, y, entity)
     local fields = entity.fields
-    local npcName = fields.name
-    local npcImage = gfx.image.new("images/npcs/"..npcName)
+    self.name = fields.name
+    local npcImage = gfx.image.new("images/npcs/"..self.name)
     self.dialogue = fields.dialogue
     self.playerStart = fields.playerStart
     local flip = gfx.kImageUnflipped
@@ -23,7 +23,7 @@ function Npc:init(x, y, entity)
     self:setZIndex(Z_INDEXES.NPC)
     self:setCenter(0, 0)
     local yOffset = -4
-    if npcName == "King" then
+    if self.name == "King" then
         yOffset = -16
     end
     self:moveTo(x, y + yOffset)

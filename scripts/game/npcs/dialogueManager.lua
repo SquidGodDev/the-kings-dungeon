@@ -14,6 +14,8 @@ function DialogueManager:init(dialogue, playerStart, player, npc)
     self.curLine = 1
     self.maxLine = #self.dialogue
 
+    self.gameEnd = npc.name == "King"
+
     self.curSpeechBubble = nil
     self:createSpeechBubble()
 
@@ -27,10 +29,14 @@ function DialogueManager:update()
             self.curLine += 1
             self.playerTalking = not self.playerTalking
             if self.curLine > self.maxLine then
-                self:remove()
-                pd.timer.performAfterDelay(300, function()
-                    self.player.talkingToNpc = false
-                end)
+                if self.gameEnd then
+                    SCENE_MANAGER:switchScene(EndScene)
+                else
+                    self:remove()
+                    pd.timer.performAfterDelay(300, function()
+                        self.player.talkingToNpc = false
+                    end)
+                end
             else
                 self:createSpeechBubble()
             end

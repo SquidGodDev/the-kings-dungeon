@@ -34,10 +34,15 @@ import "scripts/game/npcs/dialogueManager"
 -- Title
 import "scripts/title/titleScene"
 
+-- End
+import "scripts/end/endScene"
+
+SCENE_MANAGER = SceneManager()
+
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-GameScene()
+EndScene()
 
 function pd.update()
     gfx.sprite.update()
