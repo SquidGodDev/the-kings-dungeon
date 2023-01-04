@@ -23,6 +23,13 @@ function utilities.centeredTextImage(text, drawMode)
     return descriptionImage
 end
 
+function utilities.addSpriteFromImage(imagePath)
+    local spriteImage = gfx.image.new(imagePath)
+    local sprite = gfx.sprite.new(spriteImage)
+    sprite:add()
+    return sprite
+end
+
 function utilities.centeredTextSpriteFont(text, font, drawMode)
     local _drawMode = drawMode or gfx.kDrawModeFillWhite
     local descriptionImage = gfx.image.new(font:getTextWidth(text), font:getHeight())

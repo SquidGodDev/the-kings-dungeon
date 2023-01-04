@@ -1,0 +1,7 @@
+name=The King's Dungeon
+author=Squid
+description=A tiny metroidvania
+bundleID=com.squidgoddev.kingsdungeon
+version=1.0
+buildNumber=1
+imagePath=images/card
