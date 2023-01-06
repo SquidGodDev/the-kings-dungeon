@@ -38,7 +38,6 @@ COLLISION_GROUPS = {
     player = 1
 }
 
-CHEESE = 0
 MAX_CHEESE = 11
 
 local ldtk <const> = LDtk
@@ -57,14 +56,40 @@ local waterRushSound <const> = pd.sound.sampleplayer.new("sound/entities/waterfa
 
 class('GameScene').extends()
 
-function GameScene:init()
+function GameScene:init(level, x, y, abilities, levels)
 	GameMusic:play(0)
 	TitleMusic:stop()
-    self:goToLevel("Level_0")
+	if level then
+		ldtk.load_saved_entities(levels)
+		self:goToLevel(level)
+		self.spawnX = x
+		self.spawnY = y
+	else
+		CHEESE = 0
+		self:goToLevel("Level_0")
+		self.spawnX = 2 * 32 -- 2
+		self.spawnY = 5 * 32 -- 5
+	end
 
-	self.spawnX = 2 * 32 -- 2
-	self.spawnY = 5 * 32 -- 5
-	self.player = Player(self.spawnX, self.spawnY, self)
+	self.player = Player(self.spawnX, self.spawnY, self, abilities)
+
+	local systemMenu = pd.getSystemMenu()
+	systemMenu:removeAllMenuItems()
+	systemMenu:addMenuItem("Save + Exit", function()
+		CUR_LEVEL = self.level_name
+		CUR_X = self.spawnX
+		CUR_Y = self.spawnY
+		ABILITIES = {
+			crankKeyAbility = self.player.crankKeyAbility,
+			smashAbility = self.player.smashAbility,
+			wallClimbAbility = self.player.wallClimbAbility,
+			doubleJumpAbility = self.player.doubleJumpAbility,
+			dashAbility = self.player.dashAbility
+		}
+		ACTIVE_SAVE = true
+		LEVELS = LDtk.save_entites()
+		SCENE_MANAGER:switchScene(TitleScene)
+	end)
 end
 
 function GameScene:resetLevel()

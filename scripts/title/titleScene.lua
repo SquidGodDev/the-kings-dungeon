@@ -6,6 +6,12 @@ local util <const> = utilities
 class('TitleScene').extends(gfx.sprite)
 
 function TitleScene:init()
+    local systemMenu = pd.getSystemMenu()
+    systemMenu:removeAllMenuItems()
+    -- systemMenu:addCheckmarkMenuItem("Speedrun Mode", SPEED_RUN_MODE, function(flag)
+    --     SPEED_RUN_MODE = flag
+    -- end)
+
     TitleMusic:play(0)
 	EndMusic:stop()
 
@@ -25,19 +31,14 @@ function TitleScene:init()
     titleSprite:setZIndex(100)
     util.animateInSprite(titleSprite, 1500, false)
 
-    local promptSprite = util.addSpriteFromImage("images/title/startPrompt")
-    promptSprite:moveTo(200, 188)
+    -- local promptSprite = util.addSpriteFromImage("images/title/startPrompt")
+    local promptSprite = Menu(200, 188)
+    -- promptSprite:moveTo(200, 188)
     promptSprite:setZIndex(150)
-    util.animateInSprite(promptSprite, 1500, false, 1500)
+    util.animateInSprite(promptSprite, 1500, false, 500)
 
     local waterEntity = {size = {width = 320, height = 128}}
     local waterfallEntity = {position = {x = 224, y = 0},size = {width = 32, height = 128}}
     Water(32, 96, waterEntity, {waterfallEntity})
     self:add()
-end
-
-function TitleScene:update()
-    if pd.buttonJustPressed(pd.kButtonA) then
-        SCENE_MANAGER:switchScene(GameScene)
-    end
 end

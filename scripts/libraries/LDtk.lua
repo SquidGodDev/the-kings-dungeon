@@ -420,6 +420,27 @@ function LDtk.get_entities( level_name, layer_name )
 	return layer.entities
 end
 
+function LDtk.save_entites()
+	local level_to_layer_to_entity = {}
+	for level_name, level in pairs(_levels) do
+		local layer_to_entity = {}
+		for layer_name, layer in pairs(level.layers) do
+			layer_to_entity[layer_name] = layer.entities
+		end
+		level_to_layer_to_entity[level_name] = layer_to_entity
+	end
+	return level_to_layer_to_entity
+end
+
+function LDtk.load_saved_entities(level_to_layer_to_entity)
+	for level_name, layer_to_entity in pairs(level_to_layer_to_entity) do
+		local levelLayers = _levels[level_name].layers
+		for layer_name, layer in pairs(levelLayers) do
+			layer.entities = layer_to_entity[layer_name]
+		end
+	end
+end
+
 -- return a tilemap for the level
 -- @layer_name is optional, if nil than will return the first layer with tiles
 function LDtk.create_tilemap( level_name, layer_name )

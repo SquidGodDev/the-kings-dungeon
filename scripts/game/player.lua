@@ -8,7 +8,7 @@ local tags <const> = TAGS
 
 class('Player').extends(AnimatedSprite)
 
-function Player:init(x, y, gameManager)
+function Player:init(x, y, gameManager, abilities)
     self.gameManager = gameManager
 
     local playerImageTable = gfx.imagetable.new("images/player/player-table-40-40")
@@ -122,6 +122,23 @@ function Player:init(x, y, gameManager)
 
     -- Interactions
     self.dialog = Dialog(self)
+    if abilities then
+        if abilities.crankKeyAbility then
+            self.dialog:unlockAbility("CrankKey", true)
+        end
+        if abilities.smashAbility then
+            self.dialog:unlockAbility("Smash", true)
+        end
+        if abilities.wallClimbAbility then
+            self.dialog:unlockAbility("WallClimb", true)
+        end
+        if abilities.doubleJumpAbility then
+            self.dialog:unlockAbility("DoubleJump", true)
+        end
+        if abilities.dashAbility then
+            self.dialog:unlockAbility("Dash", true)
+        end
+    end
 
     local aButtonImage = gfx.image.new("images/entities/aButton")
     self.indicatorSprite = gfx.sprite.new(aButtonImage)

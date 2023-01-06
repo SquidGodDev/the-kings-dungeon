@@ -6,7 +6,11 @@ local util <const> = utilities
 class('EndScene').extends(gfx.sprite)
 
 function EndScene:init()
+    local systemMenu = pd.getSystemMenu()
+	systemMenu:removeAllMenuItems()
     pd.setMenuImage(nil)
+    ACTIVE_SAVE = false
+
     EndMusic:play(0)
 	GameMusic:stop()
     -- Create end scene

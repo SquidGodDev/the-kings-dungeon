@@ -57,7 +57,7 @@ function Dialog:update()
     end
 end
 
-function Dialog:unlockAbility(ability)
+function Dialog:unlockAbility(ability, skipDialog)
     local abilityIcon, abilityName, abilityDescription
     if ability == "CrankKey" then
         self.player.crankKeyAbility = true
@@ -92,8 +92,10 @@ function Dialog:unlockAbility(ability)
     else
         return
     end
-    abilityUnlockSound:play()
-    self:createDialog(abilityIcon, abilityName, abilityDescription)
+    if not skipDialog then
+        abilityUnlockSound:play()
+        self:createDialog(abilityIcon, abilityName, abilityDescription)
+    end
 end
 
 function Dialog:updatePauseMenu(x, y, image)
@@ -123,7 +125,6 @@ function Dialog:createDialog(abilityIcon, abilityName, abilityDescription)
     self.fadedBackgroundSprite:add()
     local fadeTimer = pd.timer.new(500, 1, 70, pd.easingFunctions.inOutCubic)
     fadeTimer.updateCallback = function(timer)
-        print(math.floor(timer.value))
         local fadedImage = fadedImageTable:getImage(math.floor(timer.value))
         self.fadedBackgroundSprite:setImage(fadedImage)
     end
