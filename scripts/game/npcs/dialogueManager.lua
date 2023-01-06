@@ -8,6 +8,7 @@ function DialogueManager:init(dialogue, playerStart, player, npc)
     player.talkingToNpc = true
     self.playerTalking = playerStart
     self.dialogue = dialogue
+    self.npc = npc
 
     self.playerX, self.playerY = player.x, player.y - 48
     self.npcX, self.npxY = npc.x + 16, npc.y - 32
@@ -23,7 +24,15 @@ function DialogueManager:init(dialogue, playerStart, player, npc)
 end
 
 function DialogueManager:update()
-    if pd.buttonJustPressed(pd.kButtonA) then
+    if pd.buttonJustPressed(pd.kButtonB) then
+        self:remove()
+        if self.curSpeechBubble then
+            self.curSpeechBubble:stop()
+        end
+        pd.timer.performAfterDelay(100, function()
+            self.player.talkingToNpc = false
+        end)
+    elseif pd.buttonJustPressed(pd.kButtonA) then
         local speechBubbleActive = self.curSpeechBubble:advance()
         if not speechBubbleActive then
             self.curLine += 1
@@ -33,6 +42,7 @@ function DialogueManager:update()
                     SCENE_MANAGER:switchScene(EndScene)
                 else
                     self:remove()
+                    self.npc.interactable = false
                     pd.timer.performAfterDelay(300, function()
                         self.player.talkingToNpc = false
                     end)

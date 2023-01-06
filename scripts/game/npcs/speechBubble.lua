@@ -73,6 +73,13 @@ function SpeechBubble:advance()
     end
 end
 
+function SpeechBubble:stop()
+    if self.speechTimer then
+        self.speechTimer:remove()
+    end
+    self:remove()
+end
+
 function SpeechBubble:createSpeechTimer()
     self.curLine = self.lineArray[self.lineIndex]
     self.lineWidth = speechFont:getTextWidth(self.curLine)

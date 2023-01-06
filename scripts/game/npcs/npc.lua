@@ -32,6 +32,5 @@ function Npc:init(x, y, entity)
 end
 
 function Npc:interact(player)
-    self.interactable = false
     DialogueManager(self.dialogue, self.playerStart, player, self)
 end
