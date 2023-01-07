@@ -35,7 +35,10 @@ function TitleScene:init()
     local promptSprite = Menu(200, 188)
     -- promptSprite:moveTo(200, 188)
     promptSprite:setZIndex(150)
-    util.animateInSprite(promptSprite, 1500, false, 500)
+    local promptTimer = util.animateInSprite(promptSprite, 1500, false, 500)
+    promptTimer.timerEndedCallback = function()
+        promptSprite.active = true
+    end
 
     local waterEntity = {size = {width = 320, height = 128}}
     local waterfallEntity = {position = {x = 224, y = 0},size = {width = 32, height = 128}}

@@ -43,25 +43,29 @@ function Menu:init(menuX, menuY)
 
     self:moveTo(menuX, menuY)
     self:add()
+
+    self.active = false
 end
 
 function Menu:update()
-    if pd.buttonJustPressed(pd.kButtonLeft) then
-        self.gridview:selectPreviousColumn(true)
-    elseif pd.buttonJustPressed(pd.kButtonRight) then
-        self.gridview:selectNextColumn(true)
-    end
+    if self.active then
+        if pd.buttonJustPressed(pd.kButtonLeft) then
+            self.gridview:selectPreviousColumn(true)
+        elseif pd.buttonJustPressed(pd.kButtonRight) then
+            self.gridview:selectNextColumn(true)
+        end
 
-    if pd.buttonJustPressed(pd.kButtonA) then
-        local _, _, selectedColumn = self.gridview:getSelection()
-        if selectedColumn == 1 then
-            if #self.elements == 1 then
+        if pd.buttonJustPressed(pd.kButtonA) then
+            local _, _, selectedColumn = self.gridview:getSelection()
+            if selectedColumn == 1 then
+                if #self.elements == 1 then
+                    SCENE_MANAGER:switchScene(GameScene)
+                else
+                    SCENE_MANAGER:switchScene(GameScene, CUR_LEVEL, CUR_X, CUR_Y, ABILITIES, LEVELS)
+                end
+            elseif selectedColumn == 2 then
                 SCENE_MANAGER:switchScene(GameScene)
-            else
-                SCENE_MANAGER:switchScene(GameScene, CUR_LEVEL, CUR_X, CUR_Y, ABILITIES, LEVELS)
             end
-        elseif selectedColumn == 2 then
-            SCENE_MANAGER:switchScene(GameScene)
         end
     end
 
