@@ -5,12 +5,12 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.2.1",
+		"appVersion": "1.2.3",
 		"url": "https://ldtk.io"
 	},
 	"iid": "369edd90-7820-11ed-b3b6-8dac190d4be8",
-	"jsonVersion": "1.2.1",
-	"appBuildId": 464653,
+	"jsonVersion": "1.2.3",
+	"appBuildId": 464726,
 	"nextUid": 163,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
@@ -30,7 +30,7 @@
 	"imageExportMode": "None",
 	"exportLevelBg": true,
 	"pngFilePattern": null,
-	"backupOnSave": true,
+	"backupOnSave": false,
 	"backupLimit": 10,
 	"levelNamePattern": "Level_%idx",
 	"tutorialDesc": null,
@@ -11492,14 +11492,13 @@
 					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 					],
 					"autoLayerTiles": [
-						{ "px": [128,32], "src": [352,32], "f": 0, "t": 23, "d": [140,17] },
-						{ "px": [64,96], "src": [352,32], "f": 0, "t": 23, "d": [140,41] },
-						{ "px": [256,96], "src": [352,32], "f": 0, "t": 23, "d": [140,47] }
+						{ "px": [256,96], "src": [352,32], "f": 0, "t": 23, "d": [140,47] },
+						{ "px": [64,128], "src": [352,32], "f": 0, "t": 23, "d": [140,54] }
 					],
 					"seed": 5340625,
 					"overrideTilesetUid": null,
