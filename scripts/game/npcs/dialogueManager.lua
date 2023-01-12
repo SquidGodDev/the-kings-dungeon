@@ -15,7 +15,7 @@ function DialogueManager:init(dialogue, playerStart, player, npc)
     self.curLine = 1
     self.maxLine = #self.dialogue
 
-    self.gameEnd = npc.name == "King"
+    self.gameEnd = npc.gameEnd == "King"
 
     self.curSpeechBubble = nil
     self:createSpeechBubble()

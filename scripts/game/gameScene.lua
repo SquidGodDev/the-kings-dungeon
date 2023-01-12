@@ -71,6 +71,10 @@ function GameScene:init(level, x, y, abilities, levels)
 		self.spawnY = 5 * 32 -- 5
 	end
 
+	-- Level_36
+	-- 3
+	-- 4
+
 	self.player = Player(self.spawnX, self.spawnY, self, abilities)
 
 	local systemMenu = pd.getSystemMenu()

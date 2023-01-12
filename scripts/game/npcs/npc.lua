@@ -6,6 +6,7 @@ class('Npc').extends(gfx.sprite)
 function Npc:init(x, y, entity)
     local fields = entity.fields
     self.name = fields.name
+    self.gameEnd = fields.gameEnd
     local npcImage = gfx.image.new("images/npcs/"..self.name)
     self.dialogue = fields.dialogue
     self.playerStart = fields.playerStart
