@@ -71,6 +71,8 @@ function Player:init(x, y, gameManager, abilities)
     self.startVelocity = 3
     self.jumpVelocity = -8
     self.doubleJumpAvailable = true
+    self.doubleJumpDelayMax = 4
+    self.doubleJumpDelay = self.doubleJumpDelayMax
 
     self.friction = 0.5
     self.drag = 0.1
@@ -191,11 +193,12 @@ function Player:update()
         elseif pd.buttonIsPressed(pd.kButtonRight) then
             self:changeToRunState("right")
         end
-        if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround and self.smashAbility then
-            self:changeState("smash")
-            self.chargeUpSound:play()
+        if not self:checkIfClimbing() then
+            if pd.buttonJustPressed(pd.kButtonDown) and self.touchingGround and self.smashAbility then
+                self:changeState("smash")
+                self.chargeUpSound:play()
+            end
         end
-        self:checkIfClimbing()
         self:applyFriction()
         self:applyGravity()
     elseif self.currentState == "run" then
@@ -249,6 +252,7 @@ function Player:update()
             self:applyGravity()
         end
     elseif self.currentState == "climb" then
+        self.chargeUpSound:stop()
         if pd.buttonIsPressed(pd.kButtonA) or not self.touchingClimableTile then
             self.yVelocity = 0
             self:changeState("idle")
@@ -450,12 +454,15 @@ function Player:checkIfClimbing()
         if self.standingOnClimableTile then
             if pd.buttonIsPressed(pd.kButtonDown) and inMagnetRange then
                 self:changeToClimbState()
+                return true
             end
         elseif pd.buttonIsPressed(pd.kButtonUp) and inMagnetRange then
             self.climbReleased = false
             self:changeToClimbState()
+            return true
         end
     end
+    return false
 end
 
 function Player:changeToClimbState()
@@ -469,6 +476,7 @@ end
 function Player:changeToJumpState()
     self.jumpSound:play()
     self.yVelocity = self.jumpVelocity
+    self.doubleJumpDelay = self.doubleJumpDelayMax
     self:changeState("jumpAscent")
 end
 
@@ -504,6 +512,10 @@ function Player:changeToRunState(direction)
 end
 
 function Player:handleJumpPhysics()
+    self.doubleJumpDelay -= 1
+    if self.doubleJumpDelay <= 0 then
+        self.doubleJumpDelay = 0
+    end
     if self.touchingClimableWall and self.wallClimbAbility then
         if self.globalFlip == 1 then
             self.xVelocity = -1
@@ -513,7 +525,7 @@ function Player:handleJumpPhysics()
         self.doubleJumpAvailable = false
         self.dashAvailable = false
         self:changeState("wallClimb")
-    elseif pd.buttonJustPressed(pd.kButtonA) and self.doubleJumpAvailable and self.doubleJumpAbility then
+    elseif pd.buttonJustPressed(pd.kButtonA) and self.doubleJumpAvailable and self.doubleJumpAbility and self.doubleJumpDelay <= 0 then
         self.doubleJumpAvailable = false
         self:changeToJumpState()
     elseif pd.buttonIsPressed(pd.kButtonLeft) then
