@@ -1,6 +1,11 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+local round <const> = function(num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.floor(num * mult + 0.5) / mult
+end
+
 DIRECTIONS = {
 	north = "north",
 	south = "south",
@@ -31,14 +36,16 @@ Z_INDEXES = {
 	PICKUP = 30,
 	CHEST = 50,
 	DESTRUCTABLE_BLOCK = 50,
-	HAZARDS = 50
+	HAZARDS = 50,
+	TIMER = 1500
 }
 
 COLLISION_GROUPS = {
     player = 1
 }
 
-MAX_CHEESE = 11
+MAX_CHEESE_WORLD_1 = 11
+MAX_CHEESE_WORLD_2 = 8
 
 local ldtk <const> = LDtk
 
@@ -54,26 +61,33 @@ end
 
 local waterRushSound <const> = pd.sound.sampleplayer.new("sound/entities/waterfall")
 
-class('GameScene').extends()
+class('GameScene').extends(gfx.sprite)
 
-function GameScene:init(level, x, y, abilities, levels)
+function GameScene:init(world, level, x, y, abilities, levels)
 	GameMusic:play(0)
 	TitleMusic:stop()
+	self.baseTime = pd.getCurrentTimeMilliseconds()
+	self.savedTime = 0
+	self.elapsedTime = 0
 	if level then
 		ldtk.load_saved_entities(levels)
 		self:goToLevel(level)
 		self.spawnX = x
 		self.spawnY = y
+		self.savedTime = GAME_TIME
 	else
 		CHEESE = 0
-		self:goToLevel("Level_0")
-		self.spawnX = 2 * 32 -- 2
-		self.spawnY = 5 * 32 -- 5
+		WORLD = world
+		if world == 1 then
+			self:goToLevel("Level_0")
+			self.spawnX = 2 * 32 -- 2
+			self.spawnY = 5 * 32 -- 5
+		else
+			self:goToLevel("Level_36") -- 36
+			self.spawnX = 3 * 32 -- 3
+			self.spawnY = 4 * 32 -- 4
+		end
 	end
-
-	-- Level_36
-	-- 3
-	-- 4
 
 	self.player = Player(self.spawnX, self.spawnY, self, abilities)
 
@@ -93,11 +107,45 @@ function GameScene:init(level, x, y, abilities, levels)
 		ACTIVE_SAVE = true
 		LEVELS = LDtk.save_entites()
 		SCENE_MANAGER:switchScene(TitleScene)
+		GameMusic:stop()
+		GAME_TIME = self.savedTime + self.elapsedTime
 	end)
+
+	self.timeSprite = gfx.sprite.new()
+	self.timeSprite:setCenter(1.0, 0.0)
+	self.timeSprite:setZIndex(Z_INDEXES.TIMER)
+	if SPEED_RUN_MODE then
+		self.timeSprite:add()
+		self.timeSprite:moveTo(400, 0)
+	end
+	self.speedRunMode = SPEED_RUN_MODE
+	self.timeFont = gfx.font.new("images/fonts/m5x7-24")
+	self.timeFontHeight = self.timeFont:getHeight()
+
+	self:add()
+end
+
+function GameScene:update()
+	self.elapsedTime = pd.getCurrentTimeMilliseconds() - self.baseTime
+	if self.speedRunMode then
+		local timeText = string.format("%.2f", (self.savedTime + self.elapsedTime) / 1000)
+		local imageWidth = self.timeFont:getTextWidth(timeText)
+		local imageHeight = self.timeFontHeight
+		local timeImage = gfx.image.new(imageWidth, imageHeight)
+		gfx.pushContext(timeImage)
+			gfx.setColor(gfx.kColorBlack)
+			gfx.fillRect(0, 0, imageWidth, imageHeight)
+			gfx.setImageDrawMode(gfx.kDrawModeFillWhite)
+			self.timeFont:drawText(timeText, 0, 0)
+		gfx.popContext()
+		self.timeSprite:setImage(timeImage)
+	end
 end
 
 function GameScene:resetLevel()
 	self:goToLevel(self.level_name)
+	self.timeSprite:add()
+	self:add()
 	self.player:add()
 	self.player:moveTo(self.spawnX, self.spawnY)
 end
@@ -111,6 +159,8 @@ function GameScene:enterRoom(direction)
 	local level = ldtk.get_neighbours(self.level_name, direction)[1]
 	self:goToLevel(level)
 	self.player:add()
+	self:add()
+	self.timeSprite:add()
 	local spawnX, spawnY
 	if direction == DIRECTIONS.north then
 		spawnX, spawnY = self.player.x, 240

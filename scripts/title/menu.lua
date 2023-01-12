@@ -5,15 +5,15 @@ class('Menu').extends(gfx.sprite)
 
 function Menu:init(menuX, menuY)
     if ACTIVE_SAVE then
-        self.elements = {"Continue", "New Game"}
+        self.elements = {"Continue", "New Game (World 1)", "New Game (World 2)"}
     else
-        self.elements = {"New Game"}
+        self.elements = {"New Game (World 1)", "New Game (World 2)"}
     end
 
     self.menuItemWidth = 120
     self.menuItemHeight = 40
-    self.menuItemSpacing = 20
-    self.menuFont = gfx.font.new("images/fonts/m5x7-24")
+    self.menuItemSpacing = 5
+    self.menuFont = gfx.font.new("images/fonts/m5x7-12")
 
     local gridview <const> = pd.ui.gridview.new(self.menuItemWidth, self.menuItemHeight)
     gridview:setNumberOfColumns(#self.elements)
@@ -57,14 +57,16 @@ function Menu:update()
 
         if pd.buttonJustPressed(pd.kButtonA) then
             local _, _, selectedColumn = self.gridview:getSelection()
-            if selectedColumn == 1 then
-                if #self.elements == 1 then
-                    SCENE_MANAGER:switchScene(GameScene)
+            if #self.elements == 3 then
+                if selectedColumn == 1 then
+                    SCENE_MANAGER:switchScene(GameScene, nil, CUR_LEVEL, CUR_X, CUR_Y, ABILITIES, LEVELS)
+                elseif selectedColumn == 2 then
+                    SCENE_MANAGER:switchScene(GameScene, 1)
                 else
-                    SCENE_MANAGER:switchScene(GameScene, CUR_LEVEL, CUR_X, CUR_Y, ABILITIES, LEVELS)
+                    SCENE_MANAGER:switchScene(GameScene, 2)
                 end
-            elseif selectedColumn == 2 then
-                SCENE_MANAGER:switchScene(GameScene)
+            else
+                SCENE_MANAGER:switchScene(GameScene, selectedColumn)
             end
         end
     end

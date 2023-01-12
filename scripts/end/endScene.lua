@@ -13,14 +13,16 @@ function EndScene:init()
 
     EndMusic:play(0)
 	GameMusic:stop()
-    -- Create end scene
     local blackImage = gfx.image.new(400, 240, gfx.kColorBlack)
     gfx.sprite.setBackgroundDrawingCallback(function()
         blackImage:draw(0, 0)
     end)
 
     local collectedCheese = CHEESE
-    local maxCheese = MAX_CHEESE
+    local maxCheese = MAX_CHEESE_WORLD_1
+    if WORLD == 2 then
+        maxCheese = MAX_CHEESE_WORLD_2
+    end
     local largeFont = gfx.font.new("images/fonts/m5x7-24")
     self.animationsFinished = false
 

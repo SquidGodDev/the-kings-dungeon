@@ -63,6 +63,10 @@ ACTIVE_SAVE = false
 SPEED_RUN_MODE = false
 LEVELS = nil
 
+WORLD = 1
+
+GAME_TIME = 0
+
 ABILITIES = {
     crankKeyAbility = false,
     smashAbility = false,
@@ -81,6 +85,8 @@ if gameData then
     SPEED_RUN_MODE = gameData.speedRunMode
     ABILITIES = gameData.abilities
     LEVELS = gameData.levels
+    WORLD = gameData.world
+    GAME_TIME = gameData.gameTime
 end
 
 TitleScene()
@@ -99,7 +105,9 @@ local function saveGameData()
         activeSave = ACTIVE_SAVE,
         speedRunMode = SPEED_RUN_MODE,
         abilities = ABILITIES,
-        levels = LEVELS
+        levels = LEVELS,
+        world = WORLD,
+        gameTime = GAME_TIME
     }
     pd.datastore.write(data)
 end

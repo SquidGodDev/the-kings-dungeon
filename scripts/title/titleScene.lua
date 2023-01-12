@@ -8,9 +8,9 @@ class('TitleScene').extends(gfx.sprite)
 function TitleScene:init()
     local systemMenu = pd.getSystemMenu()
     systemMenu:removeAllMenuItems()
-    -- systemMenu:addCheckmarkMenuItem("Speedrun Mode", SPEED_RUN_MODE, function(flag)
-    --     SPEED_RUN_MODE = flag
-    -- end)
+    systemMenu:addCheckmarkMenuItem("Timer", SPEED_RUN_MODE, function(flag)
+        SPEED_RUN_MODE = flag
+    end)
 
     TitleMusic:play(0)
 	EndMusic:stop()
