@@ -34,6 +34,7 @@ import "scripts/game/npcs/dialogueManager"
 -- Title
 import "scripts/title/titleScene"
 import "scripts/title/menu"
+import "scripts/title/speedRunTimesScene"
 
 -- End
 import "scripts/end/endScene"
@@ -67,6 +68,9 @@ WORLD = 1
 
 GAME_TIME = 0
 
+BEST_TIME_WORLD_1 = nil
+BEST_TIME_WORLD_2 = nil
+
 ABILITIES = {
     crankKeyAbility = false,
     smashAbility = false,
@@ -87,6 +91,8 @@ if gameData then
     LEVELS = gameData.levels
     WORLD = gameData.world
     GAME_TIME = gameData.gameTime
+    BEST_TIME_WORLD_1 = gameData.bestTimeWorld1
+    BEST_TIME_WORLD_2 = gameData.bestTimeWorld2
 end
 
 TitleScene()
@@ -94,6 +100,7 @@ TitleScene()
 function pd.update()
     gfx.sprite.update()
     pd.timer.updateTimers()
+    pd.drawFPS(5, 5)
 end
 
 local function saveGameData()
@@ -107,7 +114,9 @@ local function saveGameData()
         abilities = ABILITIES,
         levels = LEVELS,
         world = WORLD,
-        gameTime = GAME_TIME
+        gameTime = GAME_TIME,
+        bestTimeWorld1 = BEST_TIME_WORLD_1,
+        bestTimeWorld2 = BEST_TIME_WORLD_2
     }
     pd.datastore.write(data)
 end

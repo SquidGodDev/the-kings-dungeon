@@ -11,6 +11,9 @@ function TitleScene:init()
     systemMenu:addCheckmarkMenuItem("Timer", SPEED_RUN_MODE, function(flag)
         SPEED_RUN_MODE = flag
     end)
+    systemMenu:addMenuItem("Fastest Times", function()
+        SCENE_MANAGER:switchScene(SpeedRunTimesScene)
+    end)
 
     TitleMusic:play(0)
 	EndMusic:stop()

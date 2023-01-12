@@ -4,6 +4,9 @@ local gfx <const> = playdate.graphics
 
 local util <const> = utilities
 
+local blockImage <const> = gfx.image.new("images/entities/destructableBlock")
+local newSampleplayer <const> = pd.sound.sampleplayer.new
+
 class('DestructableBlock').extends(gfx.sprite)
 
 function DestructableBlock:init(x, y, entity)
@@ -11,7 +14,6 @@ function DestructableBlock:init(x, y, entity)
         return
     end
     self.entity = entity
-    local blockImage = gfx.image.new("images/entities/destructableBlock")
     self:setZIndex(Z_INDEXES.DESTRUCTABLE_BLOCK)
     self:setImage(blockImage)
     self:setCollideRect(0, 0, self:getSize())
@@ -20,7 +22,7 @@ function DestructableBlock:init(x, y, entity)
     self:moveTo(x, y)
     self:add()
 
-    self.destroySound = pd.sound.sampleplayer.new("sound/entities/blockBreak")
+    self.destroySound = newSampleplayer("sound/entities/blockBreak")
 end
 
 function DestructableBlock:destroy()

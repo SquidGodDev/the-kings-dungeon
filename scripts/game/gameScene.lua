@@ -1,11 +1,6 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-local round <const> = function(num, numDecimalPlaces)
-	local mult = 10^(numDecimalPlaces or 0)
-	return math.floor(num * mult + 0.5) / mult
-end
-
 DIRECTIONS = {
 	north = "north",
 	south = "south",
@@ -47,6 +42,15 @@ COLLISION_GROUPS = {
 MAX_CHEESE_WORLD_1 = 11
 MAX_CHEESE_WORLD_2 = 8
 
+FINISH_TIME = 0
+
+local timeFormat = function(time)
+    local seconds = tonumber(string.format("%.2f", time / 1000))
+    local minutes = math.floor(seconds / 60)
+    local remainingSeconds = string.format("%.2f", seconds - minutes * 60)
+    return tostring(minutes) .. ":" .. remainingSeconds
+end
+
 local ldtk <const> = LDtk
 
 local usePrecomputedLevels = not pd.isSimulator
@@ -74,14 +78,16 @@ function GameScene:init(world, level, x, y, abilities, levels)
 		self:goToLevel(level)
 		self.spawnX = x
 		self.spawnY = y
-		self.savedTime = GAME_TIME
+		if GAME_TIME then
+			self.savedTime = GAME_TIME
+		end
 	else
 		CHEESE = 0
 		WORLD = world
 		if world == 1 then
-			self:goToLevel("Level_0")
-			self.spawnX = 2 * 32 -- 2
-			self.spawnY = 5 * 32 -- 5
+			self:goToLevel("Level_35")
+			self.spawnX = 6 * 32 -- 2
+			self.spawnY = 3 * 32 -- 5
 		else
 			self:goToLevel("Level_36") -- 36
 			self.spawnX = 3 * 32 -- 3
@@ -127,8 +133,9 @@ end
 
 function GameScene:update()
 	self.elapsedTime = pd.getCurrentTimeMilliseconds() - self.baseTime
+	FINISH_TIME = self.savedTime + self.elapsedTime
 	if self.speedRunMode then
-		local timeText = string.format("%.2f", (self.savedTime + self.elapsedTime) / 1000)
+		local timeText = timeFormat(self.savedTime + self.elapsedTime)
 		local imageWidth = self.timeFont:getTextWidth(timeText)
 		local imageHeight = self.timeFontHeight
 		local timeImage = gfx.image.new(imageWidth, imageHeight)

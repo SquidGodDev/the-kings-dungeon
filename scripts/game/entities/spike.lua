@@ -1,10 +1,11 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+local spikeImage <const> = gfx.image.new("images/entities/spike")
+
 class('Spike').extends(gfx.sprite)
 
 function Spike:init(x, y)
-    local spikeImage = gfx.image.new("images/entities/spike")
     self:setZIndex(Z_INDEXES.HAZARDS)
     self:setImage(spikeImage)
     self:setCenter(0, 0)
