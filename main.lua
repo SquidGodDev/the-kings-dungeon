@@ -100,7 +100,6 @@ TitleScene()
 function pd.update()
     gfx.sprite.update()
     pd.timer.updateTimers()
-    pd.drawFPS(5, 5)
 end
 
 local function saveGameData()

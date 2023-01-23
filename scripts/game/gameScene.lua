@@ -40,7 +40,7 @@ COLLISION_GROUPS = {
 }
 
 MAX_CHEESE_WORLD_1 = 11
-MAX_CHEESE_WORLD_2 = 8
+MAX_CHEESE_WORLD_2 = 10
 
 FINISH_TIME = 0
 
@@ -85,9 +85,9 @@ function GameScene:init(world, level, x, y, abilities, levels)
 		CHEESE = 0
 		WORLD = world
 		if world == 1 then
-			self:goToLevel("Level_35")
-			self.spawnX = 6 * 32 -- 2
-			self.spawnY = 3 * 32 -- 5
+			self:goToLevel("Level_0")
+			self.spawnX = 2 * 32 -- 2
+			self.spawnY = 5 * 32 -- 5
 		else
 			self:goToLevel("Level_36") -- 36
 			self.spawnX = 3 * 32 -- 3
