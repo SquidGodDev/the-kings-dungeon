@@ -107,9 +107,9 @@ function Player:init(x, y, gameManager, abilities)
     -- Abilities
     self.crankKeyAbility = false
     self.smashAbility = false
-    self.wallClimbAbility = true
+    self.wallClimbAbility = false
     self.doubleJumpAbility = false
-    self.dashAbility = true
+    self.dashAbility = false
 
     self:setDefaultCollisionRect()
     self:setGroups(COLLISION_GROUPS.player)

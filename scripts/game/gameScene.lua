@@ -82,6 +82,7 @@ function GameScene:init(world, level, x, y, abilities, levels)
 			self.savedTime = GAME_TIME
 		end
 	else
+		ldtk.load("level/level.ldtk", usePrecomputedLevels)
 		CHEESE = 0
 		WORLD = world
 		if world == 1 then
